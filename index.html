@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EuCAIF – European Coalition for AI in Fundamental Physics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #111118;
+  --bg-card: #16161f;
+  --bg-card-hover: #1c1c28;
+  --text-primary: #e8e8ed;
+  --text-secondary: #8888a0;
+  --text-muted: #55556a;
+  --accent: #6366f1;
+  --accent-light: #818cf8;
+  --accent-glow: rgba(99, 102, 241, 0.15);
+  --accent-warm: #f59e0b;
+  --accent-warm-glow: rgba(245, 158, 11, 0.12);
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
+  --gradient-1: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+  --gradient-2: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+  --font-sans: 'DM Sans', -apple-system, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAVIGATION */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(0px);
+}
+nav.scrolled {
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--font-sans);
+  font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em;
+  color: var(--text-primary);
+  text-decoration: none;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.nav-logo .logo-mark {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--gradient-1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 700; color: white;
+}
+.nav-links { display: flex; gap: 2rem; align-items: center; }
+.nav-links a {
+  color: var(--text-secondary); text-decoration: none;
+  font-size: 0.875rem; font-weight: 500;
+  transition: color 0.2s;
+  letter-spacing: 0.01em;
+}
+.nav-links a:hover { color: var(--text-primary); }
+.nav-cta {
+  background: rgba(99, 102, 241, 0.12) !important;
+  color: var(--accent-light) !important;
+  padding: 0.5rem 1.25rem; border-radius: 8px;
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  transition: all 0.2s !important;
+}
+.nav-cta:hover {
+  background: rgba(99, 102, 241, 0.2) !important;
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+#particle-canvas {
+  position: absolute; inset: 0; z-index: 0;
+}
+.hero-gradient {
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(99, 102, 241, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 30% 60%, rgba(139, 92, 246, 0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 75% 30%, rgba(245, 158, 11, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  text-align: center; padding: 2rem;
+  max-width: 900px;
+  pointer-events: none;
+}
+.hero-content a, .hero-content button {
+  pointer-events: auto;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 100px; padding: 0.4rem 1.25rem;
+  font-size: 0.8rem; font-weight: 500;
+  color: var(--accent-light);
+  margin-bottom: 2rem;
+  opacity: 0; transform: translateY(20px);
+  animation: fadeUp 0.8s 0.3s forwards;
+}
+.hero-badge .pulse {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent-light);
+  animation: pulse 2s infinite;
+}
+.hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  line-height: 1.05; font-weight: 400;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  opacity: 0; transform: translateY(30px);
+  animation: fadeUp 0.8s 0.5s forwards;
+}
+.hero h1 em {
+  font-style: italic;
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-sub {
+  font-size: 1.2rem; color: var(--text-secondary);
+  max-width: 600px; margin: 0 auto 2.5rem;
+  line-height: 1.7;
+  opacity: 0; transform: translateY(30px);
+  animation: fadeUp 0.8s 0.7s forwards;
+}
+.hero-actions {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  opacity: 0; transform: translateY(30px);
+  animation: fadeUp 0.8s 0.9s forwards;
+}
+.btn-primary {
+  background: var(--gradient-1);
+  color: white; padding: 0.85rem 2rem;
+  border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.25);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.35);
+}
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--text-primary); padding: 0.85rem 2rem;
+  border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+  text-decoration: none; border: 1px solid var(--border);
+  transition: all 0.3s; cursor: pointer;
+}
+.btn-secondary:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+}
+
+/* STATS BAR */
+.stats-bar {
+  position: relative; z-index: 2;
+  display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap;
+  padding: 3rem 2rem 0;
+  opacity: 0; transform: translateY(30px);
+  animation: fadeUp 0.8s 1.1s forwards;
+  pointer-events: none;
+}
+.stat { text-align: center; }
+.stat-number {
+  font-family: var(--font-mono);
+  font-size: 2.5rem; font-weight: 700;
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stat-label {
+  font-size: 0.8rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  margin-top: 0.25rem;
+}
+
+/* SECTIONS */
+section { padding: 6rem 2rem; }
+.section-container { max-width: 1200px; margin: 0 auto; }
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem; color: var(--accent-light);
+  text-transform: uppercase; letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.15; font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+.section-desc {
+  font-size: 1.1rem; color: var(--text-secondary);
+  max-width: 650px; line-height: 1.7;
+  margin-bottom: 3rem;
+}
+
+/* SUBFIELDS */
+.subfields-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.subfield-card {
+  background: var(--bg-secondary);
+  padding: 2.25rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+.subfield-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gradient-1);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.subfield-card:hover::before { transform: scaleX(1); }
+.subfield-card:hover { background: var(--bg-card-hover); }
+.subfield-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--accent-glow);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; margin-bottom: 1.25rem;
+  border: 1px solid rgba(99, 102, 241, 0.15);
+}
+.subfield-card h3 {
+  font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+.subfield-card p {
+  font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;
+}
+
+/* ABOUT / PURPOSE */
+.about-section { background: var(--bg-secondary); }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+  align-items: center;
+}
+.about-visual {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+.about-visual-inner {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.orbit-ring {
+  position: absolute;
+  border: 1px solid rgba(99, 102, 241, 0.12);
+  border-radius: 50%;
+  animation: spin 20s linear infinite;
+}
+.orbit-ring:nth-child(1) { width: 60%; height: 60%; }
+.orbit-ring:nth-child(2) { width: 80%; height: 80%; animation-duration: 30s; animation-direction: reverse; border-color: rgba(139, 92, 246, 0.08); }
+.orbit-ring:nth-child(3) { width: 95%; height: 95%; animation-duration: 45s; border-color: rgba(245, 158, 11, 0.06); }
+.orbit-dot {
+  position: absolute; width: 8px; height: 8px;
+  border-radius: 50%; background: var(--accent-light);
+  box-shadow: 0 0 12px var(--accent-light);
+  top: 0; left: 50%; transform: translate(-50%, -50%);
+}
+.orbit-ring:nth-child(2) .orbit-dot { background: #a855f7; box-shadow: 0 0 12px #a855f7; }
+.orbit-ring:nth-child(3) .orbit-dot { background: var(--accent-warm); box-shadow: 0 0 12px var(--accent-warm); }
+.orbit-center {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--gradient-1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem; z-index: 2;
+  box-shadow: 0 0 40px rgba(99, 102, 241, 0.3);
+}
+
+.about-text h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  line-height: 1.15; margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+.about-text p {
+  color: var(--text-secondary); line-height: 1.8;
+  margin-bottom: 1.25rem; font-size: 1.05rem;
+}
+.about-highlights {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  margin-top: 2rem;
+}
+.highlight-item {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.25rem;
+  transition: border-color 0.3s;
+}
+.highlight-item:hover { border-color: var(--border-hover); }
+.highlight-item h4 {
+  font-size: 0.95rem; font-weight: 600; margin-bottom: 0.35rem;
+}
+.highlight-item p {
+  font-size: 0.8rem; color: var(--text-muted);
+  margin-bottom: 0; line-height: 1.5;
+}
+
+/* CONFERENCE */
+.conference-section { position: relative; overflow: hidden; }
+.conference-banner {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4rem;
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 3rem; flex-wrap: wrap;
+}
+.conference-banner::before {
+  content: '';
+  position: absolute; top: -50%; right: -20%;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.conf-info { flex: 1; min-width: 300px; }
+.conf-year {
+  font-family: var(--font-mono);
+  font-size: 0.75rem; color: var(--accent-warm);
+  text-transform: uppercase; letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.conf-year::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent-warm);
+  animation: pulse 2s infinite;
+}
+.conf-info h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  margin-bottom: 1rem; letter-spacing: -0.02em;
+}
+.conf-info p { color: var(--text-secondary); line-height: 1.7; font-size: 1.05rem; margin-bottom: 1.5rem; }
+.conf-meta {
+  display: flex; gap: 2rem; flex-wrap: wrap;
+}
+.conf-meta-item {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.9rem; color: var(--text-secondary);
+}
+.conf-meta-icon {
+  font-size: 1rem;
+}
+.conf-actions { margin-top: 2rem; }
+
+/* PUBLICATIONS PREVIEW */
+.publications-section { background: var(--bg-secondary); }
+.pub-list { display: flex; flex-direction: column; gap: 1px; }
+.pub-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: var(--bg-primary);
+  border-radius: 12px;
+  transition: all 0.3s;
+  cursor: default;
+  margin-bottom: 0.5rem;
+}
+.pub-item:hover { background: var(--bg-card); transform: translateX(4px); }
+.pub-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  background: var(--accent-glow);
+  color: var(--accent-light);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  white-space: nowrap;
+}
+.pub-tag.cosmo { background: var(--accent-warm-glow); color: var(--accent-warm); border-color: rgba(245, 158, 11, 0.15); }
+.pub-tag.gw { background: rgba(168, 85, 247, 0.1); color: #a855f7; border-color: rgba(168, 85, 247, 0.15); }
+.pub-tag.theory { background: rgba(34, 197, 94, 0.08); color: #4ade80; border-color: rgba(34, 197, 94, 0.12); }
+.pub-tag.nuclear { background: rgba(236, 72, 153, 0.08); color: #f472b6; border-color: rgba(236, 72, 153, 0.12); }
+.pub-content h4 { font-size: 1rem; font-weight: 500; margin-bottom: 0.35rem; letter-spacing: -0.01em; }
+.pub-content p { font-size: 0.8rem; color: var(--text-muted); }
+.pub-link {
+  font-size: 0.8rem; color: var(--text-muted);
+  text-decoration: none; transition: color 0.2s;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+.pub-link:hover { color: var(--accent-light); }
+
+/* BLOG PREVIEW */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+.blog-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.blog-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+}
+.blog-image {
+  height: 200px;
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+  position: relative;
+  overflow: hidden;
+}
+.blog-image::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--gradient-1);
+  opacity: 0.15;
+}
+.blog-image-pattern {
+  position: absolute; inset: 0;
+  opacity: 0.3;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.3) 1px, transparent 1px),
+    radial-gradient(circle at 80% 30%, rgba(139, 92, 246, 0.2) 1px, transparent 1px),
+    radial-gradient(circle at 60% 80%, rgba(245, 158, 11, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px, 32px 32px, 20px 20px;
+}
+.blog-body { padding: 2rem; }
+.blog-date {
+  font-family: var(--font-mono);
+  font-size: 0.7rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+.blog-card h3 {
+  font-size: 1.15rem; font-weight: 600; margin-bottom: 0.75rem;
+  letter-spacing: -0.01em; line-height: 1.4;
+}
+.blog-card p {
+  font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;
+}
+
+/* CTA */
+.cta-section { text-align: center; padding: 8rem 2rem; }
+.cta-section h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 1.25rem; letter-spacing: -0.03em;
+}
+.cta-section h2 em {
+  font-style: italic;
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.cta-section p {
+  color: var(--text-secondary); font-size: 1.15rem;
+  max-width: 550px; margin: 0 auto 2.5rem; line-height: 1.7;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 3rem 2rem;
+}
+.footer-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer-text { font-size: 0.8rem; color: var(--text-muted); }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a {
+  font-size: 0.8rem; color: var(--text-muted);
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--text-secondary); }
+
+/* SCROLL REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-visual { max-width: 350px; margin: 0 auto; }
+  .stats-bar { gap: 2rem; }
+  .conference-banner { padding: 2.5rem; }
+  .pub-item { grid-template-columns: 1fr; gap: 0.75rem; }
+  .pub-tag { justify-self: start; }
+  .pub-link { justify-self: start; }
+  .subfields-grid { grid-template-columns: 1fr; }
+  .blog-grid { grid-template-columns: 1fr; }
+}
+
+/* HAMBURGER (mobile) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+.hamburger span {
+  width: 22px;
+  height: 2px;
+  background: var(--text-secondary);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <span class="logo-mark">Eu</span>
+    EuCAIF
+  </a>
+  <div class="nav-links">
+    <a href="#subfields">Research</a>
+    <a href="#about">About</a>
+    <a href="#conference">Conference</a>
+    <a href="#publications">Publications</a>
+    <a href="#blog">News</a>
+    <a href="#join" class="nav-cta">Join EuCAIF</a>
+  </div>
+  <button class="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="particle-canvas"></canvas>
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="pulse"></span>
+      EuCAIFCon 2026 — Heidelberg — August 24–28
+    </div>
+    <h1>AI at the frontier of <em>fundamental physics</em></h1>
+    <p class="hero-sub">
+      A European cross-disciplinary coalition advancing AI methods for particle physics, cosmology, gravitational waves, and beyond.
+    </p>
+    <div class="hero-actions">
+      <a href="#join" class="btn-primary">Join the Coalition</a>
+      <a href="#about" class="btn-secondary">Learn more</a>
+    </div>
+  </div>
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-number" data-target="60">0</div>
+      <div class="stat-label">Fellows</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number" data-target="5">0</div>
+      <div class="stat-label">Junior Fellows</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number" data-target="30">0</div>
+      <div class="stat-label">Countries</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number" data-target="1200" data-suffix="+">0</div>
+      <div class="stat-label">AI publications / year</div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBFIELDS -->
+<section id="subfields">
+  <div class="section-container">
+    <div class="reveal">
+      <div class="section-label">Research Domains</div>
+      <h2 class="section-title">Seven pillars of<br>fundamental physics</h2>
+      <p class="section-desc">
+        Shared challenges across subfields — from modeling complex datasets to simulation-based inference — demand AI methods developed with physics principles at their core.
+      </p>
+    </div>
+    <div class="subfields-grid reveal reveal-delay-2">
+      <div class="subfield-card">
+        <div class="subfield-icon">⚛️</div>
+        <h3>Particle Physics</h3>
+        <p>Unlocking the secrets of the tiniest building blocks with AI-driven analysis of collider data and beyond-standard-model searches.</p>
+      </div>
+      <div class="subfield-card">
+        <div class="subfield-icon">🌌</div>
+        <h3>Cosmology</h3>
+        <p>Investigating the origins and evolution of the universe with machine learning on the grandest observational scales.</p>
+      </div>
+      <div class="subfield-card">
+        <div class="subfield-icon">🌊</div>
+        <h3>Gravitational Waves</h3>
+        <p>Listening to spacetime ripples with neural networks that detect and characterize the most violent cosmic events.</p>
+      </div>
+      <div class="subfield-card">
+        <div class="subfield-icon">🔮</div>
+        <h3>Theoretical Physics</h3>
+        <p>Crafting mathematical frameworks with AI-augmented discovery of symmetries, dualities, and new physical laws.</p>
+      </div>
+      <div class="subfield-card">
+        <div class="subfield-icon">☢️</div>
+        <h3>Nuclear Physics</h3>
+        <p>Studying atomic nuclei to understand the forces that power stars, with ML models for complex many-body quantum systems.</p>
+      </div>
+      <div class="subfield-card">
+        <div class="subfield-icon">💫</div>
+        <h3>Astroparticle Physics</h3>
+        <p>Exploring cosmic rays, neutrinos, and dark matter with AI pipelines processing vast multi-messenger datasets.</p>
+      </div>
+      <div class="subfield-card">
+        <div class="subfield-icon">⚡</div>
+        <h3>Accelerator Physics</h3>
+        <p>Pushing the frontiers of beam optimization and detector design with reinforcement learning and fast surrogate models.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about-section">
+  <div class="section-container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-visual-inner">
+          <div class="orbit-ring"><div class="orbit-dot"></div></div>
+          <div class="orbit-ring"><div class="orbit-dot"></div></div>
+          <div class="orbit-ring"><div class="orbit-dot"></div></div>
+          <div class="orbit-center">🧠</div>
+        </div>
+      </div>
+      <div class="about-text reveal reveal-delay-2">
+        <div class="section-label">Purpose & Scope</div>
+        <h2>Science-specific AI for discoveries beyond classical methods</h2>
+        <p>
+          AI and modern machine learning are transforming fundamental physics research. Common challenges — modeling complex datasets, scalability to high-dimensional parameter spaces, fast emulators, and simulation-based inference — highlight AI's transformative potential when methods are developed with physics principles at their core.
+        </p>
+        <p>
+          EuCAIF creates a community for developers of specialized methods that incorporate robustness, uncertainty estimation, scientific explainability, and fundamental understanding of physics principles.
+        </p>
+        <div class="about-highlights">
+          <div class="highlight-item">
+            <h4>Cross-disciplinary</h4>
+            <p>Methods that bridge particle physics, cosmology, and gravitational waves</p>
+          </div>
+          <div class="highlight-item">
+            <h4>Uncertainty-aware</h4>
+            <p>AI with built-in robustness and calibrated confidence</p>
+          </div>
+          <div class="highlight-item">
+            <h4>Explainable</h4>
+            <p>Scientific interpretability at the core, not as afterthought</p>
+          </div>
+          <div class="highlight-item">
+            <h4>Community-driven</h4>
+            <p>Open methods, shared challenges, collaborative research</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFERENCE -->
+<section id="conference" class="conference-section">
+  <div class="section-container">
+    <div class="conference-banner reveal">
+      <div class="conf-info">
+        <div class="conf-year">Next Conference</div>
+        <h2>EuCAIFCon 2026</h2>
+        <p>The annual European Conference for AI in Fundamental Physics. Sessions centered on AI methods and themes, cross-disciplinary regarding the scientific questions.</p>
+        <div class="conf-meta">
+          <div class="conf-meta-item">
+            <span class="conf-meta-icon">📍</span> Heidelberg, Germany
+          </div>
+          <div class="conf-meta-item">
+            <span class="conf-meta-icon">📅</span> August 24 – 28, 2026
+          </div>
+        </div>
+        <div class="conf-actions">
+          <a href="https://indico.physi.uni-heidelberg.de/event/1277/" class="btn-primary" target="_blank">Register Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications" class="publications-section">
+  <div class="section-container">
+    <div class="reveal">
+      <div class="section-label">Latest Research</div>
+      <h2 class="section-title">Publications</h2>
+      <p class="section-desc">
+        Recent highlights from across the EuCAIF community — simulation-based inference, generative models, equivariant networks, and more.
+      </p>
+    </div>
+    <div class="pub-list">
+      <div class="pub-item reveal reveal-delay-1">
+        <span class="pub-tag">Particle</span>
+        <div class="pub-content">
+          <h4>Simulation-based inference for particle physics collider searches</h4>
+          <p>Cranmer, K. et al. · Physical Review D · 2025</p>
+        </div>
+        <a class="pub-link" href="#">arXiv →</a>
+      </div>
+      <div class="pub-item reveal reveal-delay-2">
+        <span class="pub-tag cosmo">Cosmology</span>
+        <div class="pub-content">
+          <h4>Neural posterior estimation for cosmic shear power spectra</h4>
+          <p>Lemos, P. et al. · JCAP · 2025</p>
+        </div>
+        <a class="pub-link" href="#">arXiv →</a>
+      </div>
+      <div class="pub-item reveal reveal-delay-3">
+        <span class="pub-tag gw">Grav. Waves</span>
+        <div class="pub-content">
+          <h4>Deep learning for LISA data: source separation and parameter estimation</h4>
+          <p>Dax, M. et al. · Physical Review Letters · 2025</p>
+        </div>
+        <a class="pub-link" href="#">arXiv →</a>
+      </div>
+      <div class="pub-item reveal reveal-delay-4">
+        <span class="pub-tag theory">Theory</span>
+        <div class="pub-content">
+          <h4>Equivariant neural networks for lattice gauge theory</h4>
+          <p>Boyda, D. et al. · Machine Learning: Science & Technology · 2025</p>
+        </div>
+        <a class="pub-link" href="#">arXiv →</a>
+      </div>
+      <div class="pub-item reveal">
+        <span class="pub-tag nuclear">Nuclear</span>
+        <div class="pub-content">
+          <h4>Variational Monte Carlo with normalizing flows for nuclear structure</h4>
+          <p>Adams, C. et al. · Physical Review C · 2025</p>
+        </div>
+        <a class="pub-link" href="#">arXiv →</a>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top: 2.5rem;" class="reveal">
+      <a href="#" class="btn-secondary">View all publications →</a>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG / NEWS -->
+<section id="blog">
+  <div class="section-container">
+    <div class="reveal">
+      <div class="section-label">News & Highlights</div>
+      <h2 class="section-title">From the community</h2>
+      <p class="section-desc">
+        Updates, highlights, and perspectives from across the EuCAIF network.
+      </p>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card reveal reveal-delay-1">
+        <div class="blog-image">
+          <div class="blog-image-pattern"></div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">Jan 2026</div>
+          <h3>EuCAIFCon 2025 Proceedings now published in SciPost</h3>
+          <p>The full proceedings of EuCAIFCon 2025 Sardinia are now available, featuring 47 contributions across all subfields.</p>
+        </div>
+      </div>
+      <div class="blog-card reveal reveal-delay-2">
+        <div class="blog-image" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+          <div class="blog-image-pattern"></div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">Dec 2025</div>
+          <h3>New working group on Foundation Models for Physics</h3>
+          <p>EuCAIF launches a dedicated working group exploring how large-scale foundation models can accelerate scientific discovery.</p>
+        </div>
+      </div>
+      <div class="blog-card reveal reveal-delay-3">
+        <div class="blog-image" style="background: linear-gradient(135deg, #0f0f1a, #1a0f2e);">
+          <div class="blog-image-pattern"></div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">Nov 2025</div>
+          <h3>EuCAIF members win NeurIPS spotlight for physics-informed diffusion models</h3>
+          <p>A cross-institutional collaboration develops score-based generative models with exact symmetry guarantees.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="join" class="cta-section">
+  <div class="section-container reveal">
+    <h2>Shape the future of<br><em>AI in physics</em></h2>
+    <p>Join a growing European community of researchers developing the next generation of AI methods for fundamental physics.</p>
+    <div class="hero-actions" style="justify-content: center;">
+      <a href="mailto:info@eucaif.org" class="btn-primary">Join EuCAIF</a>
+      <a href="#" class="btn-secondary">Read the Charter</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-text">© 2026 EuCAIF — European Coalition for AI in Fundamental Physics</div>
+    <div class="footer-links">
+      <a href="#">GitHub</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// PARTICLES IN A BOX — periodic BCs, repulsive interparticle, attractive mouse
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+let mouse = { x: null, y: null, active: false };
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  // Re-wrap particles on resize
+  for (const p of particles) {
+    p.x = ((p.x % canvas.width) + canvas.width) % canvas.width;
+    p.y = ((p.y % canvas.height) + canvas.height) % canvas.height;
+  }
+}
+
+const PARTICLE_COUNT = 200;
+const REPULSION_STRENGTH = 80;
+const REPULSION_RANGE = 80;
+const MOUSE_STRENGTH = 3500;
+const MOUSE_RANGE = 300;
+const DAMPING = 0.94;
+const MAX_SPEED = 4;
+const DT = 0.167;
+
+const particles = [];
+
+class Particle {
+  constructor() {
+    this.x = Math.random() * (window.innerWidth || 1200);
+    this.y = Math.random() * (window.innerHeight || 800);
+    this.vx = (Math.random() - 0.5) * 1.5;
+    this.vy = (Math.random() - 0.5) * 1.5;
+    this.radius = Math.random() * 1.2 + 1.0;
+    // Assign a color palette index
+    const r = Math.random();
+    if (r < 0.5) {
+      this.hue = 'indigo';
+      this.color = `rgba(129, 140, 248, 0.8)`;
+      this.glowColor = `rgba(99, 102, 241, `;
+    } else if (r < 0.8) {
+      this.hue = 'purple';
+      this.color = `rgba(168, 85, 247, 0.7)`;
+      this.glowColor = `rgba(139, 92, 246, `;
+    } else {
+      this.hue = 'amber';
+      this.color = `rgba(251, 191, 36, 0.7)`;
+      this.glowColor = `rgba(245, 158, 11, `;
+    }
+  }
+}
+
+for (let i = 0; i < PARTICLE_COUNT; i++) {
+  particles.push(new Particle());
+}
+
+resize();
+window.addEventListener('resize', resize);
+
+document.addEventListener('mousemove', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  mouse.x = e.clientX - rect.left;
+  mouse.y = e.clientY - rect.top;
+  // Only active when mouse is over the canvas area
+  mouse.active = e.clientY < rect.bottom && e.clientY > rect.top;
+});
+document.addEventListener('mouseleave', () => {
+  mouse.active = false;
+});
+
+// Minimum image distance for periodic BCs
+function periodicDelta(d, L) {
+  if (d > L * 0.5) return d - L;
+  if (d < -L * 0.5) return d + L;
+  return d;
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  const W = canvas.width;
+  const H = canvas.height;
+  
+  // Physics update
+  for (let i = 0; i < particles.length; i++) {
+    const pi = particles[i];
+    let fx = 0, fy = 0;
+    
+    // Repulsive forces from other particles (only check nearby via brute force — fine for 200)
+    for (let j = 0; j < particles.length; j++) {
+      if (i === j) continue;
+      const pj = particles[j];
+      
+      let dx = periodicDelta(pi.x - pj.x, W);
+      let dy = periodicDelta(pi.y - pj.y, H);
+      const r2 = dx * dx + dy * dy;
+      const r = Math.sqrt(r2);
+      
+      if (r < REPULSION_RANGE && r > 0.5) {
+        // Soft repulsion: F ~ 1/r^2 capped
+        const force = REPULSION_STRENGTH / (r2 + 100);
+        fx += (dx / r) * force;
+        fy += (dy / r) * force;
+      }
+    }
+    
+    // Mouse attraction
+    if (mouse.active && mouse.x !== null) {
+      let dx = periodicDelta(mouse.x - pi.x, W);
+      let dy = periodicDelta(mouse.y - pi.y, H);
+      const r2 = dx * dx + dy * dy;
+      const r = Math.sqrt(r2);
+      
+      if (r < MOUSE_RANGE && r > 2) {
+        // Strong attraction, falling off with distance
+        const force = MOUSE_STRENGTH / (r2 + 500);
+        fx += (dx / r) * force;
+        fy += (dy / r) * force;
+      }
+    }
+    
+    // Brownian motion — weak random kicks
+    pi.vx += (Math.random() - 0.5) * 0.15;
+    pi.vy += (Math.random() - 0.5) * 0.15;
+    
+    // Integrate
+    pi.vx += fx * DT;
+    pi.vy += fy * DT;
+    
+    // Damping
+    pi.vx *= DAMPING;
+    pi.vy *= DAMPING;
+    
+    // Speed limit
+    const speed = Math.sqrt(pi.vx * pi.vx + pi.vy * pi.vy);
+    if (speed > MAX_SPEED) {
+      pi.vx = (pi.vx / speed) * MAX_SPEED;
+      pi.vy = (pi.vy / speed) * MAX_SPEED;
+    }
+    
+    pi.x += pi.vx * DT;
+    pi.y += pi.vy * DT;
+    
+    // Periodic boundary conditions
+    pi.x = ((pi.x % W) + W) % W;
+    pi.y = ((pi.y % H) + H) % H;
+  }
+  
+  // Draw connections between nearby particles
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      let dx = periodicDelta(particles[i].x - particles[j].x, W);
+      let dy = periodicDelta(particles[i].y - particles[j].y, H);
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      
+      if (dist < 100) {
+        const closeness = 1 - dist / 100;
+        const alpha = closeness * closeness * 0.45;
+        const width = closeness * closeness * 2.5 + 0.3;
+        // Only draw if not wrapping across boundary (avoid ugly lines)
+        if (Math.abs(particles[i].x - particles[j].x) < 100 &&
+            Math.abs(particles[i].y - particles[j].y) < 100) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(99, 102, 241, ${alpha})`;
+          ctx.lineWidth = width;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+  
+  // Draw particles
+  for (const p of particles) {
+    const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+    const excitement = Math.min(1, speed / MAX_SPEED);
+    
+    // Glow when moving fast
+    if (excitement > 0.3) {
+      const glowR = p.radius + excitement * 6;
+      const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowR);
+      grad.addColorStop(0, p.glowColor + `${excitement * 0.3})`);
+      grad.addColorStop(1, p.glowColor + `0)`);
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, glowR, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+    }
+    
+    // Core dot
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+    ctx.fillStyle = p.color;
+    ctx.fill();
+  }
+  
+  // Draw mouse attractor indicator
+  if (mouse.active && mouse.x !== null) {
+    const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 60);
+    grad.addColorStop(0, 'rgba(99, 102, 241, 0.06)');
+    grad.addColorStop(1, 'rgba(99, 102, 241, 0)');
+    ctx.beginPath();
+    ctx.arc(mouse.x, mouse.y, 60, 0, Math.PI * 2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+  }
+  
+  requestAnimationFrame(animate);
+}
+animate();
+
+// NAV SCROLL
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// SCROLL REVEAL
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// COUNTER ANIMATION
+function animateCounters() {
+  document.querySelectorAll('.stat-number').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const duration = 2000;
+    const start = performance.now();
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(target * eased) + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  });
+}
+
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounters();
+      statsObserver.disconnect();
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelector('.stats-bar') && statsObserver.observe(document.querySelector('.stats-bar'));
+</script>
+
+</body>
+</html>
