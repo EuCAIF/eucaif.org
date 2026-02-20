@@ -8,7 +8,8 @@ import '../styles/global.css';
 <!-- NAVIGATION -->
 <nav id="navbar">
   <a href="#" class="nav-logo">
-    <img src="/images/eucaif-logo.png" alt="EuCAIF" class="logo-img" />
+    <img src="/images/eucaif-logo-icon.png" alt="EuCAIF" width="36" height="36" style="border-radius:50%; display:block;" />
+    EuCAIF
   </a>
   <div class="nav-links">
     <a href="#subfields">Research</a>
@@ -66,7 +67,7 @@ import '../styles/global.css';
   <div class="section-container">
     <div class="reveal">
       <div class="section-label">Research Domains</div>
-      <h2 class="section-title">Seven pillars of<br>fundamental physics</h2>
+      <h2 class="section-title">Across the frontiers of<br>fundamental physics</h2>
       <p class="section-desc">
         Shared challenges across subfields — from modeling complex datasets to simulation-based inference — demand AI methods developed with physics principles at their core.
       </p>
@@ -350,17 +351,17 @@ class Particle {
     this.radius = Math.random() * 1.2 + 1.0;
     const r = Math.random();
     if (r < 0.5) {
-      this.hue = 'indigo';
-      this.color = `rgba(129, 140, 248, 0.8)`;
-      this.glowColor = `rgba(99, 102, 241, `;
+      this.hue = 'blue';
+      this.color = `rgba(56, 176, 230, 0.8)`;
+      this.glowColor = `rgba(26, 143, 196, `;
     } else if (r < 0.8) {
-      this.hue = 'purple';
-      this.color = `rgba(168, 85, 247, 0.7)`;
-      this.glowColor = `rgba(139, 92, 246, `;
+      this.hue = 'cyan';
+      this.color = `rgba(80, 200, 240, 0.7)`;
+      this.glowColor = `rgba(56, 176, 230, `;
     } else {
-      this.hue = 'amber';
-      this.color = `rgba(251, 191, 36, 0.7)`;
-      this.glowColor = `rgba(245, 158, 11, `;
+      this.hue = 'silver';
+      this.color = `rgba(180, 190, 200, 0.7)`;
+      this.glowColor = `rgba(156, 163, 175, `;
     }
   }
 }
@@ -464,7 +465,7 @@ function animate() {
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(99, 102, 241, ${alpha})`;
+          ctx.strokeStyle = `rgba(26, 143, 196, ${alpha})`;
           ctx.lineWidth = width;
           ctx.stroke();
         }
@@ -495,8 +496,8 @@ function animate() {
 
   if (mouse.active && mouse.x !== null && mouse.y !== null) {
     const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 60);
-    grad.addColorStop(0, 'rgba(99, 102, 241, 0.06)');
-    grad.addColorStop(1, 'rgba(99, 102, 241, 0)');
+    grad.addColorStop(0, 'rgba(26, 143, 196, 0.06)');
+    grad.addColorStop(1, 'rgba(26, 143, 196, 0)');
     ctx.beginPath();
     ctx.arc(mouse.x, mouse.y, 60, 0, Math.PI * 2);
     ctx.fillStyle = grad;
