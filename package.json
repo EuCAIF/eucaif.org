@@ -6,10 +6,12 @@
     "dev": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "fetch-pubs": "node scripts/fetch-publications.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
-    "astro": "^5.5.0"
+    "astro": "^5.5.0",
+    "js-yaml": "^4.1.1"
   }
 }

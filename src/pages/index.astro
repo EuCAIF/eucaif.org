@@ -1,6 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
+import yaml from 'js-yaml';
+import membersRaw from '../data/members.yml?raw';
+import EuropeMap from '../components/EuropeMap.astro';
+
+const members = yaml.load(membersRaw) as { given_name: string; surname: string; affiliation: string; country: string; roles: string[] }[];
+const fellowCount = members.filter(m => m.roles.includes('fellow')).length;
+const juniorCount = members.filter(m => m.roles.includes('junior-fellow')).length;
+const countries = [...new Set(members.map(m => m.country))];
+const countryCount = countries.length;
 ---
 
 <Layout title="EuCAIF – European Coalition for AI in Fundamental Physics">
@@ -14,10 +23,11 @@ import '../styles/global.css';
   <div class="nav-links">
     <a href="#subfields">Research</a>
     <a href="#about">About</a>
+    <a href="/eucaif.org/community/">Community</a>
     <a href="#conference">Conference</a>
     <a href="#publications">Publications</a>
     <a href="#blog">News</a>
-    <a href="#join" class="nav-cta">Join EuCAIF</a>
+    <a href="#join" class="nav-cta">Get Involved</a>
   </div>
   <button class="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -38,21 +48,21 @@ import '../styles/global.css';
       A European cross-disciplinary coalition advancing AI methods for particle physics, cosmology, gravitational waves, and beyond.
     </p>
     <div class="hero-actions">
-      <a href="#join" class="btn-primary">Join the Coalition</a>
+      <a href="#join" class="btn-primary">Get Involved</a>
       <a href="#about" class="btn-secondary">Learn more</a>
     </div>
   </div>
   <div class="stats-bar">
     <div class="stat">
-      <div class="stat-number" data-target="60">0</div>
+      <div class="stat-number" data-target={fellowCount}>0</div>
       <div class="stat-label">Fellows</div>
     </div>
     <div class="stat">
-      <div class="stat-number" data-target="5">0</div>
+      <div class="stat-number" data-target={juniorCount}>0</div>
       <div class="stat-label">Junior Fellows</div>
     </div>
     <div class="stat">
-      <div class="stat-number" data-target="30">0</div>
+      <div class="stat-number" data-target={countryCount}>0</div>
       <div class="stat-label">Countries</div>
     </div>
     <div class="stat">
@@ -73,38 +83,38 @@ import '../styles/global.css';
       </p>
     </div>
     <div class="subfields-grid reveal reveal-delay-2">
-      <div class="subfield-card" style="background-image: url('/eucaif.org/images/particle-tracks.jpg');">
-        <div class="subfield-overlay"></div>
+      <div class="subfield-card">
+        <div class="subfield-overlay" style="background-image: url('/eucaif.org/images/particle-tracks.jpg');"></div>
         <h3>Particle Physics</h3>
         <p>Unlocking the secrets of the tiniest building blocks with AI-driven analysis of collider data and beyond-standard-model searches.</p>
       </div>
-      <div class="subfield-card" style="background-image: url('/eucaif.org/images/cosmology.png');">
-        <div class="subfield-overlay"></div>
+      <div class="subfield-card">
+        <div class="subfield-overlay" style="background-image: url('/eucaif.org/images/cosmology.png');"></div>
         <h3>Cosmology</h3>
         <p>Investigating the origins and evolution of the universe with machine learning on the grandest observational scales.</p>
       </div>
-      <div class="subfield-card" style="background-image: url('/eucaif.org/images/gravity-waves.jpg');">
-        <div class="subfield-overlay"></div>
+      <div class="subfield-card">
+        <div class="subfield-overlay" style="background-image: url('/eucaif.org/images/gravity-waves.jpg');"></div>
         <h3>Gravitational Waves</h3>
         <p>Listening to spacetime ripples with neural networks that detect and characterize the most violent cosmic events.</p>
       </div>
-      <div class="subfield-card" style="background-image: url('/eucaif.org/images/theoretical-physics.png');">
-        <div class="subfield-overlay"></div>
+      <div class="subfield-card">
+        <div class="subfield-overlay" style="background-image: url('/eucaif.org/images/theoretical-physics.png');"></div>
         <h3>Theoretical Physics</h3>
         <p>Crafting mathematical frameworks with AI-augmented discovery of symmetries, dualities, and new physical laws.</p>
       </div>
-      <div class="subfield-card" style="background-image: url('/eucaif.org/images/nuclear-physics.png');">
-        <div class="subfield-overlay"></div>
+      <div class="subfield-card">
+        <div class="subfield-overlay" style="background-image: url('/eucaif.org/images/nuclear-physics.png');"></div>
         <h3>Nuclear Physics</h3>
         <p>Studying atomic nuclei to understand the forces that power stars, with ML models for complex many-body quantum systems.</p>
       </div>
-      <div class="subfield-card" style="background-image: url('/eucaif.org/images/astroparticles.jpg');">
-        <div class="subfield-overlay"></div>
+      <div class="subfield-card">
+        <div class="subfield-overlay" style="background-image: url('/eucaif.org/images/astroparticles.jpg');"></div>
         <h3>Astroparticle Physics</h3>
         <p>Exploring cosmic rays, neutrinos, and dark matter with AI pipelines processing vast multi-messenger datasets.</p>
       </div>
-      <div class="subfield-card" style="background-image: url('/eucaif.org/images/accelerator-physics.png');">
-        <div class="subfield-overlay"></div>
+      <div class="subfield-card">
+        <div class="subfield-overlay" style="background-image: url('/eucaif.org/images/accelerator-physics.png');"></div>
         <h3>Accelerator Physics</h3>
         <p>Pushing the frontiers of beam optimization and detector design with reinforcement learning and fast surrogate models.</p>
       </div>
@@ -116,13 +126,8 @@ import '../styles/global.css';
 <section id="about" class="about-section">
   <div class="section-container">
     <div class="about-grid">
-      <div class="about-visual reveal">
-        <div class="about-visual-inner">
-          <div class="orbit-ring"><div class="orbit-dot"></div></div>
-          <div class="orbit-ring"><div class="orbit-dot"></div></div>
-          <div class="orbit-ring"><div class="orbit-dot"></div></div>
-          <div class="orbit-center">🧠</div>
-        </div>
+      <div class="about-visual reveal" style="background: transparent; border: none;">
+        <EuropeMap highlightedCountries={countries} />
       </div>
       <div class="about-text reveal reveal-delay-2">
         <div class="section-label">Purpose & Scope</div>
@@ -287,9 +292,9 @@ import '../styles/global.css';
 <section id="join" class="cta-section">
   <div class="section-container reveal">
     <h2>Shape the future of<br><em>AI in physics</em></h2>
-    <p>Join a growing European community of researchers developing the next generation of AI methods for fundamental physics.</p>
+    <p>Connect with a growing European community of researchers developing the next generation of AI methods for fundamental physics.</p>
     <div class="hero-actions" style="justify-content: center;">
-      <a href="mailto:info@eucaif.org" class="btn-primary">Join EuCAIF</a>
+      <a href="mailto:info@eucaif.org" class="btn-primary">Get Involved</a>
       <a href="#" class="btn-secondary">Read the Charter</a>
     </div>
   </div>
@@ -361,7 +366,7 @@ class Particle {
     } else {
       this.hue = 'silver';
       this.color = `rgba(180, 190, 200, 0.7)`;
-      this.glowColor = `rgba(156, 163, 175, `;
+      this.glowColor = `rgba(212, 165, 67, `;
     }
   }
 }

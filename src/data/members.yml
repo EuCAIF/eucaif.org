@@ -1,0 +1,474 @@
+- given_name: Gert
+  surname: Aarts
+  affiliation: Swansea University
+  country: GB
+  roles: [fellow]
+  inspire: G.Aarts.1
+
+- given_name: Thea
+  surname: Aarrestad
+  affiliation: ETH Zurich
+  country: CH
+  roles: [junior-fellow]
+  inspire: Thea.Aarrestad.1
+
+- given_name: Helena
+  surname: Albers
+  affiliation: GSI/FAIR
+  country: DE
+  roles: [fellow]
+
+- given_name: James
+  surname: Alvey
+  affiliation: University of Cambridge
+  country: GB
+  roles: [junior-fellow]
+  inspire: James.Alvey.1
+
+- given_name: Lucio
+  surname: Anderlini
+  affiliation: INFN Firenze
+  country: IT
+  roles: [fellow]
+  inspire: L.Anderlini.1
+
+- given_name: Anastasios
+  surname: Belias
+  affiliation: GSI/FAIR
+  country: DE
+  roles: [fellow]
+  inspire: A.Belias.1
+
+- given_name: Valerio
+  surname: Bertone
+  affiliation: IRFU, CEA, Université Paris-Saclay
+  country: FR
+  roles: [fellow]
+  inspire: V.Bertone.1
+
+- given_name: Amber S.
+  surname: Boehnlein
+  affiliation: Jefferson Lab
+  country: US
+  roles: [advisory]
+  inspire: A.S.Boehnlein.1
+
+- given_name: Anja
+  surname: Butter
+  affiliation: University of Heidelberg
+  country: DE
+  roles: [fellow]
+  inspire: Anja.Butter.1
+
+- given_name: Sascha
+  surname: Caron
+  affiliation: Radboud University and Nikhef
+  country: NL
+  roles: [board, fellow]
+  inspire: S.Caron.2
+
+- given_name: Stefano
+  surname: Carrazza
+  affiliation: Milan University & INFN
+  country: IT
+  roles: [fellow]
+  inspire: S.Carrazza.1
+
+- given_name: Miranda
+  surname: Cheng
+  affiliation: University of Amsterdam and Academia Sinica
+  country: NL
+  roles: [fellow]
+  inspire: M.C.N.Cheng.1
+
+- given_name: Kyle
+  surname: Cranmer
+  affiliation: University of Wisconsin-Madison
+  country: US
+  roles: [advisory]
+  inspire: K.S.Cranmer.1
+
+- given_name: Elena
+  surname: Cuoco
+  affiliation: University of Bologna and INFN Bologna
+  country: IT
+  roles: [board, fellow]
+  inspire: Elena.Cuoco.1
+
+- given_name: Maximilian
+  surname: Dax
+  affiliation: MPI Tübingen
+  country: DE
+  roles: [junior-fellow]
+  inspire: Maximilian.Dax.1
+
+- given_name: Monica
+  surname: D'Onofrio
+  affiliation: University of Liverpool
+  country: GB
+  roles: [fellow]
+  inspire: M.D.Onofrio.1
+
+- given_name: Caterina
+  surname: Doglioni
+  affiliation: University of Manchester
+  country: GB
+  roles: [fellow]
+  inspire: Caterina.Doglioni.1
+
+- given_name: Tommaso
+  surname: Dorigo
+  affiliation: INFN Padova and University of Padova
+  country: IT
+  roles: [fellow]
+  inspire: T.Dorigo.1
+
+- given_name: Thomas
+  surname: Eberl
+  affiliation: ECAP / FAU Erlangen-Nürnberg
+  country: DE
+  roles: [fellow]
+  inspire: T.Eberl.1
+
+- given_name: Markus
+  surname: Elsing
+  affiliation: CERN
+  country: CH
+  roles: [fellow]
+  inspire: M.Elsing.1
+
+- given_name: Martin
+  surname: Erdmann
+  affiliation: RWTH Aachen University
+  country: DE
+  roles: [fellow]
+  inspire: M.Erdmann.1
+
+- given_name: Stefano
+  surname: Forte
+  affiliation: Milan University
+  country: IT
+  roles: [fellow]
+  inspire: S.Forte.2
+
+- given_name: Julian
+  surname: Garcia Pardinas
+  affiliation: CERN
+  country: CH
+  roles: [fellow]
+  inspire: Julian.Garcia.Pardinas.1
+
+- given_name: Stefano
+  surname: Giagu
+  affiliation: Sapienza University of Rome
+  country: IT
+  roles: [fellow]
+  inspire: S.Giagu.1
+
+- given_name: Tobias
+  surname: Golling
+  affiliation: University of Geneva
+  country: CH
+  roles: [fellow]
+  inspire: T.Golling.1
+
+- given_name: Stephen
+  surname: Green
+  affiliation: University of Nottingham
+  country: GB
+  roles: [fellow]
+  inspire: S.R.Green.1
+
+- given_name: Eilam
+  surname: Gross
+  affiliation: Weizmann Institute
+  country: IL
+  roles: [fellow]
+  inspire: E.Gross.2
+
+- given_name: Will
+  surname: Handley
+  affiliation: University of Cambridge
+  country: GB
+  roles: [fellow]
+  inspire: W.J.Handley.1
+
+- given_name: Lukas Alexander
+  surname: Heinrich
+  affiliation: CERN
+  country: CH
+  roles: [fellow]
+  inspire: L.Heinrich.1
+
+- given_name: Caroline
+  surname: Heneka
+  affiliation: University of Heidelberg
+  country: DE
+  roles: [fellow]
+  inspire: C.Heneka.1
+
+- given_name: Ik Siong
+  surname: Heng
+  affiliation: University of Glasgow
+  country: GB
+  roles: [fellow]
+  inspire: Ik.Siong.Heng.1
+
+- given_name: Andreas
+  surname: Ipp
+  affiliation: TU Wien
+  country: AT
+  roles: [fellow]
+  inspire: A.Ipp.2
+
+- given_name: Michael
+  surname: Kagan
+  affiliation: SLAC, Stanford University
+  country: US
+  roles: [advisory]
+  inspire: M.Kagan.1
+
+- given_name: Verena
+  surname: Kain
+  affiliation: CERN
+  country: CH
+  roles: [fellow]
+  inspire: V.Kain.1
+
+- given_name: Gregor
+  surname: Kasieczka
+  affiliation: University of Hamburg
+  country: DE
+  roles: [fellow]
+  inspire: G.Kasieczka.1
+
+- given_name: Judith
+  surname: Katzy
+  affiliation: DESY Hamburg
+  country: DE
+  roles: [fellow]
+  inspire: J.Katzy.1
+
+- given_name: Jan
+  surname: Kieseler
+  affiliation: Karlsruhe Institute of Technology
+  country: DE
+  roles: [fellow]
+  inspire: J.Kieseler.1
+
+- given_name: Michael
+  surname: Krämer
+  affiliation: RWTH Aachen
+  country: DE
+  roles: [fellow]
+  inspire: Michael.Kramer.2
+
+- given_name: Sven
+  surname: Krippendorf
+  affiliation: LMU Munich
+  country: DE
+  roles: [fellow]
+  inspire: Sven.Krippendorf.1
+
+- given_name: Luisa
+  surname: Lucie-Smith
+  affiliation: University of Hamburg
+  country: DE
+  roles: [fellow]
+  inspire: L.Lucie.Smith.1
+
+- given_name: Johan
+  surname: Messchendorp
+  affiliation: GSI/FAIR
+  country: DE
+  roles: [board, fellow]
+  inspire: J.G.Messchendorp.1
+
+- given_name: Lorenzo
+  surname: Moneta
+  affiliation: CERN
+  country: CH
+  roles: [fellow]
+  inspire: L.Moneta.1
+
+- given_name: Daniel Thomas
+  surname: Murnane
+  affiliation: Niels Bohr Institute
+  country: DK
+  roles: [junior-fellow]
+  inspire: Daniel.Murnane.1
+
+- given_name: Daniel
+  surname: Nieto
+  affiliation: Universidad Complutense de Madrid
+  country: ES
+  roles: [fellow]
+  inspire: Daniel.Nieto.Castano.1
+
+- given_name: Adrian
+  surname: Oeftiger
+  affiliation: University of Oxford
+  country: GB
+  roles: [fellow]
+  inspire: Adrian.Oeftiger.1
+
+- given_name: Hiranya
+  surname: Peiris
+  affiliation: University of Cambridge
+  country: GB
+  roles: [fellow]
+  inspire: Hiranya.Vajramani.Peiris.1
+
+- given_name: Maurizio
+  surname: Pierini
+  affiliation: CERN
+  country: CH
+  roles: [fellow]
+  inspire: M.Pierini.1
+
+- given_name: Annalisa
+  surname: Pillepich
+  affiliation: MPI Heidelberg
+  country: DE
+  roles: [fellow]
+  inspire: Annalisa.Pillepich.1
+
+- given_name: Tilman
+  surname: Plehn
+  affiliation: Heidelberg University
+  country: DE
+  roles: [board, fellow]
+  inspire: Tilman.Plehn.1
+
+- given_name: David
+  surname: Rousseau
+  affiliation: IJCLab, CNRS/IN2P3, Université Paris-Saclay
+  country: FR
+  roles: [fellow]
+  inspire: D.Rousseau.1
+
+- given_name: Roberto
+  surname: Ruiz de Austri
+  affiliation: IFIC/CSIC and University of Valencia
+  country: ES
+  roles: [fellow]
+  inspire: R.Ruiz.de.Austri.1
+
+- given_name: Veronica
+  surname: Sanz
+  affiliation: University of Sussex and University of Valencia
+  country: GB
+  roles: [fellow]
+  inspire: Veronica.Sanz.1
+
+- given_name: Steven
+  surname: Schramm
+  affiliation: University of Geneva
+  country: CH
+  roles: [fellow]
+  inspire: S.Schramm.2
+
+- given_name: Steffen
+  surname: Schumann
+  affiliation: University of Göttingen
+  country: DE
+  roles: [fellow]
+  inspire: S.Schumann.1
+
+- given_name: Nicola
+  surname: Serra
+  affiliation: University of Zürich
+  country: CH
+  roles: [fellow]
+  inspire: N.Serra.1
+
+- given_name: Nikolaos
+  surname: Stergioulas
+  affiliation: Aristotle University of Thessaloniki
+  country: GR
+  roles: [fellow]
+  inspire: N.Stergioulas.1
+
+- given_name: Riccardo
+  surname: Torre
+  affiliation: INFN Genova
+  country: IT
+  roles: [fellow]
+  inspire: R.Torre.1
+
+- given_name: Roberto
+  surname: Trotta
+  affiliation: SISSA and Imperial College London
+  country: IT
+  roles: [fellow]
+  inspire: R.Trotta.1
+
+- given_name: Antonin
+  surname: Vacheret
+  affiliation: LPC, Caen
+  country: FR
+  roles: [fellow]
+  inspire: Antonin.Vacheret.1
+
+- given_name: Sofia
+  surname: Vallecorsa
+  affiliation: CERN
+  country: CH
+  roles: [fellow]
+  inspire: Sofia.Vallecorsa.1
+
+- given_name: John
+  surname: Veitch
+  affiliation: University of Glasgow
+  country: GB
+  roles: [fellow]
+  inspire: J.Veitch.1
+
+- given_name: Pietro
+  surname: Vischia
+  affiliation: Universidad de Oviedo
+  country: ES
+  roles: [fellow]
+  inspire: P.Vischia.1
+
+- given_name: Thomas
+  surname: Vuillaume
+  affiliation: LAPP, CNRS
+  country: FR
+  roles: [fellow]
+  inspire: Thomas.Vuillaume.1
+
+- given_name: Benjamin
+  surname: Wandelt
+  affiliation: Institut d'Astrophysique de Paris, Sorbonne Université
+  country: FR
+  roles: [fellow]
+  inspire: Benjamin.D.Wandelt.1
+
+- given_name: Christoph
+  surname: Weniger
+  affiliation: University of Amsterdam
+  country: NL
+  roles: [board, fellow]
+  inspire: C.Weniger.1
+
+- given_name: Michael
+  surname: Williams
+  affiliation: University of Portsmouth
+  country: GB
+  roles: [junior-fellow]
+  inspire: Michael.J.Williams.2
+
+- given_name: Ramon
+  surname: Winterhalder
+  affiliation: University of Milan
+  country: IT
+  roles: [junior-fellow]
+  inspire: R.Winterhalder.1
+
+- given_name: Gabrijela
+  surname: Zaharijas
+  affiliation: University of Nova Gorica
+  country: SI
+  roles: [fellow]
+  inspire: G.Zaharijas.1
