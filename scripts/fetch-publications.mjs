@@ -9,18 +9,32 @@ const KEYWORDS = [
   'simulation-based inference', 'normalizing flow', 'generative model', 'diffusion model',
   'transformer', 'graph neural', 'variational', 'bayesian neural', 'surrogate model',
   'emulator', 'likelihood-free', 'foundation model', 'reinforcement learning',
-  'classification', 'regression', 'anomaly detection', 'generative adversarial',
-  'autoencoder', 'contrastive learning', 'representation learning',
+  'anomaly detection', 'generative adversarial', 'autoencoder',
+  'contrastive learning', 'representation learning',
+  'optimal transport', 'score matching', 'flow matching',
+  'posterior estimation', 'density estimation', 'inference network',
+  'point cloud', 'equivariant',
+  'unfolding', 'reweighting',
+  'symbolic regression', 'physics-informed',
+  'latent space', 'embedding',
+  'fast simulation', 'detector simulation',
 ];
 
+// Short acronyms that need word-boundary matching (case-sensitive)
+const ACRONYMS = ['GAN', 'GANs', 'CNN', 'CNNs', 'GNN', 'GNNs', 'VAE', 'VAEs', 'LLM', 'LLMs'];
+const ACRONYM_PATTERNS = ACRONYMS.map(a => new RegExp(`\\b${a}\\b`));
+
 function matchesKeywords(title, abstract) {
-  const text = `${title} ${abstract}`.toLowerCase();
-  return KEYWORDS.some(kw => text.includes(kw));
+  const text = `${title} ${abstract}`;
+  const textLower = text.toLowerCase();
+  if (KEYWORDS.some(kw => textLower.includes(kw))) return true;
+  if (ACRONYM_PATTERNS.some(pat => pat.test(text))) return true;
+  return false;
 }
 
-function sixMonthsAgo() {
+function twelveMonthsAgo() {
   const d = new Date();
-  d.setMonth(d.getMonth() - 6);
+  d.setMonth(d.getMonth() - 12);
   return d.toISOString().slice(0, 10);
 }
 
@@ -51,7 +65,7 @@ async function main() {
   const members = load(readFileSync(MEMBERS_PATH, 'utf-8'));
   const bais = members.filter(m => m.inspire).map(m => m.inspire);
   const baiSet = new Set(bais);
-  const since = sixMonthsAgo();
+  const since = twelveMonthsAgo();
 
   console.log(`Fetching papers since ${since} for ${bais.length} authors...`);
 

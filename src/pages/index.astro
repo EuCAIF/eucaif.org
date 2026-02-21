@@ -3,9 +3,24 @@ import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
 import yaml from 'js-yaml';
 import membersRaw from '../data/members.yml?raw';
+import pubsRaw from '../data/publications.yml?raw';
 import EuropeMap from '../components/EuropeMap.astro';
 
 const members = yaml.load(membersRaw) as { given_name: string; surname: string; affiliation: string; country: string; roles: string[] }[];
+const allPublications = yaml.load(pubsRaw) as { title: string; authors: string[]; eucaif_authors: string[]; arxiv: string | null; date: string | null; abstract: string }[];
+const publications = allPublications.slice(0, 8);
+
+function formatAuthors(authors: string[]) {
+  if (authors.length <= 3) return authors.join(', ');
+  return `${authors[0]} et al.`;
+}
+
+function formatDate(date: string | null) {
+  if (!date) return '';
+  const d = new Date(date);
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  return `${months[d.getMonth()]} ${d.getFullYear()}`;
+}
 const fellowCount = members.filter(m => m.roles.includes('fellow')).length;
 const juniorCount = members.filter(m => m.roles.includes('junior-fellow')).length;
 const countries = [...new Set(members.map(m => m.country))];
@@ -25,7 +40,7 @@ const countryCount = countries.length;
     <a href="#about">About</a>
     <a href="/eucaif.org/community/">Community</a>
     <a href="#conference">Conference</a>
-    <a href="#publications">Publications</a>
+    <a href="/eucaif.org/publications/">Papers</a>
     <a href="#blog">News</a>
     <a href="#join" class="nav-cta">Get Involved</a>
   </div>
@@ -64,10 +79,6 @@ const countryCount = countries.length;
     <div class="stat">
       <div class="stat-number" data-target={countryCount}>0</div>
       <div class="stat-label">Countries</div>
-    </div>
-    <div class="stat">
-      <div class="stat-number" data-target="1200" data-suffix="+">0</div>
-      <div class="stat-label">AI publications / year</div>
     </div>
   </div>
 </section>
@@ -185,60 +196,30 @@ const countryCount = countries.length;
   </div>
 </section>
 
-<!-- PUBLICATIONS -->
-<section id="publications" class="publications-section">
+<!-- LATEST PREPRINTS -->
+<section id="papers" class="publications-section">
   <div class="section-container">
     <div class="reveal">
       <div class="section-label">Latest Research</div>
-      <h2 class="section-title">Publications</h2>
+      <h2 class="section-title">Latest Papers</h2>
       <p class="section-desc">
-        Recent highlights from across the EuCAIF community — simulation-based inference, generative models, equivariant networks, and more.
+        Recent AI-related papers from EuCAIF fellows — automatically collected from INSPIRE HEP.
       </p>
     </div>
     <div class="pub-list">
-      <div class="pub-item reveal reveal-delay-1">
-        <span class="pub-tag">Particle</span>
-        <div class="pub-content">
-          <h4>Simulation-based inference for particle physics collider searches</h4>
-          <p>Cranmer, K. et al. · Physical Review D · 2025</p>
+      {publications.map((pub, i) => (
+        <div class={`pub-item reveal ${i < 4 ? `reveal-delay-${i + 1}` : ''}`}>
+          <span class="pub-tag">{formatDate(pub.date)}</span>
+          <div class="pub-content">
+            <h4>{pub.title}</h4>
+            <p>{formatAuthors(pub.authors)}</p>
+          </div>
+          {pub.arxiv && <a class="pub-link" href={`https://arxiv.org/abs/${pub.arxiv}`}>arXiv →</a>}
         </div>
-        <a class="pub-link" href="#">arXiv →</a>
-      </div>
-      <div class="pub-item reveal reveal-delay-2">
-        <span class="pub-tag cosmo">Cosmology</span>
-        <div class="pub-content">
-          <h4>Neural posterior estimation for cosmic shear power spectra</h4>
-          <p>Lemos, P. et al. · JCAP · 2025</p>
-        </div>
-        <a class="pub-link" href="#">arXiv →</a>
-      </div>
-      <div class="pub-item reveal reveal-delay-3">
-        <span class="pub-tag gw">Grav. Waves</span>
-        <div class="pub-content">
-          <h4>Deep learning for LISA data: source separation and parameter estimation</h4>
-          <p>Dax, M. et al. · Physical Review Letters · 2025</p>
-        </div>
-        <a class="pub-link" href="#">arXiv →</a>
-      </div>
-      <div class="pub-item reveal reveal-delay-4">
-        <span class="pub-tag theory">Theory</span>
-        <div class="pub-content">
-          <h4>Equivariant neural networks for lattice gauge theory</h4>
-          <p>Boyda, D. et al. · Machine Learning: Science & Technology · 2025</p>
-        </div>
-        <a class="pub-link" href="#">arXiv →</a>
-      </div>
-      <div class="pub-item reveal">
-        <span class="pub-tag nuclear">Nuclear</span>
-        <div class="pub-content">
-          <h4>Variational Monte Carlo with normalizing flows for nuclear structure</h4>
-          <p>Adams, C. et al. · Physical Review C · 2025</p>
-        </div>
-        <a class="pub-link" href="#">arXiv →</a>
-      </div>
+      ))}
     </div>
     <div style="text-align:center; margin-top: 2.5rem;" class="reveal">
-      <a href="#" class="btn-secondary">View all publications →</a>
+      <a href="/eucaif.org/publications/" class="btn-secondary">More papers →</a>
     </div>
   </div>
 </section>

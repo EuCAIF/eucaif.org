@@ -6,10 +6,6 @@ import membersRaw from '../data/members.yml?raw';
 
 const members = yaml.load(membersRaw) as { given_name: string; surname: string; affiliation: string; country: string; roles: string[] }[];
 
-function flag(code: string) {
-  return String.fromCodePoint(...[...code.toUpperCase()].map(c => 0x1F1E6 + c.charCodeAt(0) - 65));
-}
-
 const sorted = [...members].sort((a, b) => a.surname.localeCompare(b.surname));
 const board = sorted.filter(m => m.roles.includes('board'));
 const advisory = sorted.filter(m => m.roles.includes('advisory'));
@@ -29,7 +25,7 @@ const juniorFellows = sorted.filter(m => m.roles.includes('junior-fellow'));
     <a href="/eucaif.org/#about">About</a>
     <a href="/eucaif.org/community/">Community</a>
     <a href="/eucaif.org/#conference">Conference</a>
-    <a href="/eucaif.org/#publications">Publications</a>
+    <a href="/eucaif.org/publications/">Papers</a>
     <a href="/eucaif.org/#blog">News</a>
     <a href="/eucaif.org/#join" class="nav-cta">Get Involved</a>
   </div>
@@ -47,7 +43,7 @@ const juniorFellows = sorted.filter(m => m.roles.includes('junior-fellow'));
     <div class="members-grid">
       {board.map(m => (
         <div class="member-card">
-          <h4><span class="member-flag">{flag(m.country)}</span> {m.given_name} {m.surname}</h4>
+          <h4>{m.given_name} {m.surname}</h4>
           <p>{m.affiliation}</p>
         </div>
       ))}
@@ -58,7 +54,7 @@ const juniorFellows = sorted.filter(m => m.roles.includes('junior-fellow'));
     <div class="members-grid">
       {advisory.map(m => (
         <div class="member-card">
-          <h4><span class="member-flag">{flag(m.country)}</span> {m.given_name} {m.surname}</h4>
+          <h4>{m.given_name} {m.surname}</h4>
           <p>{m.affiliation}</p>
         </div>
       ))}
@@ -69,7 +65,7 @@ const juniorFellows = sorted.filter(m => m.roles.includes('junior-fellow'));
     <div class="members-grid">
       {fellows.map(m => (
         <div class="member-card">
-          <h4><span class="member-flag">{flag(m.country)}</span> {m.given_name} {m.surname}</h4>
+          <h4>{m.given_name} {m.surname}</h4>
           <p>{m.affiliation}</p>
         </div>
       ))}
@@ -80,7 +76,7 @@ const juniorFellows = sorted.filter(m => m.roles.includes('junior-fellow'));
     <div class="members-grid">
       {juniorFellows.map(m => (
         <div class="member-card">
-          <h4><span class="member-flag">{flag(m.country)}</span> {m.given_name} {m.surname}</h4>
+          <h4>{m.given_name} {m.surname}</h4>
           <p>{m.affiliation}</p>
         </div>
       ))}

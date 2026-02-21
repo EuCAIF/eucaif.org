@@ -1,0 +1,117 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+import yaml from 'js-yaml';
+import pubsRaw from '../data/publications.yml?raw';
+
+const publications = yaml.load(pubsRaw) as { title: string; authors: string[]; eucaif_authors: string[]; arxiv: string | null; date: string | null; abstract: string }[];
+
+function formatAuthors(authors: string[]) {
+  if (authors.length <= 3) return authors.join(', ');
+  return `${authors[0]} et al.`;
+}
+
+function formatDate(date: string | null) {
+  if (!date) return '';
+  const d = new Date(date);
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  return `${months[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+const INITIAL_COUNT = 25;
+---
+
+<Layout title="Papers – EuCAIF">
+
+<nav id="navbar" class="scrolled">
+  <a href="/eucaif.org/" class="nav-logo">
+    <img src="/eucaif.org/images/eucaif-logo-icon.png" alt="EuCAIF" width="36" height="36" style="border-radius:50%; display:block;" />
+    EuCAIF
+  </a>
+  <div class="nav-links">
+    <a href="/eucaif.org/#subfields">Research</a>
+    <a href="/eucaif.org/#about">About</a>
+    <a href="/eucaif.org/community/">Community</a>
+    <a href="/eucaif.org/#conference">Conference</a>
+    <a href="/eucaif.org/publications/">Papers</a>
+    <a href="/eucaif.org/#blog">News</a>
+    <a href="/eucaif.org/#join" class="nav-cta">Get Involved</a>
+  </div>
+  <button class="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section style="padding-top: 8rem;">
+  <div class="section-container">
+    <div class="section-label">Latest Research</div>
+    <h2 class="section-title">Latest Papers</h2>
+    <p class="section-desc">
+      {publications.length} AI-related papers from EuCAIF fellows in the last 12 months, automatically collected from INSPIRE HEP.
+    </p>
+
+    <div class="pub-list" id="pub-list">
+      {publications.map((pub, i) => (
+        <div class={`pub-item ${i >= INITIAL_COUNT ? 'pub-hidden' : ''}`} data-index={i}>
+          <span class="pub-tag">{formatDate(pub.date)}</span>
+          <div class="pub-content">
+            <h4>{pub.title}</h4>
+            <p>{formatAuthors(pub.authors)}</p>
+          </div>
+          {pub.arxiv && <a class="pub-link" href={`https://arxiv.org/abs/${pub.arxiv}`}>arXiv →</a>}
+        </div>
+      ))}
+    </div>
+
+    {publications.length > INITIAL_COUNT && (
+      <div style="text-align:center; margin-top: 2.5rem;">
+        <button id="show-more" class="btn-secondary">
+          Show more ({publications.length - INITIAL_COUNT} remaining)
+        </button>
+      </div>
+    )}
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-text">© 2026 EuCAIF — European Coalition for AI in Fundamental Physics</div>
+    <div class="footer-links">
+      <a href="#">GitHub</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+</Layout>
+
+<style>
+  .pub-hidden {
+    display: none !important;
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('show-more');
+  const BATCH = 25;
+  let shown = 25;
+
+  btn?.addEventListener('click', () => {
+    const items = document.querySelectorAll('.pub-item.pub-hidden');
+    let revealed = 0;
+    items.forEach(el => {
+      if (revealed < BATCH) {
+        el.classList.remove('pub-hidden');
+        revealed++;
+      }
+    });
+    shown += revealed;
+    const remaining = document.querySelectorAll('.pub-item.pub-hidden').length;
+    if (remaining === 0) {
+      btn.style.display = 'none';
+    } else {
+      btn.textContent = `Show more (${remaining} remaining)`;
+    }
+  });
+</script>
