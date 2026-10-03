@@ -52,7 +52,8 @@ const domainBlocks = await Promise.all(domains.map(async d => ({ ...d, Content: 
 <Nav />
 
 <!-- HERO -->
-<section class="hero" style={`background-image: url(${url('/images/hero-nebula.jpg')})`}>
+<section class="hero hero-light">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="hero-content">
     <h1><b>Eu</b>ropean <b>C</b>oalition for <b>AI</b> in <b>F</b>undamental Physics</h1>
     {upcoming ? (
@@ -172,6 +173,120 @@ const domainBlocks = await Promise.all(domains.map(async d => ({ ...d, Content: 
 <Footer />
 
 <script>
+// HERO: seven domains, one representation.
+// Points in the seven research-theme colours drift between their own clusters
+// and shared, mixed clusters. Static under prefers-reduced-motion; paused offscreen.
+(() => {
+  const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement | null;
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d')!;
+  const css = getComputedStyle(document.documentElement);
+  const THEMES = ['theoretical', 'particle', 'nuclear', 'astroparticle', 'gravitational', 'cosmology', 'accelerator'];
+  const colours = THEMES.map(t => css.getPropertyValue(`--theme-${t}`).trim() || '#999');
+  const lineColour = css.getPropertyValue('--slate').trim() || '#73848b';
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const PER_THEME = 26, MIXED = 3;
+  type P = { x: number; y: number; vx: number; vy: number; theme: number; mixed: number; jx: number; jy: number };
+  let pts: P[] = [], W = 0, H = 0, dpr = 1;
+
+  const rand = (a: number, b: number) => a + Math.random() * (b - a);
+  function layout() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  // Domain centres on a gentle arc across the left two thirds; mixed centres in the same region.
+  function domainCentre(i: number, narrow: boolean) {
+    const n = THEMES.length, f = i / (n - 1);
+    const x = narrow ? W * (0.1 + 0.8 * f) : W * (0.05 + 0.33 * f);
+    const y = narrow ? H * (0.78 + 0.1 * Math.sin(f * Math.PI)) : H * (0.55 - 0.32 * Math.sin(f * Math.PI));
+    return { x, y };
+  }
+  function mixedCentre(k: number, narrow: boolean) {
+    return narrow
+      ? { x: W * (0.2 + 0.3 * k), y: H * 0.82 }
+      : { x: W * (0.1 + 0.14 * k), y: H * (0.38 + 0.26 * ((k + 1) % 2)) };
+  }
+  function init() {
+    layout();
+    pts = [];
+    for (let t = 0; t < THEMES.length; t++) for (let i = 0; i < PER_THEME; i++) {
+      const c = domainCentre(t, W < 860);
+      const ang = rand(0, Math.PI * 2), r = Math.sqrt(Math.random());   // uniform in a disc
+      pts.push({ x: c.x + rand(-40, 40), y: c.y + rand(-40, 40), vx: 0, vy: 0, theme: t,
+        mixed: Math.floor(Math.random() * MIXED), jx: r * Math.cos(ang), jy: r * Math.sin(ang) });
+    }
+  }
+  const smooth = (u: number) => u * u * (3 - 2 * u);
+  // Cycle: hold apart 5s, merge 4s, hold mixed 7s, separate 4s.
+  const CYCLE = 20;
+  function blend(time: number) {
+    const u = time % CYCLE;
+    if (u < 5) return 0;
+    if (u < 9) return smooth((u - 5) / 4);
+    if (u < 16) return 1;
+    return 1 - smooth((u - 16) / 4);
+  }
+  let lastB = 0;
+  function step(time: number) {
+    const narrow = W < 860;
+    const b = blend(time);
+    if (lastB === 0 && b > 0) pts.forEach(p => { p.mixed = Math.floor(Math.random() * MIXED); });
+    lastB = b;
+    const spread = narrow ? 26 : 44;
+    for (const p of pts) {
+      const d = domainCentre(p.theme, narrow), m = mixedCentre(p.mixed, narrow);
+      const tx = d.x + (m.x - d.x) * b + p.jx * spread * (1 + 0.6 * b);
+      const ty = d.y + (m.y - d.y) * b + p.jy * spread * (1 + 0.6 * b);
+      p.vx += (tx - p.x) * 0.012 + (Math.random() - 0.5) * 0.25;
+      p.vy += (ty - p.y) * 0.012 + (Math.random() - 0.5) * 0.25;
+      p.vx *= 0.9; p.vy *= 0.9;
+      p.x += p.vx; p.y += p.vy;
+    }
+  }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const LINK = 46;
+    ctx.lineWidth = 1;
+    for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
+      const a = pts[i], c = pts[j];
+      const dx = a.x - c.x, dy = a.y - c.y;
+      if (Math.abs(dx) > LINK || Math.abs(dy) > LINK) continue;
+      const dist = Math.hypot(dx, dy);
+      if (dist > LINK) continue;
+      ctx.strokeStyle = lineColour;
+      ctx.globalAlpha = (1 - dist / LINK) * (a.theme === c.theme ? 0.08 : 0.16);
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(c.x, c.y); ctx.stroke();
+    }
+    ctx.globalAlpha = 0.9;
+    for (const p of pts) {
+      ctx.fillStyle = colours[p.theme];
+      ctx.beginPath(); ctx.arc(p.x, p.y, 3, 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  init();
+  window.addEventListener('resize', init);
+  if (reduced) {
+    // Settle into the mixed state and draw once.
+    for (let i = 0; i < 400; i++) step(12);
+    draw();
+    return;
+  }
+  let running = true, start = performance.now();
+  new IntersectionObserver(([e]) => { running = e.isIntersecting; if (running) requestAnimationFrame(frame); }, { threshold: 0.05 }).observe(canvas);
+  function frame(now: number) {
+    if (!running) return;
+    step((now - start) / 1000);
+    draw();
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
 // SCROLL REVEAL
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
