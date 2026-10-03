@@ -1,8 +1,8 @@
 ---
 title: Purpose and Scope
 ---
-Machine learning is transforming research across fundamental physics. The subfields share the same challenges: modeling complex and large datasets, data compression, scalability to very high-dimensional parameter spaces, fast emulation of first-principle simulations, and simulation-based inference.
+AI and modern machine learning are revolutionizing our everyday lives and transforming fundamental physics research across particle physics, astroparticle physics, nuclear physics, gravitational wave physics, cosmology, and theoretical physics. Common challenges in these fields include modeling complex and large datasets, data compression, scalability to very high-dimensional parameter spaces, the need for fast emulators and first-principle simulations, and simulation-based inference.
 
-To enable discoveries beyond the reach of classical methods, AI in physics must incorporate robustness, uncertainty estimation, scientific explainability, and a fundamental understanding of physics principles. Such science-specific methods will not emerge from the wider AI community on their own.
+These shared features highlight AI’s transformative potential, particularly when science-specific AI methods are developed to address unique challenges in these areas. To enable scientific discoveries beyond the reach of classical methods, AI in physics must incorporate robustness, uncertainty estimation, scientific explainability, and a fundamental understanding of physics principles.
 
-<p class="lead">EuCAIF brings together the developers of these methods, so that collaborative research and training produce what no single field could.</p>
+<p class="lead">EuCAIF aims to create a community for developers of these specialized methods, benefiting the broader AI community through collaborative research and training. Together, we can contribute novel methods and approaches that might not otherwise emerge from the wider AI community.</p>
