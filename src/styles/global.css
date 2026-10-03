@@ -196,7 +196,7 @@ section { padding: var(--s-6) var(--gutter); }
 .hero-conf-meta { font-size: var(--fs-sm); }
 
 /* Variant A: full-bleed photograph, white text. */
-.hero-photo { background-color: var(--bg-footer); background-size: cover; background-position: center; background-repeat: no-repeat; }
+.hero-photo { background-color: var(--bg-footer); background-size: cover; background-position: 38% 50%; background-repeat: no-repeat; }
 .hero-photo::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.35) 100%); }
 .hero-photo .hero-content, .hero-photo h1, .hero-photo .hero-conf, .hero-photo .hero-conf:hover { color: var(--on-dark); }
 .hero-photo .hero-conf-label, .hero-photo .hero-conf-meta { color: var(--on-dark-muted); }
