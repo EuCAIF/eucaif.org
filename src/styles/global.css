@@ -151,7 +151,7 @@ section { padding: 5rem 2rem; }
 }
 .subfield-card { display: grid; grid-template-columns: 72px 1fr; column-gap: 1.25rem; row-gap: 0.4rem; align-items: start; }
 .subfield-thumb { grid-row: 1 / span 2; width: 72px; height: 54px; object-fit: cover; border-radius: 3px; display: block; }
-.subfield-card h3, .subfield-card p { grid-column: 2; }
+.subfield-card h3, .subfield-card p, .subfield-card .subfield-text { grid-column: 2; }
 .subfield-card h3 { font-size: 1.3rem; margin-bottom: 0.4rem; }
 .subfield-card p { font-size: 0.9rem; color: var(--text-body); line-height: 1.65; }
 
@@ -353,3 +353,12 @@ footer { background: var(--bg-footer); color: #ccc; padding: 3.5rem 2rem 0; font
   .about-eucaif-grid { grid-template-columns: 1fr; }
   .hero-upcoming { align-items: flex-start; }
 }
+
+/* MARKDOWN-RENDERED BLOCKS */
+.subfield-text { grid-column: 2; }
+.subfield-text p { font-size: 0.9rem; color: var(--text-body); line-height: 1.65; }
+.wg-text p { margin-bottom: 0.75rem; }
+.wg-text p:last-child { margin-bottom: 0; }
+.tier-card p a { color: var(--accent); }
+.section-desc p { margin: 0; }
+.about-eucaif-grid p { font-size: 1rem; line-height: 1.8; }

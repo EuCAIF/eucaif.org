@@ -3,7 +3,10 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-// Text verbatim from https://eucaif.org/contact/
+import { getEntry, render } from 'astro:content';
+
+const contact = (await getEntry('sections', 'contact'))!;
+const { Content } = await render(contact);
 ---
 
 <Layout title="Contact – EuCAIF">
@@ -17,10 +20,8 @@ import '../styles/global.css';
 
 <section class="page-body">
   <div class="section-container prose">
-    <h2 class="section-title">How to stay in touch</h2>
-    <p>If you like to follow the activities of EuCAIF please join the following e-group: <a href="mailto:eucaif-info@cern.ch">eucaif-info@cern.ch</a></p>
-    <p>How? If you would like to apply for membership of a CERN e-group, visit <a href="http://cern.ch/egroups">http://cern.ch/egroups</a> and search for the e-group (e.g. eucaif-info) you would like to join.</p>
-    <p>To reach out to the management board, please write to <a href="mailto:info@eucaif.org">info@eucaif.org</a></p>
+    <h2 class="section-title">{contact.data.title}</h2>
+    <Content />
   </div>
 </section>
 

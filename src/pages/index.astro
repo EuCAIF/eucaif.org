@@ -4,6 +4,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import yaml from 'js-yaml';
+import { getCollection, getEntry, render } from 'astro:content';
 import membersRaw from '../data/members.yml?raw';
 import pubsRaw from '../data/publications.yml?raw';
 import EuropeMap from '../components/EuropeMap.astro';
@@ -28,16 +29,17 @@ const juniorCount = members.filter(m => m.roles.includes('junior-fellow')).lengt
 const countries = [...new Set(members.map(m => m.country))];
 const countryCount = countries.length;
 
-// Text on this page is taken verbatim from https://eucaif.org/
-const subfields = [
-  { title: 'Theoretical physics', image: 'theoretical-physics.png', text: 'Crafting mathematical frameworks to predict and explain the fundamental laws of nature.' },
-  { title: 'Particle physics', image: 'particle-tracks.jpg', text: 'Unlocking the secrets of the tiniest building blocks of the universe.' },
-  { title: 'Nuclear physics', image: 'nuclear-physics.png', text: 'Studying atomic nuclei to understand the forces that power stars and shape the elements around us.' },
-  { title: 'Astroparticle physics', image: 'astroparticles.jpg', text: 'Exploring cosmic rays, neutrinos, and dark matter to reveal the universe’s mysteries.' },
-  { title: 'Gravitational waves', image: 'gravity-waves.jpg', text: 'Listening to the ripples in spacetime to witness the most violent cosmic events.' },
-  { title: 'Cosmology', image: 'cosmology.png', text: 'Investigating the origins, evolution, and ultimate fate of the universe on the grandest scales.' },
-  { title: 'Accelerator physics', image: 'accelerator-physics.png', text: 'Pushing the frontiers of technology to accelerate particles and probe the structure of matter.' },
-];
+// Prose sections and research domains live in src/content/ as Markdown.
+const tagline = (await getEntry('sections', 'tagline'))!;
+const purpose = (await getEntry('sections', 'purpose'))!;
+const conference = (await getEntry('sections', 'conference'))!;
+const about = (await getEntry('sections', 'about'))!;
+const { Content: PurposeContent } = await render(purpose);
+const { Content: ConferenceContent } = await render(conference);
+const { Content: AboutContent } = await render(about);
+
+const domains = (await getCollection('researchDomains')).sort((a, b) => a.data.order - b.data.order);
+const domainBlocks = await Promise.all(domains.map(async d => ({ ...d, Content: (await render(d)).Content })));
 ---
 
 <Layout title="EuCAIF – European Coalition for AI in Fundamental Physics">
@@ -72,13 +74,13 @@ const subfields = [
 <!-- SUBFIELDS -->
 <section id="subfields">
   <div class="section-container">
-    <h2 class="section-title centered reveal">Advancing AI and fundamental physics: A European cross-disciplinary research and training network</h2>
+    <h2 class="section-title centered reveal">{tagline.data.title}</h2>
     <div class="subfields-grid reveal reveal-delay-2">
-      {subfields.map(s => (
+      {domainBlocks.map(d => (
         <div class="subfield-card">
-          <img class="subfield-thumb" src={`/eucaif.org/images/${s.image}`} alt="" loading="lazy" />
-          <h3>{s.title}</h3>
-          <p>{s.text}</p>
+          <img class="subfield-thumb" src={d.data.image} alt="" loading="lazy" />
+          <h3>{d.data.title}</h3>
+          <div class="subfield-text"><d.Content /></div>
         </div>
       ))}
     </div>
@@ -88,15 +90,13 @@ const subfields = [
 <!-- PURPOSE AND SCOPE -->
 <section id="about" class="about-section">
   <div class="section-container">
-    <h2 class="section-title centered reveal">Purpose and Scope</h2>
+    <h2 class="section-title centered reveal">{purpose.data.title}</h2>
     <div class="about-grid">
       <div class="about-visual reveal">
         <EuropeMap highlightedCountries={countries} />
       </div>
       <div class="about-text reveal reveal-delay-2">
-        <p>
-          AI and modern machine learning are revolutionizing our everyday lives and transforming fundamental physics research across particle physics, astroparticle physics, nuclear physics, gravitational wave physics, cosmology, and theoretical physics. Common challenges in these fields include modeling complex and large datasets, data compression, scalability to very high-dimensional parameter spaces, the need for fast emulators and first-principle simulations, and simulation-based inference. These shared features highlight AI’s transformative potential, particularly when science-specific AI methods are developed to address unique challenges in these areas. To enable scientific discoveries beyond the reach of classical methods, AI in physics must incorporate robustness, uncertainty estimation, scientific explainability, and a fundamental understanding of physics principles. EuCAIF aims to create a community for developers of these specialized methods, benefiting the broader AI community through collaborative research and training. Together, we can contribute novel methods and approaches that might not otherwise emerge from the wider AI community.
-        </p>
+        <PurposeContent />
       </div>
     </div>
   </div>
@@ -106,18 +106,12 @@ const subfields = [
 <section id="conference" class="conference-section">
   <div class="section-container">
     <div class="reveal">
-      <h2 class="section-title centered">The EuCAIFCon Conference Series</h2>
-      <p class="section-subtitle centered">The Annual European Conference for AI in Fundamental Physics</p>
+      <h2 class="section-title centered">{conference.data.title}</h2>
+      <p class="section-subtitle centered">{conference.data.subtitle}</p>
     </div>
     <div class="conf-grid reveal reveal-delay-2">
       <div class="conf-info">
-        <p>
-          Our aim is to provide a platform for establishing new connections between AI activities across various branches of fundamental physics, by bringing together researchers that face similar challenges and/or use similar AI solutions. The conferences are organized “horizontally”: sessions are centered on specific AI methods and themes, while being cross-disciplinary regarding the scientific questions.
-        </p>
-        <p>
-          The first “European AI for Fundamental Physics Conference” (<a href="https://indico.nikhef.nl/event/4875/" target="_blank" rel="noopener">EuCAIFCon 2024</a>) was held in Amsterdam, from 30 April to 3 May 2024. <a href="https://agenda.infn.it/event/43565/overview" target="_blank" rel="noopener">EuCAIFCon 2025</a> was held in Sardinia from Jun 16 – 20, 2025.
-        </p>
-        <p class="conf-next"><strong>EuCAIFCon 2026 will take place in Heidelberg, August 24 - 28 2026.</strong></p>
+        <ConferenceContent />
         <div class="conf-actions">
           <a href="https://indico.physi.uni-heidelberg.de/event/1277/" class="btn-primary" target="_blank" rel="noopener">More information</a>
         </div>
@@ -130,11 +124,9 @@ const subfields = [
 <!-- ABOUT EUCAIF -->
 <section id="about-eucaif" class="about-eucaif-section">
   <div class="section-container">
-    <h2 class="section-title centered reveal">About EuCAIF</h2>
+    <h2 class="section-title centered reveal">{about.data.title}</h2>
     <div class="about-eucaif-grid reveal reveal-delay-2">
-      <p>
-        EuCAIF is an European initiative for advancing the use of Artificial Intelligence (AI) in Fundamental Physics. Members are working on particle physics, astroparticle physics, nuclear physics, gravitational wave physics, cosmology, theoretical physics as well as simulation and computational infrastructure.
-      </p>
+      <div><AboutContent /></div>
       <img class="jenaa-logo" src="/eucaif.org/images/jenaa.png" alt="JENAA – Joint ECFA-NuPECC-APPEC Activities" loading="lazy" />
     </div>
   </div>

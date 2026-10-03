@@ -3,11 +3,15 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-import yaml from 'js-yaml';
-import wgRaw from '../data/working-groups.yml?raw';
+import { getCollection, getEntry, render } from 'astro:content';
 
-type WG = { number: number; code: string; title: string; description: string; image?: string };
-const groups = yaml.load(wgRaw) as WG[];
+const intro = (await getEntry('sections', 'activities-intro'))!;
+const signup = (await getEntry('sections', 'activities-signup'))!;
+const { Content: IntroContent } = await render(intro);
+const { Content: SignupContent } = await render(signup);
+
+const groups = (await getCollection('workingGroups')).sort((a, b) => a.data.order - b.data.order);
+const groupBlocks = await Promise.all(groups.map(async g => ({ ...g, Content: (await render(g)).Content })));
 ---
 
 <Layout title="Activities – EuCAIF">
@@ -21,15 +25,15 @@ const groups = yaml.load(wgRaw) as WG[];
 
 <section class="page-body">
   <div class="section-container">
-    <h2 class="section-title">Working group activities</h2>
-    <p class="section-desc">EuCAIF activities are organised in dynamic open working groups.</p>
+    <h2 class="section-title">{intro.data.title}</h2>
+    <div class="section-desc"><IntroContent /></div>
     <div class="wg-list">
-      {groups.map(wg => (
-        <article class="wg-card" id={wg.code.toLowerCase()}>
-          <span class="wg-code">{wg.code}</span>
-          <h3>{wg.title}</h3>
-          <p class="wg-text">{wg.description}</p>
-          {wg.image && <img class="wg-image" src={wg.image} alt="" loading="lazy" />}
+      {groupBlocks.map(wg => (
+        <article class="wg-card" id={wg.data.code.toLowerCase()}>
+          <span class="wg-code">{wg.data.code}</span>
+          <h3>{wg.data.title}</h3>
+          <div class="wg-text"><wg.Content /></div>
+          {wg.data.image && <img class="wg-image" src={wg.data.image} alt="" loading="lazy" />}
         </article>
       ))}
     </div>
@@ -38,13 +42,8 @@ const groups = yaml.load(wgRaw) as WG[];
 
 <section class="prose-section" id="signup">
   <div class="section-container prose">
-    <h2 class="section-title">Joining working group activities</h2>
-    <p>How to sign up for working groups.</p>
-    <p><strong>How to sign up to Email lists?</strong></p>
-    <ul>
-      <li>Go to <a href="http://cern.ch/egroups">http://cern.ch/egroups</a> &amp; log in (or create account if necessary)<br />Search for "EuCAIF" to see list of eucaif email lists</li>
-      <li>Click "subscribe"!</li>
-    </ul>
+    <h2 class="section-title">{signup.data.title}</h2>
+    <SignupContent />
   </div>
 </section>
 

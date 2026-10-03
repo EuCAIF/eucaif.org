@@ -3,15 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-import yaml from 'js-yaml';
-import matRaw from '../data/materials.yml?raw';
+import { getCollection, getEntry, render } from 'astro:content';
 
-type Item = { date: string; title: string; links: { label: string; url: string }[] };
-const items = yaml.load(matRaw) as Item[];
+const items = (await getCollection('materials')).sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
+const policy = (await getEntry('sections', 'material-policy'))!;
+const { Content: PolicyContent } = await render(policy);
 
 // Live site lists items chronologically with DD/MM/YYYY dates.
-function formatDate(date: string) {
-  const d = new Date(date);
+function formatDate(d: Date) {
   const p = (n: number) => String(n).padStart(2, '0');
   return `${p(d.getUTCDate())}/${p(d.getUTCMonth() + 1)}/${d.getUTCFullYear()}`;
 }
@@ -32,12 +31,12 @@ function formatDate(date: string) {
     <div class="pub-list">
       {items.map(item => (
         <div class="pub-item">
-          <span class="pub-tag">{formatDate(item.date)}</span>
+          <span class="pub-tag">{formatDate(item.data.date)}</span>
           <div class="pub-content">
-            <h4>{item.title}</h4>
+            <h4>{item.data.title}</h4>
           </div>
           <div class="pub-links">
-            {item.links.map(l => <a class="pub-link" href={l.url} target="_blank" rel="noopener">{l.label} →</a>)}
+            {item.data.links.map(l => <a class="pub-link" href={l.url} target="_blank" rel="noopener">{l.label} →</a>)}
           </div>
         </div>
       ))}
@@ -47,11 +46,8 @@ function formatDate(date: string) {
 
 <section class="prose-section" id="policy">
   <div class="section-container prose">
-    <h2 class="section-title">EuCAIF guidelines and procedures</h2>
-    <p>
-      The EuCAIF policy document is endorsed by the EuCAIF fellows and describes the goals and the procedures of EuCAIF
-      (<a href="/eucaif.org/documents/EuCAIF-policy-v0.7.pdf">pdf</a>).
-    </p>
+    <h2 class="section-title">{policy.data.title}</h2>
+    <PolicyContent />
   </div>
 </section>
 
