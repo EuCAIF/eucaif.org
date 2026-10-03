@@ -85,6 +85,7 @@ nav {
   font-weight: 300; color: #fff; line-height: 1.15;
   margin-bottom: 1.25rem; max-width: 640px;
 }
+.hero h1 b { font-weight: 600; }
 .hero-sub {
   font-size: 1.1rem; color: rgba(255,255,255,0.88);
   max-width: 520px; margin-bottom: 2rem; line-height: 1.6;
