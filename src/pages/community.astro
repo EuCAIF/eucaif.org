@@ -16,21 +16,21 @@ const fellows = sorted.filter(m => m.roles.includes('fellow'));
 const juniorFellows = sorted.filter(m => m.roles.includes('junior-fellow'));
 ---
 
-<Layout title="Community – EuCAIF">
+<Layout title="People – EuCAIF">
 
 <Nav />
 
 <section class="page-header">
   <div class="section-container">
-    <div class="section-label">Our community</div>
     <h1 class="section-title">People</h1>
   </div>
 </section>
 
 <section class="page-body">
   <div class="section-container">
-    <h2 class="section-title">Management Board</h2>
-    <p class="section-desc">{board.length} members steering the coalition.</p>
+    <h2 class="section-title">Management</h2>
+
+    <h3 class="group-title">EuCAIF Management board</h3>
     <div class="members-grid">
       {board.map(m => (
         <div class="member-card">
@@ -39,13 +39,11 @@ const juniorFellows = sorted.filter(m => m.roles.includes('junior-fellow'));
         </div>
       ))}
     </div>
-
     {pastBoard.length > 0 && (
       <p class="members-note">Past board members: {pastBoard.map(m => `${m.given_name} ${m.surname}`).join(', ')}</p>
     )}
 
-    <h2 class="section-title" style="margin-top: 4rem;">International Advisory Board</h2>
-    <p class="section-desc">{advisory.length} external advisors.</p>
+    <h3 class="group-title">EuCAIF International Advisory Board</h3>
     <div class="members-grid">
       {advisory.map(m => (
         <div class="member-card">
@@ -56,7 +54,8 @@ const juniorFellows = sorted.filter(m => m.roles.includes('junior-fellow'));
     </div>
 
     <h2 class="section-title" style="margin-top: 4rem;">Fellows</h2>
-    <p class="section-desc">{fellows.length} Fellows from across Europe and beyond.</p>
+
+    <h3 class="group-title">EuCAIF Fellows</h3>
     <div class="members-grid">
       {fellows.map(m => (
         <div class="member-card">
@@ -66,8 +65,7 @@ const juniorFellows = sorted.filter(m => m.roles.includes('junior-fellow'));
       ))}
     </div>
 
-    <h2 class="section-title" style="margin-top: 4rem;">Junior Fellows</h2>
-    <p class="section-desc">{juniorFellows.length} Junior Fellows.</p>
+    <h3 class="group-title">EuCAIF Junior Fellows</h3>
     <div class="members-grid">
       {juniorFellows.map(m => (
         <div class="member-card">

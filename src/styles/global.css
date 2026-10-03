@@ -269,21 +269,23 @@ footer { background: var(--bg-footer); color: #ccc; padding: 3.5rem 2rem 0; font
 .prose .btn-primary { color: #fff; }
 
 /* WORKING GROUPS */
-.wg-section { padding-top: 3.5rem; }
-.wg-list { display: flex; flex-direction: column; gap: 1.25rem; }
+.wg-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
 .wg-card {
-  display: grid; grid-template-columns: 6rem 1fr; gap: 1.5rem;
-  background: #fff; border: 1px solid var(--border); border-left: 3px solid var(--accent);
-  border-radius: 4px; padding: 1.75rem 2rem;
+  background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--accent);
+  border-radius: 4px; padding: 1.75rem 2rem 2rem;
+  display: flex; flex-direction: column;
 }
-.wg-number { font-size: 0.78rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; padding-top: 0.5rem; }
-.wg-body h2 { font-size: 1.5rem; margin-bottom: 0.2rem; }
-.wg-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem; }
-.wg-summary { color: var(--text); font-size: 1.02rem; line-height: 1.65; margin-bottom: 0.9rem; }
-.wg-text, .wg-goals li { font-size: 0.93rem; line-height: 1.75; }
-.wg-goals { margin: 0.5rem 0 0 1.25rem; }
-.wg-goals li { margin-bottom: 0.45rem; }
-.wg-image { max-width: 300px; margin-top: 1.25rem; display: block; }
+.wg-code {
+  align-self: flex-start;
+  font-family: 'Roboto Mono', 'SFMono-Regular', Menlo, monospace;
+  font-size: 0.72rem; letter-spacing: 0.12em;
+  color: var(--accent); background: var(--accent-soft);
+  padding: 0.25rem 0.6rem; border-radius: 3px;
+  margin-bottom: 1rem;
+}
+.wg-card h3 { font-size: 1.4rem; margin-bottom: 0.75rem; }
+.wg-text { font-size: 0.93rem; line-height: 1.75; }
+.wg-image { max-width: 240px; margin-top: 1.25rem; display: block; }
 
 /* MATERIAL */
 .material-section { padding-top: 3.5rem; }
@@ -324,6 +326,30 @@ footer { background: var(--bg-footer); color: #ccc; padding: 3.5rem 2rem 0; font
   .about-grid, .conf-grid, .conf-past, .footer-inner, .about-highlights { grid-template-columns: 1fr; }
   .about-visual { max-width: 340px; margin: 0 auto; }
   .stats-bar { gap: 2.5rem; }
-  .pub-item, .conf-past-item, .wg-card { grid-template-columns: 1fr; gap: 0.5rem; }
+  .pub-item, .conf-past-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  .wg-list { grid-template-columns: 1fr; }
   .pub-tag, .pub-link, .pub-links { justify-self: start; }
+}
+
+/* VERBATIM-TEXT LAYOUT ADDITIONS */
+.section-title.centered, .section-subtitle.centered { text-align: center; margin-left: auto; margin-right: auto; }
+.section-subtitle { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2.5rem; }
+#subfields .section-title { max-width: 820px; margin-bottom: 3rem; }
+.hero-upcoming { display: flex; flex-direction: column; align-items: flex-end; color: #fff; margin-top: 2.5rem; line-height: 1.5; }
+.hero-upcoming:hover { color: #fff; }
+.hero-upcoming-label { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--accent); font-size: 0.9rem; }
+.hero-upcoming-label .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.hero-upcoming-title, .hero-upcoming-meta { font-style: italic; font-size: 1.05rem; }
+.about-section .section-title { margin-bottom: 2.5rem; }
+.conf-info p { text-align: left; }
+.conf-next { color: var(--text); }
+.about-eucaif-section { background: var(--bg-alt); border-top: 1px solid var(--border); }
+.about-eucaif-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; align-items: center; }
+.about-eucaif-grid p { font-size: 1rem; line-height: 1.8; }
+.jenaa-logo { max-width: 320px; justify-self: center; }
+.group-title { font-size: 1.35rem; margin: 2.5rem 0 1rem; }
+.tier-card h3 { margin-bottom: 0.25rem; }
+@media (max-width: 860px) {
+  .about-eucaif-grid { grid-template-columns: 1fr; }
+  .hero-upcoming { align-items: flex-start; }
 }

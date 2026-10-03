@@ -6,13 +6,14 @@ import '../styles/global.css';
 import yaml from 'js-yaml';
 import matRaw from '../data/materials.yml?raw';
 
-type Item = { date: string; title: string; type: string; venue?: string; links: { label: string; url: string }[] };
-const items = (yaml.load(matRaw) as Item[]).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+type Item = { date: string; title: string; links: { label: string; url: string }[] };
+const items = yaml.load(matRaw) as Item[];
 
+// Live site lists items chronologically with DD/MM/YYYY dates.
 function formatDate(date: string) {
   const d = new Date(date);
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+  const p = (n: number) => String(n).padStart(2, '0');
+  return `${p(d.getUTCDate())}/${p(d.getUTCMonth() + 1)}/${d.getUTCFullYear()}`;
 }
 ---
 
@@ -21,23 +22,19 @@ function formatDate(date: string) {
 
 <section class="page-header">
   <div class="section-container">
-    <div class="section-label">Material</div>
-    <h1 class="section-title">Reports, position papers and presentations</h1>
-    <p class="section-desc">
-      Documents produced by EuCAIF and its partners that set out the coalition's strategy for AI in fundamental physics.
-    </p>
+    <h1 class="section-title">Material</h1>
   </div>
 </section>
 
-<section class="material-section">
+<section class="page-body">
   <div class="section-container">
+    <h2 class="section-title">Selected reports, position papers, and presentations</h2>
     <div class="pub-list">
       {items.map(item => (
         <div class="pub-item">
-          <span class="pub-tag">{item.type}</span>
+          <span class="pub-tag">{formatDate(item.date)}</span>
           <div class="pub-content">
             <h4>{item.title}</h4>
-            <p>{formatDate(item.date)}{item.venue && ` · ${item.venue}`}</p>
           </div>
           <div class="pub-links">
             {item.links.map(l => <a class="pub-link" href={l.url} target="_blank" rel="noopener">{l.label} →</a>)}
@@ -50,15 +47,10 @@ function formatDate(date: string) {
 
 <section class="prose-section" id="policy">
   <div class="section-container prose">
-    <div class="section-label">Guidelines and procedures</div>
-    <h2 class="section-title">EuCAIF policy document</h2>
+    <h2 class="section-title">EuCAIF guidelines and procedures</h2>
     <p>
-      The EuCAIF policy document is endorsed by the EuCAIF fellows and describes the goals and the procedures of
-      EuCAIF: membership levels, the fellowship application process, the role of the management board, and how
-      decisions are taken.
-    </p>
-    <p>
-      <a class="btn-primary" href="/eucaif.org/documents/EuCAIF-policy-v0.7.pdf">Download the policy document (PDF, v0.7)</a>
+      The EuCAIF policy document is endorsed by the EuCAIF fellows and describes the goals and the procedures of EuCAIF
+      (<a href="/eucaif.org/documents/EuCAIF-policy-v0.7.pdf">pdf</a>).
     </p>
   </div>
 </section>

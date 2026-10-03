@@ -27,27 +27,31 @@ const fellowCount = members.filter(m => m.roles.includes('fellow')).length;
 const juniorCount = members.filter(m => m.roles.includes('junior-fellow')).length;
 const countries = [...new Set(members.map(m => m.country))];
 const countryCount = countries.length;
+
+// Text on this page is taken verbatim from https://eucaif.org/
+const subfields = [
+  { title: 'Theoretical physics', image: 'theoretical-physics.png', text: 'Crafting mathematical frameworks to predict and explain the fundamental laws of nature.' },
+  { title: 'Particle physics', image: 'particle-tracks.jpg', text: 'Unlocking the secrets of the tiniest building blocks of the universe.' },
+  { title: 'Nuclear physics', image: 'nuclear-physics.png', text: 'Studying atomic nuclei to understand the forces that power stars and shape the elements around us.' },
+  { title: 'Astroparticle physics', image: 'astroparticles.jpg', text: 'Exploring cosmic rays, neutrinos, and dark matter to reveal the universe’s mysteries.' },
+  { title: 'Gravitational waves', image: 'gravity-waves.jpg', text: 'Listening to the ripples in spacetime to witness the most violent cosmic events.' },
+  { title: 'Cosmology', image: 'cosmology.png', text: 'Investigating the origins, evolution, and ultimate fate of the universe on the grandest scales.' },
+  { title: 'Accelerator physics', image: 'accelerator-physics.png', text: 'Pushing the frontiers of technology to accelerate particles and probe the structure of matter.' },
+];
 ---
 
 <Layout title="EuCAIF – European Coalition for AI in Fundamental Physics">
-
-<Nav transparent />
+<Nav />
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-badge">
-      <span class="pulse"></span>
-      Upcoming: EuCAIFCon 2026, August 24–28, Heidelberg
-    </div>
     <h1>European Coalition for AI in Fundamental Physics</h1>
-    <p class="hero-sub">
-      A European cross-disciplinary research and training network advancing AI methods for particle physics, cosmology, gravitational waves, and beyond.
-    </p>
-    <div class="hero-actions">
-      <a href="/eucaif.org/join/" class="btn-primary">Get Involved</a>
-      <a href="https://indico.physi.uni-heidelberg.de/event/1277/" class="btn-secondary" target="_blank" rel="noopener">EuCAIFCon 2026</a>
-    </div>
+    <a class="hero-upcoming" href="https://indico.physi.uni-heidelberg.de/event/1277/" target="_blank" rel="noopener">
+      <span class="hero-upcoming-label"><span class="pulse"></span> Upcoming</span>
+      <span class="hero-upcoming-title">EuCAIFCon 2026</span>
+      <span class="hero-upcoming-meta">August 24 - 28, Heidelberg</span>
+    </a>
   </div>
 </section>
 <div class="stats-bar">
@@ -68,90 +72,31 @@ const countryCount = countries.length;
 <!-- SUBFIELDS -->
 <section id="subfields">
   <div class="section-container">
-    <div class="reveal">
-      <div class="section-label">Research Domains</div>
-      <h2 class="section-title">Across the frontiers of<br>fundamental physics</h2>
-      <p class="section-desc">
-        Shared challenges across subfields — from modeling complex datasets to simulation-based inference — demand AI methods developed with physics principles at their core.
-      </p>
-    </div>
+    <h2 class="section-title centered reveal">Advancing AI and fundamental physics: A European cross-disciplinary research and training network</h2>
     <div class="subfields-grid reveal reveal-delay-2">
-      <div class="subfield-card">
-        <img class="subfield-thumb" src="/eucaif.org/images/particle-tracks.jpg" alt="" loading="lazy" />
-        <h3>Particle Physics</h3>
-        <p>Unlocking the secrets of the tiniest building blocks with AI-driven analysis of collider data and beyond-standard-model searches.</p>
-      </div>
-      <div class="subfield-card">
-        <img class="subfield-thumb" src="/eucaif.org/images/cosmology.png" alt="" loading="lazy" />
-        <h3>Cosmology</h3>
-        <p>Investigating the origins and evolution of the universe with machine learning on the grandest observational scales.</p>
-      </div>
-      <div class="subfield-card">
-        <img class="subfield-thumb" src="/eucaif.org/images/gravity-waves.jpg" alt="" loading="lazy" />
-        <h3>Gravitational Waves</h3>
-        <p>Listening to spacetime ripples with neural networks that detect and characterize the most violent cosmic events.</p>
-      </div>
-      <div class="subfield-card">
-        <img class="subfield-thumb" src="/eucaif.org/images/theoretical-physics.png" alt="" loading="lazy" />
-        <h3>Theoretical Physics</h3>
-        <p>Crafting mathematical frameworks with AI-augmented discovery of symmetries, dualities, and new physical laws.</p>
-      </div>
-      <div class="subfield-card">
-        <img class="subfield-thumb" src="/eucaif.org/images/nuclear-physics.png" alt="" loading="lazy" />
-        <h3>Nuclear Physics</h3>
-        <p>Studying atomic nuclei to understand the forces that power stars, with ML models for complex many-body quantum systems.</p>
-      </div>
-      <div class="subfield-card">
-        <img class="subfield-thumb" src="/eucaif.org/images/astroparticles.jpg" alt="" loading="lazy" />
-        <h3>Astroparticle Physics</h3>
-        <p>Exploring cosmic rays, neutrinos, and dark matter with AI pipelines processing vast multi-messenger datasets.</p>
-      </div>
-      <div class="subfield-card">
-        <img class="subfield-thumb" src="/eucaif.org/images/accelerator-physics.png" alt="" loading="lazy" />
-        <h3>Accelerator Physics</h3>
-        <p>Pushing the frontiers of beam optimization and detector design with reinforcement learning and fast surrogate models.</p>
-      </div>
+      {subfields.map(s => (
+        <div class="subfield-card">
+          <img class="subfield-thumb" src={`/eucaif.org/images/${s.image}`} alt="" loading="lazy" />
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+        </div>
+      ))}
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- PURPOSE AND SCOPE -->
 <section id="about" class="about-section">
   <div class="section-container">
+    <h2 class="section-title centered reveal">Purpose and Scope</h2>
     <div class="about-grid">
-      <div class="about-visual reveal" style="background: transparent; border: none;">
+      <div class="about-visual reveal">
         <EuropeMap highlightedCountries={countries} />
       </div>
       <div class="about-text reveal reveal-delay-2">
-        <div class="section-label">Purpose &amp; Scope</div>
-        <h2>Science-specific AI for discoveries beyond classical methods</h2>
         <p>
-          AI and modern machine learning are revolutionizing our everyday lives and transforming fundamental physics research across particle physics, astroparticle physics, nuclear physics, gravitational wave physics, cosmology, and theoretical physics. Common challenges in these fields include modeling complex and large datasets, data compression, scalability to very high-dimensional parameter spaces, the need for fast emulators and first-principle simulations, and simulation-based inference.
+          AI and modern machine learning are revolutionizing our everyday lives and transforming fundamental physics research across particle physics, astroparticle physics, nuclear physics, gravitational wave physics, cosmology, and theoretical physics. Common challenges in these fields include modeling complex and large datasets, data compression, scalability to very high-dimensional parameter spaces, the need for fast emulators and first-principle simulations, and simulation-based inference. These shared features highlight AI’s transformative potential, particularly when science-specific AI methods are developed to address unique challenges in these areas. To enable scientific discoveries beyond the reach of classical methods, AI in physics must incorporate robustness, uncertainty estimation, scientific explainability, and a fundamental understanding of physics principles. EuCAIF aims to create a community for developers of these specialized methods, benefiting the broader AI community through collaborative research and training. Together, we can contribute novel methods and approaches that might not otherwise emerge from the wider AI community.
         </p>
-        <p>
-          To enable scientific discoveries beyond the reach of classical methods, AI in physics must incorporate robustness, uncertainty estimation, scientific explainability, and a fundamental understanding of physics principles. EuCAIF creates a community for developers of these specialized methods, benefiting the broader AI community through collaborative research and training. Members work on particle physics, astroparticle physics, nuclear physics, gravitational wave physics, cosmology, theoretical physics as well as simulation and computational infrastructure.
-        </p>
-        <p>
-          Activities are organised in open <a href="/eucaif.org/activities/">working groups</a>; the coalition's goals and procedures are set out in the <a href="/eucaif.org/documents/EuCAIF-policy-v0.7.pdf">EuCAIF policy document</a>.
-        </p>
-        <div class="about-highlights">
-          <div class="highlight-item">
-            <h4>Cross-disciplinary</h4>
-            <p>Methods that bridge particle physics, cosmology, and gravitational waves</p>
-          </div>
-          <div class="highlight-item">
-            <h4>Uncertainty-aware</h4>
-            <p>AI with built-in robustness and calibrated confidence</p>
-          </div>
-          <div class="highlight-item">
-            <h4>Explainable</h4>
-            <p>Scientific interpretability at the core, not as afterthought</p>
-          </div>
-          <div class="highlight-item">
-            <h4>Community-driven</h4>
-            <p>Open methods, shared challenges, collaborative research</p>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -161,60 +106,47 @@ const countryCount = countries.length;
 <section id="conference" class="conference-section">
   <div class="section-container">
     <div class="reveal">
-      <div class="section-label">EuCAIFCon</div>
-      <h2 class="section-title">The annual European Conference for AI in Fundamental Physics</h2>
-      <p class="section-desc">
-        EuCAIFCon provides a platform for establishing new connections between AI activities across the branches of fundamental physics, by bringing together researchers who face similar challenges or use similar AI solutions. The conferences are organised "horizontally": sessions are centred on specific AI methods and themes, while being cross-disciplinary regarding the scientific questions.
-      </p>
+      <h2 class="section-title centered">The EuCAIFCon Conference Series</h2>
+      <p class="section-subtitle centered">The Annual European Conference for AI in Fundamental Physics</p>
     </div>
-    <div class="conf-grid reveal">
+    <div class="conf-grid reveal reveal-delay-2">
       <div class="conf-info">
-        <div class="conf-year">Next Conference</div>
-        <h2>EuCAIFCon 2026</h2>
-        <p>The third edition of the European Conference for AI in Fundamental Physics.</p>
-        <div class="conf-meta">
-          <div class="conf-meta-item">
-            <span class="conf-meta-icon">📍</span> Heidelberg, Germany
-          </div>
-          <div class="conf-meta-item">
-            <span class="conf-meta-icon">📅</span> August 24 – 28, 2026
-          </div>
-        </div>
+        <p>
+          Our aim is to provide a platform for establishing new connections between AI activities across various branches of fundamental physics, by bringing together researchers that face similar challenges and/or use similar AI solutions. The conferences are organized “horizontally”: sessions are centered on specific AI methods and themes, while being cross-disciplinary regarding the scientific questions.
+        </p>
+        <p>
+          The first “European AI for Fundamental Physics Conference” (<a href="https://indico.nikhef.nl/event/4875/" target="_blank" rel="noopener">EuCAIFCon 2024</a>) was held in Amsterdam, from 30 April to 3 May 2024. <a href="https://agenda.infn.it/event/43565/overview" target="_blank" rel="noopener">EuCAIFCon 2025</a> was held in Sardinia from Jun 16 – 20, 2025.
+        </p>
+        <p class="conf-next"><strong>EuCAIFCon 2026 will take place in Heidelberg, August 24 - 28 2026.</strong></p>
         <div class="conf-actions">
-          <a href="https://indico.physi.uni-heidelberg.de/event/1277/" class="btn-primary" target="_blank" rel="noopener">Conference website</a>
+          <a href="https://indico.physi.uni-heidelberg.de/event/1277/" class="btn-primary" target="_blank" rel="noopener">More information</a>
         </div>
       </div>
       <img class="conf-photo" src="/eucaif.org/images/conference.jpg" alt="Audience at EuCAIFCon" loading="lazy" />
     </div>
-    <div class="conf-past reveal reveal-delay-2">
-      <div class="conf-past-item">
-        <span class="pub-tag">2025</span>
-        <div>
-          <h4>EuCAIFCon 2025, Cagliari, Sardinia</h4>
-          <p>16 – 20 June 2025</p>
-        </div>
-        <a class="pub-link" href="https://agenda.infn.it/event/43565/overview" target="_blank" rel="noopener">Programme →</a>
-      </div>
-      <div class="conf-past-item">
-        <span class="pub-tag">2024</span>
-        <div>
-          <h4>EuCAIFCon 2024, Amsterdam</h4>
-          <p>30 April – 3 May 2024. The first European AI for Fundamental Physics Conference.</p>
-        </div>
-        <a class="pub-link" href="https://indico.nikhef.nl/event/4875/" target="_blank" rel="noopener">Programme →</a>
-      </div>
+  </div>
+</section>
+
+<!-- ABOUT EUCAIF -->
+<section id="about-eucaif" class="about-eucaif-section">
+  <div class="section-container">
+    <h2 class="section-title centered reveal">About EuCAIF</h2>
+    <div class="about-eucaif-grid reveal reveal-delay-2">
+      <p>
+        EuCAIF is an European initiative for advancing the use of Artificial Intelligence (AI) in Fundamental Physics. Members are working on particle physics, astroparticle physics, nuclear physics, gravitational wave physics, cosmology, theoretical physics as well as simulation and computational infrastructure.
+      </p>
+      <img class="jenaa-logo" src="/eucaif.org/images/jenaa.png" alt="JENAA – Joint ECFA-NuPECC-APPEC Activities" loading="lazy" />
     </div>
   </div>
 </section>
 
-<!-- LATEST PREPRINTS -->
+<!-- LATEST PREPRINTS (generated from INSPIRE) -->
 <section id="papers" class="publications-section">
   <div class="section-container">
     <div class="reveal">
-      <div class="section-label">Latest Research</div>
       <h2 class="section-title">Latest Papers</h2>
       <p class="section-desc">
-        Recent AI-related papers from EuCAIF fellows — automatically collected from INSPIRE HEP.
+        Recent AI-related papers from EuCAIF fellows, automatically collected from INSPIRE HEP.
       </p>
     </div>
     <div class="pub-list">
@@ -231,63 +163,6 @@ const countryCount = countries.length;
     </div>
     <div style="text-align:center; margin-top: 2.5rem;" class="reveal">
       <a href="/eucaif.org/publications/" class="btn-secondary">More papers →</a>
-    </div>
-  </div>
-</section>
-
-<!-- BLOG / NEWS -->
-<section id="blog">
-  <div class="section-container">
-    <div class="reveal">
-      <div class="section-label">News & Highlights</div>
-      <h2 class="section-title">From the community</h2>
-      <p class="section-desc">
-        Updates, highlights, and perspectives from across the EuCAIF network.
-      </p>
-    </div>
-    <div class="blog-grid">
-      <div class="blog-card reveal reveal-delay-1">
-        <div class="blog-image">
-          <div class="blog-image-pattern"></div>
-        </div>
-        <div class="blog-body">
-          <div class="blog-date">Jan 2026</div>
-          <h3>EuCAIFCon 2025 Proceedings now published in SciPost</h3>
-          <p>The full proceedings of EuCAIFCon 2025 Sardinia are now available, featuring 47 contributions across all subfields.</p>
-        </div>
-      </div>
-      <div class="blog-card reveal reveal-delay-2">
-        <div class="blog-image">
-          <div class="blog-image-pattern"></div>
-        </div>
-        <div class="blog-body">
-          <div class="blog-date">Dec 2025</div>
-          <h3>New working group on Foundation Models for Physics</h3>
-          <p>EuCAIF launches a dedicated working group exploring how large-scale foundation models can accelerate scientific discovery.</p>
-        </div>
-      </div>
-      <div class="blog-card reveal reveal-delay-3">
-        <div class="blog-image">
-          <div class="blog-image-pattern"></div>
-        </div>
-        <div class="blog-body">
-          <div class="blog-date">Nov 2025</div>
-          <h3>EuCAIF members win NeurIPS spotlight for physics-informed diffusion models</h3>
-          <p>A cross-institutional collaboration develops score-based generative models with exact symmetry guarantees.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section id="join" class="cta-section">
-  <div class="section-container reveal">
-    <h2>Shape the future of<br><em>AI in physics</em></h2>
-    <p>Connect with a growing European community of researchers developing the next generation of AI methods for fundamental physics.</p>
-    <div class="hero-actions" style="justify-content: center;">
-      <a href="/eucaif.org/join/" class="btn-primary">How to join</a>
-      <a href="/eucaif.org/documents/EuCAIF-policy-v0.7.pdf" class="btn-secondary">Read the policy document</a>
     </div>
   </div>
 </section>

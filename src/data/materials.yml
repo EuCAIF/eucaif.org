@@ -1,36 +1,30 @@
-# Selected reports, position papers and presentations. Shown on /material/.
-- date: 2025-04-01
-  title: "AI-RDs: A EuCAIF proposal to structure AI research in Particle Physics"
-  type: Position paper
+# Selected reports, position papers, and presentations. Verbatim from https://eucaif.org/material/.
+- date: 2024-11-14
+  title: AI/ML for Particle Physics - Building an Infrastructure with EuCAIF and Beyond
   links:
-    - label: PDF
-      url: https://indico.cern.ch/event/1439855/contributions/6461566/attachments/3045939/5381892/AI_DRD_initiativepaper.pdf
-
-- date: 2025-03-30
-  title: JENA White Paper on European Federated Computing
-  type: White paper
-  links:
-    - label: PDF
-      url: https://indico.cern.ch/event/1439855/contributions/6461528/attachments/3045901/5381843/ESPPU_Input_JENA_Computing_Initiative_2025_submit.pdf
-
-- date: 2025-03-18
-  title: "Strategic White Paper on AI Infrastructure for Particle, Nuclear, and Astroparticle Physics: Insights from JENA and EuCAIF"
-  type: White paper
-  links:
-    - label: arXiv
-      url: https://arxiv.org/abs/2503.14192
+    - label: slides
+      url: https://indico.cern.ch/event/1361604/contributions/6190103/attachments/2968260/5223536/ECFA_2024_AI.pdf
 
 - date: 2025-01-09
   title: "Large Physics Models: Towards a collaborative approach with Large Language Models and Foundation Models"
-  type: Position paper
   links:
-    - label: arXiv
+    - label: arxiv
       url: https://arxiv.org/abs/2501.05382
 
-- date: 2024-11-14
-  title: AI/ML for Particle Physics - Building an Infrastructure with EuCAIF and Beyond
-  type: Presentation
-  venue: ECFA Plenary 2024
+- date: 2025-03-18
+  title: "Strategic White Paper on AI Infrastructure for Particle, Nuclear, and Astroparticle Physics: Insights from JENA and EuCAIF"
   links:
-    - label: Slides
-      url: https://indico.cern.ch/event/1361604/contributions/6190103/attachments/2968260/5223536/ECFA_2024_AI.pdf
+    - label: arxiv
+      url: https://arxiv.org/abs/2503.14192
+
+- date: 2025-03-30
+  title: JENA White Paper on European Federated Computing
+  links:
+    - label: pdf
+      url: https://indico.cern.ch/event/1439855/contributions/6461528/attachments/3045901/5381843/ESPPU_Input_JENA_Computing_Initiative_2025_submit.pdf
+
+- date: 2025-04-01
+  title: "AI-RDs: A EuCAIF proposal to structure AI research in Particle Physics"
+  links:
+    - label: pdf
+      url: https://indico.cern.ch/event/1439855/contributions/6461566/attachments/3045939/5381892/AI_DRD_initiativepaper.pdf
