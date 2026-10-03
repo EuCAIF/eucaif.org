@@ -56,20 +56,6 @@ const domainBlocks = await Promise.all(domains.map(async d => ({ ...d, Content: 
     </a>
   </div>
 </section>
-<div class="stats-bar">
-  <div class="stat">
-    <div class="stat-number" data-target={fellowCount}>0</div>
-    <div class="stat-label">Fellows</div>
-  </div>
-  <div class="stat">
-    <div class="stat-number" data-target={juniorCount}>0</div>
-    <div class="stat-label">Junior Fellows</div>
-  </div>
-  <div class="stat">
-    <div class="stat-number" data-target={countryCount}>0</div>
-    <div class="stat-label">Countries</div>
-  </div>
-</div>
 
 <!-- SUBFIELDS -->
 <section id="subfields">
@@ -125,6 +111,7 @@ const domainBlocks = await Promise.all(domains.map(async d => ({ ...d, Content: 
     <div class="about-eucaif-grid">
       <div class="about-visual reveal">
         <EuropeMap highlightedCountries={countries} />
+        <p class="map-caption">{fellowCount} fellows and {juniorCount} junior fellows at institutions in {countryCount} countries</p>
       </div>
       <div class="about-eucaif-text reveal reveal-delay-2">
         <AboutContent />
@@ -175,34 +162,6 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// COUNTER ANIMATION
-function animateCounters() {
-  document.querySelectorAll('.stat-number').forEach(el => {
-    const target = parseInt((el as HTMLElement).dataset.target!);
-    const suffix = (el as HTMLElement).dataset.suffix || '';
-    const duration = 2000;
-    const start = performance.now();
-    function update(now: number) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.floor(target * eased) + suffix;
-      if (progress < 1) requestAnimationFrame(update);
-    }
-    requestAnimationFrame(update);
-  });
-}
-
-const statsObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      animateCounters();
-      statsObserver.disconnect();
-    }
-  });
-}, { threshold: 0.5 });
-const statsBar = document.querySelector('.stats-bar');
-if (statsBar) statsObserver.observe(statsBar);
 </script>
 
 </Layout>
