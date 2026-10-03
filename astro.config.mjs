@@ -1,10 +1,21 @@
 import { defineConfig } from 'astro/config';
-
 import mdx from '@astrojs/mdx';
+import rehypeBase from './src/lib/rehype-base.mjs';
+
+// Where the site is served. For GitHub Pages under eucaif.github.io/eucaif.org
+// the base is '/eucaif.org'; for a custom domain at the root use base: '/'.
+const site = 'https://eucaif.github.io';
+const base = '/eucaif.org';
+const at = (path) => `${base.replace(/\/$/, '')}${path}`;
 
 export default defineConfig({
-  site: 'https://eucaif.github.io',
-  base: '/eucaif.org',
-  redirects: { '/community/': '/eucaif.org/people/', '/activities/': '/eucaif.org/working-groups/', '/material/': '/eucaif.org/documents/' },
-  integrations: [mdx()]
+  site,
+  base,
+  redirects: {
+    '/community/': at('/people/'),
+    '/activities/': at('/working-groups/'),
+    '/material/': at('/documents/'),
+  },
+  markdown: { rehypePlugins: [[rehypeBase, { base }]] },
+  integrations: [mdx()],
 });

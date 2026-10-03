@@ -2,7 +2,7 @@
 // Shared site navigation: white bar with the long logo, current-page marker,
 // compact state after scrolling, and a mobile panel behind the hamburger.
 interface Props { transparent?: boolean }
-const B = '/eucaif.org';
+import { base as B, site } from '../lib/site';
 const path = Astro.url.pathname.replace(/\/?$/, '/');
 const links = [
   { href: `${B}/`, label: 'Home' },

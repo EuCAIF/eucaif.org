@@ -1,5 +1,5 @@
 ---
-const B = '/eucaif.org';
+import { base as B, site } from '../lib/site';
 ---
 <footer>
   <div class="footer-inner">
@@ -24,7 +24,7 @@ const B = '/eucaif.org';
     </div>
     <div class="footer-contact">
       <h4>Contact</h4>
-      <p>For general questions about EuCAIF or the website, please contact <a href="mailto:info@eucaif.org">info@eucaif.org</a>.</p>
+      <p>For general questions about EuCAIF or the website, please contact <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
       <ul class="footer-links">
         <li><a href="mailto:eucaif-info@cern.ch">Mailing list: eucaif-info@cern.ch</a></li>
         <li><a href={`${B}/documents/EuCAIF-policy-v0.7.pdf`}>Policy document (PDF)</a></li>
@@ -34,7 +34,7 @@ const B = '/eucaif.org';
   </div>
   <div class="footer-bottom">
     <div class="footer-bottom-inner">
-      <span>© 2026 EuCAIF – European Coalition for AI in Fundamental Physics</span>
+      <span>© {new Date().getFullYear()} {site.name} – {site.full_name}</span>
     </div>
   </div>
 </footer>

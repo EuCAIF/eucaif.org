@@ -1,0 +1,19 @@
+# Site-wide facts. Edit these here; the pages read them.
+name: EuCAIF
+full_name: European Coalition for AI in Fundamental Physics
+email: info@eucaif.org
+mailing_list: eucaif-info@cern.ch
+
+conference:
+  # Shown in the hero and at the end of the conference section. Set `upcoming`
+  # to null when nothing is announced yet. `url` may be null until a site exists.
+  upcoming:
+    name: EuCAIFCon 2027
+    venue: Paris
+    dates: Summer 2027
+    url: null
+  latest:
+    name: EuCAIFCon 2026
+    venue: Heidelberg
+    dates: August 24 - 28, 2026
+    url: https://indico.physi.uni-heidelberg.de/event/1277/

@@ -32,8 +32,8 @@ const workingGroups = defineCollection({
   }),
 });
 
-const materials = defineCollection({
-  loader: glob({ pattern: '*.md', base: './src/content/materials' }),
+const documents = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/documents' }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -50,4 +50,4 @@ const membership = defineCollection({
   }),
 });
 
-export const collections = { sections, researchDomains, workingGroups, materials, membership };
+export const collections = { sections, researchDomains, workingGroups, documents, membership };

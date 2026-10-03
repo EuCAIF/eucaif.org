@@ -3,10 +3,11 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import { url } from '../lib/site';
 import { getCollection, getEntry, render } from 'astro:content';
 
-const intro = (await getEntry('sections', 'activities-intro'))!;
-const signup = (await getEntry('sections', 'activities-signup'))!;
+const intro = (await getEntry('sections', 'working-groups-intro'))!;
+const signup = (await getEntry('sections', 'working-groups-signup'))!;
 const { Content: IntroContent } = await render(intro);
 const { Content: SignupContent } = await render(signup);
 
@@ -33,7 +34,7 @@ const groupBlocks = await Promise.all(groups.map(async g => ({ ...g, Content: (a
           <span class="wg-code">{wg.data.code}</span>
           <h3>{wg.data.title}</h3>
           <div class="wg-text"><wg.Content /></div>
-          {wg.data.image && <img class="wg-image" src={wg.data.image} alt="" loading="lazy" />}
+          {wg.data.image && <img class="wg-image" src={url(wg.data.image)} alt="" loading="lazy" />}
         </article>
       ))}
     </div>
