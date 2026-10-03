@@ -8,9 +8,11 @@ hero:
   # `photo`: full-bleed background image with white text.
   # `animation`: light background with the seven-domain cluster animation.
   style: photo
-  image: /images/hero-deepfield.jpg          # Webb's First Deep Field (SMACS 0723)
+  image: /images/hero-cosmiccliffs.jpg       # Webb "Cosmic Cliffs", Carina Nebula (NIRCam)
   image_credit: NASA, ESA, CSA, and STScI
-  # alternative: /images/hero-nebula.jpg (Carina Nebula, NASA, ESA, N. Smith and the Hubble Heritage Team)
+  # alternatives (all public domain):
+  #   /images/hero-deepfield.jpg   Webb's First Deep Field (SMACS 0723), NASA, ESA, CSA, STScI
+  #   /images/hero-nebula.jpg      Carina Nebula (Hubble), NASA, ESA, N. Smith and the Hubble Heritage Team
 
 conference:
   # Shown in the hero and at the end of the conference section. Set `upcoming`
