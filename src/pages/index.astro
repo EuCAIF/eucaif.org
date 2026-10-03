@@ -79,8 +79,10 @@ const domainBlocks = await Promise.all(domains.map(async d => ({ ...d, Content: 
       {domainBlocks.map(d => (
         <div class="subfield-card">
           <img class="subfield-thumb" src={d.data.image} alt="" loading="lazy" />
-          <h3>{d.data.title}</h3>
-          <div class="subfield-text"><d.Content /></div>
+          <div class="subfield-body">
+            <h3>{d.data.title}</h3>
+            <div class="subfield-text"><d.Content /></div>
+          </div>
         </div>
       ))}
     </div>

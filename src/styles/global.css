@@ -145,15 +145,18 @@ section { padding: 5rem 2rem; }
 .about-text a, .prose a, .tier-card a, .conf-past-item a, .pub-content a { color: var(--accent); }
 
 /* SUBFIELDS */
-.subfields-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2.5rem 2.5rem;
+.subfields-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
+.subfield-card {
+  flex: 0 1 calc(25% - 1.125rem); min-width: 240px;
+  background: #fff; border: 1px solid var(--border); border-radius: 6px;
+  overflow: hidden; display: flex; flex-direction: column;
+  transition: box-shadow 0.25s, transform 0.25s;
 }
-.subfield-card { display: grid; grid-template-columns: 72px 1fr; column-gap: 1.25rem; row-gap: 0.4rem; align-items: start; }
-.subfield-thumb { grid-row: 1 / span 2; width: 72px; height: 54px; object-fit: cover; border-radius: 3px; display: block; }
-.subfield-card h3, .subfield-card p, .subfield-card .subfield-text { grid-column: 2; }
-.subfield-card h3 { font-size: 1.3rem; margin-bottom: 0.4rem; }
-.subfield-card p { font-size: 0.9rem; color: var(--text-body); line-height: 1.65; }
+.subfield-card:hover { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); transform: translateY(-2px); }
+.subfield-thumb { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+.subfield-body { padding: 1.1rem 1.25rem 1.35rem; }
+.subfield-card h3 { font-size: 1.2rem; margin-bottom: 0.4rem; }
+.subfield-text p { font-size: 0.88rem; color: var(--text-body); line-height: 1.6; }
 
 /* ABOUT / PURPOSE */
 .about-section { background: var(--bg-alt); }
@@ -317,7 +320,11 @@ footer { background: var(--bg-footer); color: #ccc; padding: 3.5rem 2rem 0; font
 .hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
 
 /* RESPONSIVE */
+@media (max-width: 1100px) {
+  .subfield-card { flex-basis: calc(33.333% - 1rem); }
+}
 @media (max-width: 860px) {
+  .subfield-card { flex-basis: calc(50% - 0.75rem); }
   .nav-links { display: none; }
   .hamburger { display: flex; }
   nav { padding: 0 1.25rem; }
@@ -357,8 +364,6 @@ footer { background: var(--bg-footer); color: #ccc; padding: 3.5rem 2rem 0; font
 }
 
 /* MARKDOWN-RENDERED BLOCKS */
-.subfield-text { grid-column: 2; }
-.subfield-text p { font-size: 0.9rem; color: var(--text-body); line-height: 1.65; }
 .wg-text p { margin-bottom: 0.75rem; }
 .wg-text p:last-child { margin-bottom: 0; }
 .tier-card p a { color: var(--accent); }
