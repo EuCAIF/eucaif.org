@@ -6,4 +6,6 @@ Our aim is to provide a platform for establishing new connections between AI act
 
 The first “European AI for Fundamental Physics Conference” ([EuCAIFCon 2024](https://indico.nikhef.nl/event/4875/)) was held in Amsterdam, from 30 April to 3 May 2024. [EuCAIFCon 2025](https://agenda.infn.it/event/43565/overview) was held in Sardinia from Jun 16 – 20, 2025.
 
-**EuCAIFCon 2026 took place in Heidelberg, August 24 - 28 2026.** The venue and dates of EuCAIFCon 2027 will be announced here.
+EuCAIFCon 2026 took place in Heidelberg, August 24 - 28 2026.
+
+**EuCAIFCon 2027 will take place in Paris.** Dates will be announced here.
