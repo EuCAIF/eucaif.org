@@ -35,37 +35,35 @@ const countryCount = countries.length;
 
 <!-- HERO -->
 <section class="hero">
-  <canvas id="particle-canvas"></canvas>
-  <div class="hero-gradient"></div>
   <div class="hero-content">
     <div class="hero-badge">
       <span class="pulse"></span>
-      EuCAIFCon 2026 — Heidelberg — August 24–28
+      Upcoming: EuCAIFCon 2026, August 24–28, Heidelberg
     </div>
-    <h1>AI at the frontier of <em>fundamental physics</em></h1>
+    <h1>European Coalition for AI in Fundamental Physics</h1>
     <p class="hero-sub">
-      A European cross-disciplinary coalition advancing AI methods for particle physics, cosmology, gravitational waves, and beyond.
+      A European cross-disciplinary research and training network advancing AI methods for particle physics, cosmology, gravitational waves, and beyond.
     </p>
     <div class="hero-actions">
       <a href="/eucaif.org/join/" class="btn-primary">Get Involved</a>
-      <a href="#about" class="btn-secondary">Learn more</a>
-    </div>
-  </div>
-  <div class="stats-bar">
-    <div class="stat">
-      <div class="stat-number" data-target={fellowCount}>0</div>
-      <div class="stat-label">Fellows</div>
-    </div>
-    <div class="stat">
-      <div class="stat-number" data-target={juniorCount}>0</div>
-      <div class="stat-label">Junior Fellows</div>
-    </div>
-    <div class="stat">
-      <div class="stat-number" data-target={countryCount}>0</div>
-      <div class="stat-label">Countries</div>
+      <a href="https://indico.physi.uni-heidelberg.de/event/1277/" class="btn-secondary" target="_blank" rel="noopener">EuCAIFCon 2026</a>
     </div>
   </div>
 </section>
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-number" data-target={fellowCount}>0</div>
+    <div class="stat-label">Fellows</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number" data-target={juniorCount}>0</div>
+    <div class="stat-label">Junior Fellows</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number" data-target={countryCount}>0</div>
+    <div class="stat-label">Countries</div>
+  </div>
+</div>
 
 <!-- SUBFIELDS -->
 <section id="subfields">
@@ -79,37 +77,37 @@ const countryCount = countries.length;
     </div>
     <div class="subfields-grid reveal reveal-delay-2">
       <div class="subfield-card">
-        <div class="subfield-overlay" style="background-image: url('/eucaif.org/images/particle-tracks.jpg');"></div>
+        <img class="subfield-thumb" src="/eucaif.org/images/particle-tracks.jpg" alt="" loading="lazy" />
         <h3>Particle Physics</h3>
         <p>Unlocking the secrets of the tiniest building blocks with AI-driven analysis of collider data and beyond-standard-model searches.</p>
       </div>
       <div class="subfield-card">
-        <div class="subfield-overlay" style="background-image: url('/eucaif.org/images/cosmology.png');"></div>
+        <img class="subfield-thumb" src="/eucaif.org/images/cosmology.png" alt="" loading="lazy" />
         <h3>Cosmology</h3>
         <p>Investigating the origins and evolution of the universe with machine learning on the grandest observational scales.</p>
       </div>
       <div class="subfield-card">
-        <div class="subfield-overlay" style="background-image: url('/eucaif.org/images/gravity-waves.jpg');"></div>
+        <img class="subfield-thumb" src="/eucaif.org/images/gravity-waves.jpg" alt="" loading="lazy" />
         <h3>Gravitational Waves</h3>
         <p>Listening to spacetime ripples with neural networks that detect and characterize the most violent cosmic events.</p>
       </div>
       <div class="subfield-card">
-        <div class="subfield-overlay" style="background-image: url('/eucaif.org/images/theoretical-physics.png');"></div>
+        <img class="subfield-thumb" src="/eucaif.org/images/theoretical-physics.png" alt="" loading="lazy" />
         <h3>Theoretical Physics</h3>
         <p>Crafting mathematical frameworks with AI-augmented discovery of symmetries, dualities, and new physical laws.</p>
       </div>
       <div class="subfield-card">
-        <div class="subfield-overlay" style="background-image: url('/eucaif.org/images/nuclear-physics.png');"></div>
+        <img class="subfield-thumb" src="/eucaif.org/images/nuclear-physics.png" alt="" loading="lazy" />
         <h3>Nuclear Physics</h3>
         <p>Studying atomic nuclei to understand the forces that power stars, with ML models for complex many-body quantum systems.</p>
       </div>
       <div class="subfield-card">
-        <div class="subfield-overlay" style="background-image: url('/eucaif.org/images/astroparticles.jpg');"></div>
+        <img class="subfield-thumb" src="/eucaif.org/images/astroparticles.jpg" alt="" loading="lazy" />
         <h3>Astroparticle Physics</h3>
         <p>Exploring cosmic rays, neutrinos, and dark matter with AI pipelines processing vast multi-messenger datasets.</p>
       </div>
       <div class="subfield-card">
-        <div class="subfield-overlay" style="background-image: url('/eucaif.org/images/accelerator-physics.png');"></div>
+        <img class="subfield-thumb" src="/eucaif.org/images/accelerator-physics.png" alt="" loading="lazy" />
         <h3>Accelerator Physics</h3>
         <p>Pushing the frontiers of beam optimization and detector design with reinforcement learning and fast surrogate models.</p>
       </div>
@@ -169,7 +167,7 @@ const countryCount = countries.length;
         EuCAIFCon provides a platform for establishing new connections between AI activities across the branches of fundamental physics, by bringing together researchers who face similar challenges or use similar AI solutions. The conferences are organised "horizontally": sessions are centred on specific AI methods and themes, while being cross-disciplinary regarding the scientific questions.
       </p>
     </div>
-    <div class="conference-banner reveal" style="background-image: url('/eucaif.org/images/conference.jpg');">
+    <div class="conf-grid reveal">
       <div class="conf-info">
         <div class="conf-year">Next Conference</div>
         <h2>EuCAIFCon 2026</h2>
@@ -186,6 +184,7 @@ const countryCount = countries.length;
           <a href="https://indico.physi.uni-heidelberg.de/event/1277/" class="btn-primary" target="_blank" rel="noopener">Conference website</a>
         </div>
       </div>
+      <img class="conf-photo" src="/eucaif.org/images/conference.jpg" alt="Audience at EuCAIFCon" loading="lazy" />
     </div>
     <div class="conf-past reveal reveal-delay-2">
       <div class="conf-past-item">
@@ -258,7 +257,7 @@ const countryCount = countries.length;
         </div>
       </div>
       <div class="blog-card reveal reveal-delay-2">
-        <div class="blog-image" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+        <div class="blog-image">
           <div class="blog-image-pattern"></div>
         </div>
         <div class="blog-body">
@@ -268,7 +267,7 @@ const countryCount = countries.length;
         </div>
       </div>
       <div class="blog-card reveal reveal-delay-3">
-        <div class="blog-image" style="background: linear-gradient(135deg, #0f0f1a, #1a0f2e);">
+        <div class="blog-image">
           <div class="blog-image-pattern"></div>
         </div>
         <div class="blog-body">
@@ -296,212 +295,6 @@ const countryCount = countries.length;
 <Footer />
 
 <script>
-// PARTICLES IN A BOX — periodic BCs, repulsive interparticle, attractive mouse
-const canvas = document.getElementById('particle-canvas') as HTMLCanvasElement;
-const ctx = canvas.getContext('2d')!;
-let mouse = { x: null as number | null, y: null as number | null, active: false };
-
-function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  for (const p of particles) {
-    p.x = ((p.x % canvas.width) + canvas.width) % canvas.width;
-    p.y = ((p.y % canvas.height) + canvas.height) % canvas.height;
-  }
-}
-
-const PARTICLE_COUNT = 200;
-const REPULSION_STRENGTH = 80;
-const REPULSION_RANGE = 80;
-const MOUSE_STRENGTH = 3500;
-const MOUSE_RANGE = 300;
-const DAMPING = 0.94;
-const MAX_SPEED = 4;
-const DT = 0.167;
-
-const particles: any[] = [];
-
-class Particle {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  radius: number;
-  hue: string;
-  color: string;
-  glowColor: string;
-
-  constructor() {
-    this.x = Math.random() * (window.innerWidth || 1200);
-    this.y = Math.random() * (window.innerHeight || 800);
-    this.vx = (Math.random() - 0.5) * 1.5;
-    this.vy = (Math.random() - 0.5) * 1.5;
-    this.radius = Math.random() * 1.2 + 1.0;
-    const r = Math.random();
-    if (r < 0.5) {
-      this.hue = 'blue';
-      this.color = `rgba(56, 176, 230, 0.8)`;
-      this.glowColor = `rgba(26, 143, 196, `;
-    } else if (r < 0.8) {
-      this.hue = 'cyan';
-      this.color = `rgba(80, 200, 240, 0.7)`;
-      this.glowColor = `rgba(56, 176, 230, `;
-    } else {
-      this.hue = 'silver';
-      this.color = `rgba(180, 190, 200, 0.7)`;
-      this.glowColor = `rgba(212, 165, 67, `;
-    }
-  }
-}
-
-for (let i = 0; i < PARTICLE_COUNT; i++) {
-  particles.push(new Particle());
-}
-
-resize();
-window.addEventListener('resize', resize);
-
-document.addEventListener('mousemove', (e) => {
-  const rect = canvas.getBoundingClientRect();
-  mouse.x = e.clientX - rect.left;
-  mouse.y = e.clientY - rect.top;
-  mouse.active = e.clientY < rect.bottom && e.clientY > rect.top;
-});
-document.addEventListener('mouseleave', () => {
-  mouse.active = false;
-});
-
-function periodicDelta(d: number, L: number) {
-  if (d > L * 0.5) return d - L;
-  if (d < -L * 0.5) return d + L;
-  return d;
-}
-
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  const W = canvas.width;
-  const H = canvas.height;
-
-  for (let i = 0; i < particles.length; i++) {
-    const pi = particles[i];
-    let fx = 0, fy = 0;
-
-    for (let j = 0; j < particles.length; j++) {
-      if (i === j) continue;
-      const pj = particles[j];
-
-      let dx = periodicDelta(pi.x - pj.x, W);
-      let dy = periodicDelta(pi.y - pj.y, H);
-      const r2 = dx * dx + dy * dy;
-      const r = Math.sqrt(r2);
-
-      if (r < REPULSION_RANGE && r > 0.5) {
-        const force = REPULSION_STRENGTH / (r2 + 100);
-        fx += (dx / r) * force;
-        fy += (dy / r) * force;
-      }
-    }
-
-    if (mouse.active && mouse.x !== null && mouse.y !== null) {
-      let dx = periodicDelta(mouse.x - pi.x, W);
-      let dy = periodicDelta(mouse.y - pi.y, H);
-      const r2 = dx * dx + dy * dy;
-      const r = Math.sqrt(r2);
-
-      if (r < MOUSE_RANGE && r > 2) {
-        const force = MOUSE_STRENGTH / (r2 + 500);
-        fx += (dx / r) * force;
-        fy += (dy / r) * force;
-      }
-    }
-
-    pi.vx += (Math.random() - 0.5) * 0.15;
-    pi.vy += (Math.random() - 0.5) * 0.15;
-
-    pi.vx += fx * DT;
-    pi.vy += fy * DT;
-
-    pi.vx *= DAMPING;
-    pi.vy *= DAMPING;
-
-    const speed = Math.sqrt(pi.vx * pi.vx + pi.vy * pi.vy);
-    if (speed > MAX_SPEED) {
-      pi.vx = (pi.vx / speed) * MAX_SPEED;
-      pi.vy = (pi.vy / speed) * MAX_SPEED;
-    }
-
-    pi.x += pi.vx * DT;
-    pi.y += pi.vy * DT;
-
-    pi.x = ((pi.x % W) + W) % W;
-    pi.y = ((pi.y % H) + H) % H;
-  }
-
-  for (let i = 0; i < particles.length; i++) {
-    for (let j = i + 1; j < particles.length; j++) {
-      let dx = periodicDelta(particles[i].x - particles[j].x, W);
-      let dy = periodicDelta(particles[i].y - particles[j].y, H);
-      const dist = Math.sqrt(dx * dx + dy * dy);
-
-      if (dist < 100) {
-        const closeness = 1 - dist / 100;
-        const alpha = closeness * closeness * 0.45;
-        const width = closeness * closeness * 2.5 + 0.3;
-        if (Math.abs(particles[i].x - particles[j].x) < 100 &&
-            Math.abs(particles[i].y - particles[j].y) < 100) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(26, 143, 196, ${alpha})`;
-          ctx.lineWidth = width;
-          ctx.stroke();
-        }
-      }
-    }
-  }
-
-  for (const p of particles) {
-    const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-    const excitement = Math.min(1, speed / MAX_SPEED);
-
-    if (excitement > 0.3) {
-      const glowR = p.radius + excitement * 6;
-      const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowR);
-      grad.addColorStop(0, p.glowColor + `${excitement * 0.3})`);
-      grad.addColorStop(1, p.glowColor + `0)`);
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, glowR, 0, Math.PI * 2);
-      ctx.fillStyle = grad;
-      ctx.fill();
-    }
-
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-    ctx.fillStyle = p.color;
-    ctx.fill();
-  }
-
-  if (mouse.active && mouse.x !== null && mouse.y !== null) {
-    const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 60);
-    grad.addColorStop(0, 'rgba(26, 143, 196, 0.06)');
-    grad.addColorStop(1, 'rgba(26, 143, 196, 0)');
-    ctx.beginPath();
-    ctx.arc(mouse.x, mouse.y, 60, 0, Math.PI * 2);
-    ctx.fillStyle = grad;
-    ctx.fill();
-  }
-
-  requestAnimationFrame(animate);
-}
-animate();
-
-// NAV SCROLL
-const navbar = document.getElementById('navbar')!;
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 50);
-});
-
 // SCROLL REVEAL
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {

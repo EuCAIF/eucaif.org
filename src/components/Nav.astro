@@ -1,23 +1,21 @@
 ---
-// Shared site navigation. `transparent` keeps the bar see-through until the
-// page is scrolled (home page hero); every other page starts in the solid state.
+// Shared site navigation (white bar, long logo). The `transparent` prop is
+// accepted for backwards compatibility but no longer changes the styling.
 interface Props { transparent?: boolean }
-const { transparent = false } = Astro.props;
 const B = '/eucaif.org';
 ---
-<nav id="navbar" class={transparent ? '' : 'scrolled'}>
+<nav id="navbar">
   <a href={`${B}/`} class="nav-logo">
-    <img src={`${B}/images/eucaif-logo-icon.png`} alt="EuCAIF" width="36" height="36" style="border-radius:50%; display:block;" />
-    EuCAIF
+    <img src={`${B}/images/eucaif-logo-long.png`} alt="EuCAIF – European Coalition for AI in Fundamental Physics" width="720" height="214" />
   </a>
   <div class="nav-links">
     <a href={`${B}/#about`}>About</a>
     <a href={`${B}/activities/`}>Activities</a>
-    <a href={`${B}/community/`}>Community</a>
+    <a href={`${B}/community/`}>People</a>
     <a href={`${B}/publications/`}>Papers</a>
     <a href={`${B}/material/`}>Material</a>
     <a href={`${B}/#conference`}>Conference</a>
-    <a href={`${B}/join/`} class="nav-cta">Join</a>
+    <a href={`${B}/join/`} class="nav-cta">How to join</a>
   </div>
   <button class="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
