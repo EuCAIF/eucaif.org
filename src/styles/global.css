@@ -356,11 +356,11 @@ nav.open .hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45de
 .section-title.centered, .section-subtitle.centered { text-align: center; margin-left: auto; margin-right: auto; }
 .section-subtitle { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2.5rem; }
 #subfields .section-title { max-width: 820px; margin-bottom: 3rem; }
-.hero-upcoming { display: flex; flex-direction: column; align-items: flex-end; color: #fff; margin-top: 2.5rem; line-height: 1.5; }
-.hero-upcoming:hover { color: #fff; }
-.hero-upcoming-label { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--accent); font-size: 0.9rem; }
-.hero-upcoming-label .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-.hero-upcoming-title, .hero-upcoming-meta { font-style: italic; font-size: 1.05rem; }
+.hero-conf { display: flex; flex-direction: column; align-items: flex-end; color: #fff; margin-top: 2.5rem; line-height: 1.5; text-align: right; }
+.hero-conf:hover { color: #fff; }
+.hero-conf-label { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.75); }
+.hero-conf-title { font-size: 1.05rem; font-weight: 500; }
+.hero-conf-meta { font-size: 0.9rem; color: rgba(255,255,255,0.85); }
 .about-section .section-title { margin-bottom: 2.5rem; }
 .conf-info p { text-align: left; }
 .conf-next { color: var(--text); }
@@ -374,7 +374,7 @@ nav.open .hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45de
 .tier-card h3 { margin-bottom: 0.25rem; }
 @media (max-width: 860px) {
   .about-eucaif-grid { grid-template-columns: 1fr; }
-  .hero-upcoming { align-items: flex-start; }
+  .hero-conf { align-items: flex-start; text-align: left; }
 }
 
 /* MARKDOWN-RENDERED BLOCKS */
