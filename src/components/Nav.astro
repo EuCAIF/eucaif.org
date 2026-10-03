@@ -1,26 +1,55 @@
 ---
-// Shared site navigation (white bar, long logo). The `transparent` prop is
-// accepted for backwards compatibility but no longer changes the styling.
+// Shared site navigation: white bar with the long logo, current-page marker,
+// compact state after scrolling, and a mobile panel behind the hamburger.
 interface Props { transparent?: boolean }
 const B = '/eucaif.org';
+const path = Astro.url.pathname.replace(/\/?$/, '/');
+const links = [
+  { href: `${B}/people/`, label: 'People' },
+  { href: `${B}/publications/`, label: 'Publications' },
+  { href: `${B}/working-groups/`, label: 'Working groups' },
+  { href: `${B}/material/`, label: 'Material' },
+  { href: `${B}/contact/`, label: 'Contact' },
+];
 ---
 <nav id="navbar" aria-label="Main">
-  <a href={`${B}/`} class="nav-logo">
+  <a href={`${B}/`} class="nav-logo" aria-label="EuCAIF home">
     <img src={`${B}/images/eucaif-logo-long.png`} alt="EuCAIF – European Coalition for AI in Fundamental Physics" width="720" height="214" />
   </a>
   <div class="nav-links" id="nav-links">
-    <a href={`${B}/`}>Home</a>
-    <a href={`${B}/people/`}>People</a>
-    <a href={`${B}/publications/`}>Publications</a>
-    <a href={`${B}/working-groups/`}>Working groups</a>
-    <a href={`${B}/material/`}>Material</a>
-    <a href={`${B}/contact/`}>Contact</a>
-    <a href={`${B}/join/`} class="nav-cta">How to join</a>
+    {links.map(l => (
+      <a href={l.href} class={path === l.href ? 'active' : undefined} aria-current={path === l.href ? 'page' : undefined}>{l.label}</a>
+    ))}
+    <a href={`${B}/join/`} class={`nav-cta ${path === `${B}/join/` ? 'active' : ''}`}>How to join</a>
   </div>
   <button class="hamburger" aria-label="Menu" aria-controls="nav-links" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
+
+<style is:global>
+  :root { --nav-height: 72px; }
+  nav { transition: height 0.25s ease, box-shadow 0.25s ease; }
+  .nav-logo img { height: 40px; transition: height 0.25s ease; }
+  nav.compact { height: 60px; box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1); }
+  nav.compact .nav-logo img { height: 34px; }
+  .nav-links a { position: relative; font-size: 0.92rem; color: #333; padding: 0.35rem 0; }
+  .nav-links a:not(.nav-cta)::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px;
+    background: var(--accent); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.2s ease;
+  }
+  .nav-links a:not(.nav-cta):hover::after, .nav-links a.active:not(.nav-cta)::after { transform: scaleX(1); }
+  .nav-links a.active:not(.nav-cta) { color: var(--text); }
+  .nav-cta { padding: 0.5rem 1.25rem; }
+  .nav-cta.active { background: var(--accent-dark); }
+  @media (max-width: 860px) {
+    nav.open .nav-links { top: var(--nav-height); }
+    nav.compact.open .nav-links { top: 60px; }
+    nav.open .nav-links a::after { display: none; }
+    nav.open .nav-links a.active { color: var(--accent); }
+  }
+</style>
 
 <script>
   const nav = document.getElementById('navbar')!;
@@ -33,4 +62,8 @@ const B = '/eucaif.org';
   button.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
   links.addEventListener('click', (e) => { if ((e.target as HTMLElement).closest('a')) setOpen(false); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+
+  const onScroll = () => nav.classList.toggle('compact', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 </script>
