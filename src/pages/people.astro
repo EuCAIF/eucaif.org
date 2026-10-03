@@ -6,7 +6,8 @@ import '../styles/global.css';
 import yaml from 'js-yaml';
 import membersRaw from '../data/members.yml?raw';
 
-const members = yaml.load(membersRaw) as { given_name: string; surname: string; affiliation: string; country: string; roles: string[] }[];
+type Member = { given_name: string; surname: string; affiliation: string; country: string; roles: string[]; inspire?: string };
+const members = yaml.load(membersRaw) as Member[];
 
 const sorted = [...members].sort((a, b) => a.surname.localeCompare(b.surname));
 const board = sorted.filter(m => m.roles.includes('board'));
@@ -14,28 +15,37 @@ const advisory = sorted.filter(m => m.roles.includes('advisory'));
 const pastBoard = sorted.filter(m => m.roles.includes('past-board'));
 const fellows = sorted.filter(m => m.roles.includes('fellow'));
 const juniorFellows = sorted.filter(m => m.roles.includes('junior-fellow'));
+const countryCount = new Set(members.map(m => m.country)).size;
+
+// Monogram avatar: initials on a soft tint chosen from the surname.
+const tints = ['tint-slate', 'tint-coral', 'tint-sand', 'tint-teal', 'tint-plum'];
+const initials = (m: Member) => (m.given_name[0] + m.surname.replace(/^(van|de|von) /i, '')[0]).toUpperCase();
+const tint = (m: Member) => tints[[...m.surname].reduce((h, c) => h + c.charCodeAt(0), 0) % tints.length];
+const inspireUrl = (m: Member) => m.inspire ? `https://inspirehep.net/literature?q=a%20${encodeURIComponent(m.inspire)}` : null;
 ---
 
 <Layout title="People – EuCAIF">
-
 <Nav />
 
 <section class="page-header">
   <div class="section-container">
     <h1 class="section-title">People</h1>
+    <p class="section-desc">{fellows.length} fellows and {juniorFellows.length} junior fellows at institutions in {countryCount} countries.</p>
   </div>
 </section>
 
 <section class="page-body">
   <div class="section-container">
-    <h2 class="section-title">Management</h2>
 
-    <h3 class="group-title">EuCAIF Management board</h3>
-    <div class="members-grid">
+    <h2 class="section-title">EuCAIF Management board</h2>
+    <div class="people-grid people-grid-large">
       {board.map(m => (
-        <div class="member-card">
-          <h4>{m.given_name} {m.surname}</h4>
-          <p>{m.affiliation}</p>
+        <div class="person person-large">
+          <div class={`monogram ${tint(m)}`}>{initials(m)}</div>
+          <div>
+            <h4>{inspireUrl(m) ? <a href={inspireUrl(m)} target="_blank" rel="noopener">{m.given_name} {m.surname}</a> : `${m.given_name} ${m.surname}`}</h4>
+            <p>{m.affiliation}</p>
+          </div>
         </div>
       ))}
     </div>
@@ -43,40 +53,48 @@ const juniorFellows = sorted.filter(m => m.roles.includes('junior-fellow'));
       <p class="members-note">Past board members: {pastBoard.map(m => `${m.given_name} ${m.surname}`).join(', ')}</p>
     )}
 
-    <h3 class="group-title">EuCAIF International Advisory Board</h3>
-    <div class="members-grid">
+    <h2 class="section-title people-section">EuCAIF International Advisory Board</h2>
+    <div class="people-grid people-grid-large">
       {advisory.map(m => (
-        <div class="member-card">
-          <h4>{m.given_name} {m.surname}</h4>
-          <p>{m.affiliation}</p>
+        <div class="person person-large">
+          <div class={`monogram ${tint(m)}`}>{initials(m)}</div>
+          <div>
+            <h4>{inspireUrl(m) ? <a href={inspireUrl(m)} target="_blank" rel="noopener">{m.given_name} {m.surname}</a> : `${m.given_name} ${m.surname}`}</h4>
+            <p>{m.affiliation}</p>
+          </div>
         </div>
       ))}
     </div>
 
-    <h2 class="section-title" style="margin-top: 4rem;">Fellows</h2>
-
-    <h3 class="group-title">EuCAIF Fellows</h3>
-    <div class="members-grid">
+    <h2 class="section-title people-section">EuCAIF Fellows</h2>
+    <div class="people-grid">
       {fellows.map(m => (
-        <div class="member-card">
-          <h4>{m.given_name} {m.surname}</h4>
-          <p>{m.affiliation}</p>
+        <div class="person">
+          <div class={`monogram monogram-small ${tint(m)}`}>{initials(m)}</div>
+          <div>
+            <h4>{inspireUrl(m) ? <a href={inspireUrl(m)} target="_blank" rel="noopener">{m.given_name} {m.surname}</a> : `${m.given_name} ${m.surname}`}</h4>
+            <p>{m.affiliation}</p>
+          </div>
         </div>
       ))}
     </div>
 
-    <h3 class="group-title">EuCAIF Junior Fellows</h3>
-    <div class="members-grid">
+    <h2 class="section-title people-section">EuCAIF Junior Fellows</h2>
+    <div class="people-grid">
       {juniorFellows.map(m => (
-        <div class="member-card">
-          <h4>{m.given_name} {m.surname}</h4>
-          <p>{m.affiliation}</p>
+        <div class="person">
+          <div class={`monogram monogram-small ${tint(m)}`}>{initials(m)}</div>
+          <div>
+            <h4>{inspireUrl(m) ? <a href={inspireUrl(m)} target="_blank" rel="noopener">{m.given_name} {m.surname}</a> : `${m.given_name} ${m.surname}`}</h4>
+            <p>{m.affiliation}</p>
+          </div>
         </div>
       ))}
     </div>
+
+    <p class="members-note">Names link to each person's publication list on INSPIRE HEP.</p>
   </div>
 </section>
 
 <Footer />
-
 </Layout>
