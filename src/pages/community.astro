@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import yaml from 'js-yaml';
 import membersRaw from '../data/members.yml?raw';
@@ -9,32 +11,16 @@ const members = yaml.load(membersRaw) as { given_name: string; surname: string; 
 const sorted = [...members].sort((a, b) => a.surname.localeCompare(b.surname));
 const board = sorted.filter(m => m.roles.includes('board'));
 const advisory = sorted.filter(m => m.roles.includes('advisory'));
+const pastBoard = sorted.filter(m => m.roles.includes('past-board'));
 const fellows = sorted.filter(m => m.roles.includes('fellow'));
 const juniorFellows = sorted.filter(m => m.roles.includes('junior-fellow'));
 ---
 
 <Layout title="Community – EuCAIF">
 
-<nav id="navbar" class="scrolled">
-  <a href="/eucaif.org/" class="nav-logo">
-    <img src="/eucaif.org/images/eucaif-logo-icon.png" alt="EuCAIF" width="36" height="36" style="border-radius:50%; display:block;" />
-    EuCAIF
-  </a>
-  <div class="nav-links">
-    <a href="/eucaif.org/#subfields">Research</a>
-    <a href="/eucaif.org/#about">About</a>
-    <a href="/eucaif.org/community/">Community</a>
-    <a href="/eucaif.org/#conference">Conference</a>
-    <a href="/eucaif.org/publications/">Papers</a>
-    <a href="/eucaif.org/#blog">News</a>
-    <a href="/eucaif.org/#join" class="nav-cta">Get Involved</a>
-  </div>
-  <button class="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+<Nav />
 
-<section style="padding-top: 8rem;">
+<section class="page-header-plain">
   <div class="section-container">
     <div class="section-label">Our Community</div>
 
@@ -48,6 +34,10 @@ const juniorFellows = sorted.filter(m => m.roles.includes('junior-fellow'));
         </div>
       ))}
     </div>
+
+    {pastBoard.length > 0 && (
+      <p class="members-note">Past board members: {pastBoard.map(m => `${m.given_name} ${m.surname}`).join(', ')}</p>
+    )}
 
     <h2 class="section-title" style="margin-top: 4rem;">International Advisory Board</h2>
     <p class="section-desc">{advisory.length} external advisors.</p>
@@ -84,15 +74,6 @@ const juniorFellows = sorted.filter(m => m.roles.includes('junior-fellow'));
   </div>
 </section>
 
-<footer>
-  <div class="footer-inner">
-    <div class="footer-text">© 2026 EuCAIF — European Coalition for AI in Fundamental Physics</div>
-    <div class="footer-links">
-      <a href="#">GitHub</a>
-      <a href="#">Contact</a>
-      <a href="#">Privacy</a>
-    </div>
-  </div>
-</footer>
+<Footer />
 
 </Layout>

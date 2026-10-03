@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import yaml from 'js-yaml';
+import wgRaw from '../data/working-groups.yml?raw';
+
+type WG = { number: number; title: string; subtitle?: string; summary: string; description?: string; goals?: string[]; image?: string };
+const groups = yaml.load(wgRaw) as WG[];
+---
+
+<Layout title="Activities – EuCAIF">
+<Nav />
+
+<section class="page-header">
+  <div class="section-container">
+    <div class="section-label">Activities</div>
+    <h1 class="section-title">Working groups</h1>
+    <p class="section-desc">
+      EuCAIF activities are organised in dynamic, open working groups. Each group gathers researchers across
+      the subfields of fundamental physics around one AI theme. Anyone in the community can take part.
+    </p>
+  </div>
+</section>
+
+<section class="wg-section">
+  <div class="section-container">
+    <div class="wg-list">
+      {groups.map(wg => (
+        <article class="wg-card" id={`wg${wg.number}`}>
+          <div class="wg-number">WG {wg.number}</div>
+          <div class="wg-body">
+            <h2>{wg.title}</h2>
+            {wg.subtitle && <div class="wg-subtitle">{wg.subtitle}</div>}
+            <p class="wg-summary">{wg.summary}</p>
+            {wg.description && <p class="wg-text">{wg.description}</p>}
+            {wg.goals && (
+              <ul class="wg-goals">
+                {wg.goals.map(g => <li>{g}</li>)}
+              </ul>
+            )}
+            {wg.image && <img class="wg-image" src={wg.image} alt="" loading="lazy" />}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="prose-section" id="signup">
+  <div class="section-container prose">
+    <div class="section-label">Take part</div>
+    <h2 class="section-title">Joining a working group</h2>
+    <p>
+      Working groups communicate through CERN e-groups. Subscribing to a group's mailing list is all it takes
+      to follow its discussions and meetings.
+    </p>
+    <ol>
+      <li>Go to <a href="https://cern.ch/egroups">cern.ch/egroups</a> and log in, or create a CERN lightweight account if you do not have one.</li>
+      <li>Search for <strong>EuCAIF</strong> to see the list of EuCAIF e-groups.</li>
+      <li>Click <strong>Subscribe</strong> on the groups you want to join.</li>
+    </ol>
+    <p>
+      To follow EuCAIF as a whole, subscribe to the general list <a href="mailto:eucaif-info@cern.ch">eucaif-info@cern.ch</a>.
+      See the <a href="/eucaif.org/contact/">contact page</a> for details.
+    </p>
+  </div>
+</section>
+
+<Footer />
+</Layout>

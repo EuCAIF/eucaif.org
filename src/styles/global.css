@@ -612,3 +612,90 @@ footer {
 @media (max-width: 768px) {
   .hamburger { display: flex; }
 }
+
+/* SUBPAGES: headers, prose, cards */
+.page-header { padding: 9rem 2rem 2rem; }
+.page-header-plain { padding-top: 8rem; }
+.page-header .section-title { font-size: clamp(2.25rem, 4.5vw, 3.5rem); }
+.page-header .section-desc { margin-bottom: 0; }
+.prose-section { background: var(--bg-secondary); }
+.prose { max-width: 760px; }
+.prose p, .prose li { color: var(--text-secondary); line-height: 1.8; font-size: 1.05rem; }
+.prose p { margin-bottom: 1.25rem; }
+.prose ul, .prose ol { margin: 0 0 1.5rem 1.5rem; }
+.prose li { margin-bottom: 0.5rem; }
+.prose a { color: var(--accent-light); text-decoration: none; border-bottom: 1px solid rgba(56, 176, 230, 0.3); }
+.prose a:hover { border-bottom-color: var(--accent-light); }
+.prose .btn-primary { border-bottom: none; color: white; display: inline-block; }
+.about-text a { color: var(--accent-light); text-decoration: none; }
+.members-note { font-size: 0.85rem; color: var(--text-muted); margin-top: 1.25rem; }
+
+/* WORKING GROUPS */
+.wg-section { padding-top: 2rem; }
+.wg-list { display: flex; flex-direction: column; gap: 1.25rem; }
+.wg-card {
+  display: grid; grid-template-columns: 7rem 1fr; gap: 1.5rem;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 2rem;
+  transition: border-color 0.3s;
+}
+.wg-card:hover { border-color: var(--border-hover); }
+.wg-number {
+  font-family: var(--font-mono); font-size: 0.8rem;
+  color: var(--accent-light); letter-spacing: 0.15em; text-transform: uppercase;
+  padding-top: 0.4rem;
+}
+.wg-body h2 {
+  font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600;
+  letter-spacing: -0.01em; margin-bottom: 0.25rem;
+}
+.wg-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+.wg-summary { color: var(--text-primary); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1rem; }
+.wg-text, .wg-goals li { color: var(--text-secondary); line-height: 1.8; font-size: 0.95rem; }
+.wg-goals { margin: 0.5rem 0 0 1.25rem; }
+.wg-goals li { margin-bottom: 0.5rem; }
+.wg-image { max-width: 320px; margin-top: 1.25rem; border-radius: 8px; background: white; padding: 0.5rem; }
+
+/* MATERIAL */
+.material-section { padding-top: 2rem; }
+.pub-links { display: flex; gap: 1rem; }
+
+/* JOIN / CONTACT TIERS */
+.tiers-section { padding-top: 2rem; }
+.tiers-grid, .contact-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem;
+}
+.tier-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 2rem;
+  display: flex; flex-direction: column; gap: 0.9rem;
+  transition: border-color 0.3s;
+}
+.tier-card:hover { border-color: var(--border-hover); }
+.tier-card-accent { border-color: rgba(212, 165, 67, 0.35); }
+.tier-level {
+  font-family: var(--font-mono); font-size: 0.7rem;
+  color: var(--accent-warm); letter-spacing: 0.15em; text-transform: uppercase;
+}
+.tier-card h3 { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 600; }
+.tier-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; }
+.tier-card a { color: var(--accent-light); text-decoration: none; }
+.tier-card .btn-primary, .tier-card .btn-secondary { margin-top: auto; align-self: flex-start; }
+.tier-card .btn-primary { color: white; }
+.tier-card .btn-secondary { color: var(--text-primary); }
+.contact-section { padding-top: 2rem; }
+
+/* CONFERENCE HISTORY */
+.conf-past { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.conf-past-item {
+  display: grid; grid-template-columns: auto 1fr auto; gap: 1.5rem; align-items: center;
+  padding: 1.25rem 2rem; background: var(--bg-primary); border-radius: 12px;
+}
+.conf-past-item h4 { font-size: 1rem; font-weight: 500; margin-bottom: 0.25rem; }
+.conf-past-item p { font-size: 0.8rem; color: var(--text-muted); }
+
+@media (max-width: 768px) {
+  .wg-card { grid-template-columns: 1fr; gap: 0.75rem; }
+  .conf-past-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  .pub-links { justify-self: start; }
+}

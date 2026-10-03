@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import yaml from 'js-yaml';
 import pubsRaw from '../data/publications.yml?raw';
@@ -23,26 +25,9 @@ const INITIAL_COUNT = 25;
 
 <Layout title="Papers – EuCAIF">
 
-<nav id="navbar" class="scrolled">
-  <a href="/eucaif.org/" class="nav-logo">
-    <img src="/eucaif.org/images/eucaif-logo-icon.png" alt="EuCAIF" width="36" height="36" style="border-radius:50%; display:block;" />
-    EuCAIF
-  </a>
-  <div class="nav-links">
-    <a href="/eucaif.org/#subfields">Research</a>
-    <a href="/eucaif.org/#about">About</a>
-    <a href="/eucaif.org/community/">Community</a>
-    <a href="/eucaif.org/#conference">Conference</a>
-    <a href="/eucaif.org/publications/">Papers</a>
-    <a href="/eucaif.org/#blog">News</a>
-    <a href="/eucaif.org/#join" class="nav-cta">Get Involved</a>
-  </div>
-  <button class="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+<Nav />
 
-<section style="padding-top: 8rem;">
+<section class="page-header-plain">
   <div class="section-container">
     <div class="section-label">Latest Research</div>
     <h2 class="section-title">Latest Papers</h2>
@@ -73,16 +58,7 @@ const INITIAL_COUNT = 25;
   </div>
 </section>
 
-<footer>
-  <div class="footer-inner">
-    <div class="footer-text">© 2026 EuCAIF — European Coalition for AI in Fundamental Physics</div>
-    <div class="footer-links">
-      <a href="#">GitHub</a>
-      <a href="#">Contact</a>
-      <a href="#">Privacy</a>
-    </div>
-  </div>
-</footer>
+<Footer />
 
 </Layout>
 

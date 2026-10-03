@@ -19,3 +19,7 @@ pnpm-debug.log*
 
 # macOS
 .DS_Store
+
+# local-only: downloaded live-site material and preview config
+docs/
+.claude/

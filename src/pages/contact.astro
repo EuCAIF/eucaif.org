@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+---
+
+<Layout title="Contact – EuCAIF">
+<Nav />
+
+<section class="page-header">
+  <div class="section-container">
+    <div class="section-label">Contact</div>
+    <h1 class="section-title">How to stay in touch</h1>
+    <p class="section-desc">
+      EuCAIF communicates through a CERN e-group. Subscribing makes you a EuCAIF member and keeps you informed about
+      meetings, working groups, and the annual conference.
+    </p>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="section-container">
+    <div class="contact-grid">
+      <div class="tier-card">
+        <div class="tier-level">Mailing list</div>
+        <h3>eucaif-info@cern.ch</h3>
+        <p>
+          To follow the activities of EuCAIF, join the <strong>eucaif-info</strong> e-group. Visit
+          <a href="https://cern.ch/egroups">cern.ch/egroups</a>, log in (a CERN lightweight account is enough),
+          search for <strong>eucaif-info</strong>, and click Subscribe. Working groups have their own e-groups,
+          which you find by searching for "EuCAIF".
+        </p>
+        <a class="btn-primary" href="https://cern.ch/egroups" target="_blank" rel="noopener">Open CERN e-groups</a>
+      </div>
+      <div class="tier-card">
+        <div class="tier-level">Management board</div>
+        <h3>info@eucaif.org</h3>
+        <p>
+          To reach the management board, for example with a fellowship application, a question about the coalition,
+          or a proposal for a new activity, write to <a href="mailto:info@eucaif.org">info@eucaif.org</a>.
+        </p>
+        <a class="btn-secondary" href="mailto:info@eucaif.org">Write to the board</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<Footer />
+</Layout>

@@ -1,0 +1,106 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+---
+
+<Layout title="How to join – EuCAIF">
+<Nav />
+
+<section class="page-header">
+  <div class="section-container">
+    <div class="section-label">How to join</div>
+    <h1 class="section-title">Participating in EuCAIF</h1>
+    <p class="section-desc">
+      EuCAIF is establishing a network of researchers across European institutions to bridge fundamental physics
+      and AI research. The network connects leading scientists who visibly advance both fields, provide scientific
+      leadership to the community in Europe, and train the next generation to drive this transformative work forward.
+    </p>
+  </div>
+</section>
+
+<section class="tiers-section">
+  <div class="section-container">
+    <p class="section-desc">There are three levels of involvement in EuCAIF.</p>
+    <div class="tiers-grid">
+      <div class="tier-card">
+        <div class="tier-level">Level 1</div>
+        <h3>Members</h3>
+        <p>
+          Anyone may become a EuCAIF member by subscribing to the <strong>eucaif-info</strong> mailing list.
+          Membership is intended as an open and lightweight way to stay connected with EuCAIF.
+        </p>
+        <a class="btn-secondary" href="/eucaif.org/contact/">Subscribe via CERN e-groups</a>
+      </div>
+      <div class="tier-card">
+        <div class="tier-level">Level 2</div>
+        <h3>Junior Fellows</h3>
+        <p>
+          Scientists at advanced early-career stages, typically tenure-track or equivalent, who do not yet hold a
+          tenured or permanent position at a European institution, who are on a trajectory toward such positions,
+          and who demonstrate strong engagement with EuCAIF's mission.
+        </p>
+        <p>
+          The same four criteria as for fellows apply, assessed relative to career stage: evidence of potential may
+          substitute for a full track record in training young scientists or providing scientific leadership.
+          Junior fellows automatically transition to fellows upon obtaining a tenured or equivalent permanent position
+          at a European institution. Applications follow the fellowship procedure below.
+        </p>
+      </div>
+      <div class="tier-card tier-card-accent">
+        <div class="tier-level">Level 3</div>
+        <h3>Fellows</h3>
+        <p>
+          Fellows guide the strategic direction of EuCAIF, contribute actively to the implementation of its
+          activities, and participate in regular meetings to take key decisions, including the election of
+          Management Board members.
+        </p>
+        <p>
+          Scientists holding permanent scientific positions at European institutions, or equivalent long-term
+          appointments, with a strong track record and high visibility in AI and fundamental physics may apply for
+          a renewable five-year fellowship.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="prose-section">
+  <div class="section-container prose">
+    <div class="section-label">Fellowship criteria</div>
+    <h2 class="section-title">Requirements</h2>
+    <p>
+      EuCAIF follows the broad definition of "Europe" used by JENAA and its supporting organisations
+      (ECFA, NuPECC and APPEC), which serves as the reference for eligibility. Specific requirements include:
+    </p>
+    <ul>
+      <li>Internationally recognized, high-impact publications in their research field</li>
+      <li>High-impact publications on AI methods relevant to fundamental physics, in either AI or physics venues</li>
+      <li>A demonstrable track record of training young scientists advancing AI in fundamental physics</li>
+      <li>Active and leading contributions to EuCAIF activities as a member, or a clear plan for such contributions presented in the application</li>
+    </ul>
+    <p>Exceptional candidates who do not yet meet all criteria may still be considered.</p>
+
+    <div class="section-label" style="margin-top: 3rem;">Application procedure</div>
+    <h2 class="section-title">How to apply</h2>
+    <p>
+      Fellowship applications should be sent to the management board at
+      <a href="mailto:info@eucaif.org">info@eucaif.org</a> and consist of a short expression of interest
+      (maximum half a page, excluding references) outlining how the applicant envisions contributing to EuCAIF and
+      how they have contributed in the past to AI in fundamental physics.
+    </p>
+    <p>
+      Applications are reviewed by three independent referees selected by the Management Board: one from the
+      candidate's field, one from a related field, and one Management Board member. Final decisions are made by
+      majority vote of all Management Board members.
+    </p>
+    <p>
+      Full details can be found in the <a href="/eucaif.org/documents/EuCAIF-policy-v0.7.pdf">EuCAIF policy document</a>,
+      also listed on the <a href="/eucaif.org/material/">material page</a>.
+    </p>
+  </div>
+</section>
+
+<Footer />
+</Layout>

@@ -1,16 +1,16 @@
-- given_name: Gert
-  surname: Aarts
-  affiliation: Swansea University
-  country: GB
-  roles: [fellow]
-  inspire: G.Aarts.1
-
 - given_name: Thea
   surname: Aarrestad
   affiliation: ETH Zurich
   country: CH
   roles: [junior-fellow]
   inspire: Thea.Aarrestad.1
+
+- given_name: Gert
+  surname: Aarts
+  affiliation: Swansea University
+  country: GB
+  roles: [fellow]
+  inspire: G.Aarts.1
 
 - given_name: Helena
   surname: Albers
@@ -53,6 +53,12 @@
   roles: [advisory]
   inspire: A.S.Boehnlein.1
 
+- given_name: Tobias
+  surname: Buck
+  affiliation: University of Heidelberg
+  country: DE
+  roles: [junior-fellow]
+
 - given_name: Anja
   surname: Butter
   affiliation: University of Heidelberg
@@ -64,7 +70,7 @@
   surname: Caron
   affiliation: Radboud University and Nikhef
   country: NL
-  roles: [board, fellow]
+  roles: [past-board, fellow]
   inspire: S.Caron.2
 
 - given_name: Stefano
@@ -73,6 +79,12 @@
   country: IT
   roles: [fellow]
   inspire: S.Carrazza.1
+
+- given_name: Long
+  surname: Chen
+  affiliation: TU Kaiserslautern
+  country: DE
+  roles: [junior-fellow]
 
 - given_name: Miranda
   surname: Cheng
@@ -95,6 +107,13 @@
   roles: [board, fellow]
   inspire: Elena.Cuoco.1
 
+- given_name: Monica
+  surname: D'Onofrio
+  affiliation: University of Liverpool
+  country: GB
+  roles: [fellow]
+  inspire: M.D.Onofrio.1
+
 - given_name: Maximilian
   surname: Dax
   affiliation: MPI Tübingen
@@ -102,12 +121,11 @@
   roles: [junior-fellow]
   inspire: Maximilian.Dax.1
 
-- given_name: Monica
-  surname: D'Onofrio
-  affiliation: University of Liverpool
-  country: GB
-  roles: [fellow]
-  inspire: M.D.Onofrio.1
+- given_name: Sascha
+  surname: Diefenbacher
+  affiliation: University of Heidelberg
+  country: DE
+  roles: [junior-fellow]
 
 - given_name: Caterina
   surname: Doglioni
@@ -122,6 +140,12 @@
   country: IT
   roles: [fellow]
   inspire: T.Dorigo.1
+
+- given_name: Qader
+  surname: Dorosti
+  affiliation: University of Siegen
+  country: DE
+  roles: [fellow]
 
 - given_name: Thomas
   surname: Eberl
@@ -204,15 +228,21 @@
   surname: Heneka
   affiliation: University of Heidelberg
   country: DE
-  roles: [fellow]
+  roles: [junior-fellow]
   inspire: C.Heneka.1
 
 - given_name: Ik Siong
   surname: Heng
   affiliation: University of Glasgow
   country: GB
-  roles: [fellow]
+  roles: [board, fellow]
   inspire: Ik.Siong.Heng.1
+
+- given_name: Gianluca
+  surname: Inguglia
+  affiliation: MBI
+  country: AT
+  roles: [fellow]
 
 - given_name: Andreas
   surname: Ipp
@@ -246,7 +276,7 @@
   surname: Katzy
   affiliation: DESY Hamburg
   country: DE
-  roles: [fellow]
+  roles: [board, fellow]
   inspire: J.Katzy.1
 
 - given_name: Jan
@@ -256,13 +286,6 @@
   roles: [fellow]
   inspire: J.Kieseler.1
 
-- given_name: Michael
-  surname: Krämer
-  affiliation: RWTH Aachen
-  country: DE
-  roles: [fellow]
-  inspire: Michael.Kramer.2
-
 - given_name: Sven
   surname: Krippendorf
   affiliation: LMU Munich
@@ -270,12 +293,37 @@
   roles: [fellow]
   inspire: Sven.Krippendorf.1
 
+- given_name: Michael
+  surname: Krämer
+  affiliation: RWTH Aachen
+  country: DE
+  roles: [fellow]
+  inspire: Michael.Kramer.2
+
+- given_name: Francois
+  surname: Lanusse
+  affiliation: CNRS
+  country: FR
+  roles: [fellow]
+
+- given_name: Melissa
+  surname: Lopez
+  affiliation: University of Utrecht
+  country: NL
+  roles: [junior-fellow]
+
 - given_name: Luisa
   surname: Lucie-Smith
   affiliation: University of Hamburg
   country: DE
   roles: [fellow]
   inspire: L.Lucie.Smith.1
+
+- given_name: Michal
+  surname: Mazurek
+  affiliation: NCBJ Warsaw
+  country: PL
+  roles: [fellow]
 
 - given_name: Johan
   surname: Messchendorp
@@ -318,6 +366,12 @@
   country: GB
   roles: [fellow]
   inspire: Hiranya.Vajramani.Peiris.1
+
+- given_name: Troels
+  surname: Petersen
+  affiliation: Niels Bohr Institute
+  country: DK
+  roles: [fellow]
 
 - given_name: Maurizio
   surname: Pierini
@@ -417,6 +471,12 @@
   roles: [fellow]
   inspire: Sofia.Vallecorsa.1
 
+- given_name: Maarten
+  surname: van Veghel
+  affiliation: University of Maastricht
+  country: NL
+  roles: [fellow]
+
 - given_name: John
   surname: Veitch
   affiliation: University of Glasgow
@@ -449,7 +509,7 @@
   surname: Weniger
   affiliation: University of Amsterdam
   country: NL
-  roles: [board, fellow]
+  roles: [past-board, fellow]
   inspire: C.Weniger.1
 
 - given_name: Michael
