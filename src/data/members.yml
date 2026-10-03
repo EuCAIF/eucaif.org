@@ -4,6 +4,7 @@
   country: CH
   roles: [junior-fellow]
   inspire: Thea.Aarrestad.1
+  themes: [particle]
 
 - given_name: Gert
   surname: Aarts
@@ -11,6 +12,7 @@
   country: GB
   roles: [fellow]
   inspire: G.Aarts.1
+  themes: [particle, nuclear]
 
 - given_name: Helena
   surname: Albers
@@ -24,6 +26,7 @@
   country: GB
   roles: [junior-fellow]
   inspire: James.Alvey.1
+  themes: [cosmology, particle, gravitational]
 
 - given_name: Lucio
   surname: Anderlini
@@ -31,6 +34,7 @@
   country: IT
   roles: [fellow]
   inspire: L.Anderlini.1
+  themes: [particle]
 
 - given_name: Anastasios
   surname: Belias
@@ -38,6 +42,7 @@
   country: DE
   roles: [fellow]
   inspire: A.Belias.1
+  themes: [particle, nuclear]
 
 - given_name: Valerio
   surname: Bertone
@@ -45,6 +50,7 @@
   country: FR
   roles: [fellow]
   inspire: V.Bertone.1
+  themes: [particle, nuclear]
 
 - given_name: Amber S.
   surname: Boehnlein
@@ -52,6 +58,7 @@
   country: US
   roles: [advisory]
   inspire: A.S.Boehnlein.1
+  themes: [particle]
 
 - given_name: Tobias
   surname: Buck
@@ -65,6 +72,7 @@
   country: DE
   roles: [fellow]
   inspire: Anja.Butter.1
+  themes: [particle]
 
 - given_name: Sascha
   surname: Caron
@@ -72,6 +80,7 @@
   country: NL
   roles: [past-board, fellow]
   inspire: S.Caron.2
+  themes: [particle]
 
 - given_name: Stefano
   surname: Carrazza
@@ -79,6 +88,7 @@
   country: IT
   roles: [fellow]
   inspire: S.Carrazza.1
+  themes: [particle]
 
 - given_name: Long
   surname: Chen
@@ -92,6 +102,7 @@
   country: NL
   roles: [fellow]
   inspire: M.C.N.Cheng.1
+  themes: [theoretical]
 
 - given_name: Kyle
   surname: Cranmer
@@ -99,6 +110,7 @@
   country: US
   roles: [advisory]
   inspire: K.S.Cranmer.1
+  themes: [particle]
 
 - given_name: Elena
   surname: Cuoco
@@ -106,6 +118,7 @@
   country: IT
   roles: [board, fellow]
   inspire: Elena.Cuoco.1
+  themes: [gravitational, astroparticle]
 
 - given_name: Monica
   surname: D'Onofrio
@@ -113,6 +126,7 @@
   country: GB
   roles: [fellow]
   inspire: M.D.Onofrio.1
+  themes: [particle]
 
 - given_name: Maximilian
   surname: Dax
@@ -120,6 +134,7 @@
   country: DE
   roles: [junior-fellow]
   inspire: Maximilian.Dax.1
+  themes: [gravitational, astroparticle]
 
 - given_name: Sascha
   surname: Diefenbacher
@@ -133,6 +148,7 @@
   country: GB
   roles: [fellow]
   inspire: Caterina.Doglioni.1
+  themes: [particle]
 
 - given_name: Tommaso
   surname: Dorigo
@@ -140,6 +156,7 @@
   country: IT
   roles: [fellow]
   inspire: T.Dorigo.1
+  themes: [particle]
 
 - given_name: Qader
   surname: Dorosti
@@ -153,6 +170,7 @@
   country: DE
   roles: [fellow]
   inspire: T.Eberl.1
+  themes: [astroparticle, particle]
 
 - given_name: Markus
   surname: Elsing
@@ -160,6 +178,7 @@
   country: CH
   roles: [fellow]
   inspire: M.Elsing.1
+  themes: [particle]
 
 - given_name: Martin
   surname: Erdmann
@@ -167,6 +186,7 @@
   country: DE
   roles: [fellow]
   inspire: M.Erdmann.1
+  themes: [particle]
 
 - given_name: Stefano
   surname: Forte
@@ -174,6 +194,7 @@
   country: IT
   roles: [fellow]
   inspire: S.Forte.2
+  themes: [particle]
 
 - given_name: Julian
   surname: Garcia Pardinas
@@ -181,6 +202,7 @@
   country: CH
   roles: [fellow]
   inspire: Julian.Garcia.Pardinas.1
+  themes: [particle]
 
 - given_name: Stefano
   surname: Giagu
@@ -188,6 +210,7 @@
   country: IT
   roles: [fellow]
   inspire: S.Giagu.1
+  themes: [particle]
 
 - given_name: Tobias
   surname: Golling
@@ -195,6 +218,7 @@
   country: CH
   roles: [fellow]
   inspire: T.Golling.1
+  themes: [particle]
 
 - given_name: Stephen
   surname: Green
@@ -202,6 +226,7 @@
   country: GB
   roles: [fellow]
   inspire: S.R.Green.1
+  themes: [gravitational, astroparticle]
 
 - given_name: Eilam
   surname: Gross
@@ -209,6 +234,7 @@
   country: IL
   roles: [fellow]
   inspire: E.Gross.2
+  themes: [particle]
 
 - given_name: Will
   surname: Handley
@@ -216,6 +242,7 @@
   country: GB
   roles: [fellow]
   inspire: W.J.Handley.1
+  themes: [cosmology, gravitational]
 
 - given_name: Lukas Alexander
   surname: Heinrich
@@ -223,6 +250,7 @@
   country: CH
   roles: [fellow]
   inspire: L.Heinrich.1
+  themes: [particle]
 
 - given_name: Caroline
   surname: Heneka
@@ -230,6 +258,7 @@
   country: DE
   roles: [junior-fellow]
   inspire: C.Heneka.1
+  themes: [cosmology]
 
 - given_name: Ik Siong
   surname: Heng
@@ -237,6 +266,7 @@
   country: GB
   roles: [board, fellow]
   inspire: Ik.Siong.Heng.1
+  themes: [gravitational, astroparticle]
 
 - given_name: Gianluca
   surname: Inguglia
@@ -250,6 +280,7 @@
   country: AT
   roles: [fellow]
   inspire: A.Ipp.2
+  themes: [particle, nuclear]
 
 - given_name: Michael
   surname: Kagan
@@ -257,6 +288,7 @@
   country: US
   roles: [advisory]
   inspire: M.Kagan.1
+  themes: [particle]
 
 - given_name: Verena
   surname: Kain
@@ -264,6 +296,7 @@
   country: CH
   roles: [fellow]
   inspire: V.Kain.1
+  themes: [particle, accelerator]
 
 - given_name: Gregor
   surname: Kasieczka
@@ -271,6 +304,7 @@
   country: DE
   roles: [fellow]
   inspire: G.Kasieczka.1
+  themes: [particle]
 
 - given_name: Judith
   surname: Katzy
@@ -278,6 +312,7 @@
   country: DE
   roles: [board, fellow]
   inspire: J.Katzy.1
+  themes: [particle]
 
 - given_name: Jan
   surname: Kieseler
@@ -285,6 +320,7 @@
   country: DE
   roles: [fellow]
   inspire: J.Kieseler.1
+  themes: [particle]
 
 - given_name: Sven
   surname: Krippendorf
@@ -292,6 +328,7 @@
   country: DE
   roles: [fellow]
   inspire: Sven.Krippendorf.1
+  themes: [theoretical, particle, cosmology]
 
 - given_name: Michael
   surname: Krämer
@@ -299,6 +336,7 @@
   country: DE
   roles: [fellow]
   inspire: Michael.Kramer.2
+  themes: [particle]
 
 - given_name: Francois
   surname: Lanusse
@@ -318,6 +356,7 @@
   country: DE
   roles: [fellow]
   inspire: L.Lucie.Smith.1
+  themes: [cosmology]
 
 - given_name: Michal
   surname: Mazurek
@@ -331,6 +370,7 @@
   country: DE
   roles: [board, fellow]
   inspire: J.G.Messchendorp.1
+  themes: [nuclear, particle]  # set by hand: hadron physics at GSI/FAIR
 
 - given_name: Lorenzo
   surname: Moneta
@@ -338,6 +378,7 @@
   country: CH
   roles: [fellow]
   inspire: L.Moneta.1
+  themes: [particle]
 
 - given_name: Daniel Thomas
   surname: Murnane
@@ -345,6 +386,7 @@
   country: DK
   roles: [junior-fellow]
   inspire: Daniel.Murnane.1
+  themes: [particle]
 
 - given_name: Daniel
   surname: Nieto
@@ -352,6 +394,7 @@
   country: ES
   roles: [fellow]
   inspire: Daniel.Nieto.Castano.1
+  themes: [astroparticle]
 
 - given_name: Adrian
   surname: Oeftiger
@@ -359,6 +402,7 @@
   country: GB
   roles: [fellow]
   inspire: Adrian.Oeftiger.1
+  themes: [accelerator]
 
 - given_name: Hiranya
   surname: Peiris
@@ -366,6 +410,7 @@
   country: GB
   roles: [fellow]
   inspire: Hiranya.Vajramani.Peiris.1
+  themes: [cosmology]
 
 - given_name: Troels
   surname: Petersen
@@ -379,6 +424,7 @@
   country: CH
   roles: [fellow]
   inspire: M.Pierini.1
+  themes: [particle]
 
 - given_name: Annalisa
   surname: Pillepich
@@ -386,6 +432,7 @@
   country: DE
   roles: [fellow]
   inspire: Annalisa.Pillepich.1
+  themes: [cosmology]
 
 - given_name: Tilman
   surname: Plehn
@@ -393,6 +440,7 @@
   country: DE
   roles: [board, fellow]
   inspire: Tilman.Plehn.1
+  themes: [particle]
 
 - given_name: David
   surname: Rousseau
@@ -400,6 +448,7 @@
   country: FR
   roles: [fellow]
   inspire: D.Rousseau.1
+  themes: [particle]
 
 - given_name: Roberto
   surname: Ruiz de Austri
@@ -407,6 +456,7 @@
   country: ES
   roles: [fellow]
   inspire: R.Ruiz.de.Austri.1
+  themes: [particle]
 
 - given_name: Veronica
   surname: Sanz
@@ -414,6 +464,7 @@
   country: GB
   roles: [fellow]
   inspire: Veronica.Sanz.1
+  themes: [particle]
 
 - given_name: Steven
   surname: Schramm
@@ -421,6 +472,7 @@
   country: CH
   roles: [fellow]
   inspire: S.Schramm.2
+  themes: [particle]
 
 - given_name: Steffen
   surname: Schumann
@@ -428,6 +480,7 @@
   country: DE
   roles: [fellow]
   inspire: S.Schumann.1
+  themes: [particle]
 
 - given_name: Nicola
   surname: Serra
@@ -435,6 +488,7 @@
   country: CH
   roles: [fellow]
   inspire: N.Serra.1
+  themes: [particle]
 
 - given_name: Nikolaos
   surname: Stergioulas
@@ -442,6 +496,7 @@
   country: GR
   roles: [fellow]
   inspire: N.Stergioulas.1
+  themes: [gravitational, astroparticle]
 
 - given_name: Riccardo
   surname: Torre
@@ -449,6 +504,7 @@
   country: IT
   roles: [fellow]
   inspire: R.Torre.1
+  themes: [particle]
 
 - given_name: Roberto
   surname: Trotta
@@ -456,6 +512,7 @@
   country: IT
   roles: [fellow]
   inspire: R.Trotta.1
+  themes: [cosmology, particle]
 
 - given_name: Antonin
   surname: Vacheret
@@ -463,6 +520,7 @@
   country: FR
   roles: [fellow]
   inspire: Antonin.Vacheret.1
+  themes: [particle]
 
 - given_name: Sofia
   surname: Vallecorsa
@@ -470,6 +528,7 @@
   country: CH
   roles: [fellow]
   inspire: Sofia.Vallecorsa.1
+  themes: [particle]
 
 - given_name: Maarten
   surname: van Veghel
@@ -483,6 +542,7 @@
   country: GB
   roles: [fellow]
   inspire: J.Veitch.1
+  themes: [gravitational, astroparticle]
 
 - given_name: Pietro
   surname: Vischia
@@ -490,6 +550,7 @@
   country: ES
   roles: [fellow]
   inspire: P.Vischia.1
+  themes: [particle]
 
 - given_name: Thomas
   surname: Vuillaume
@@ -497,6 +558,7 @@
   country: FR
   roles: [fellow]
   inspire: Thomas.Vuillaume.1
+  themes: [astroparticle]
 
 - given_name: Benjamin
   surname: Wandelt
@@ -504,6 +566,7 @@
   country: FR
   roles: [fellow]
   inspire: Benjamin.D.Wandelt.1
+  themes: [cosmology]
 
 - given_name: Christoph
   surname: Weniger
@@ -511,6 +574,7 @@
   country: NL
   roles: [past-board, fellow]
   inspire: C.Weniger.1
+  themes: [particle, cosmology, astroparticle]
 
 - given_name: Michael
   surname: Williams
@@ -518,6 +582,7 @@
   country: GB
   roles: [junior-fellow]
   inspire: Michael.J.Williams.2
+  themes: [gravitational, astroparticle]
 
 - given_name: Ramon
   surname: Winterhalder
@@ -525,6 +590,7 @@
   country: IT
   roles: [junior-fellow]
   inspire: R.Winterhalder.1
+  themes: [particle]
 
 - given_name: Gabrijela
   surname: Zaharijas
@@ -532,3 +598,4 @@
   country: SI
   roles: [fellow]
   inspire: G.Zaharijas.1
+  themes: [astroparticle, particle]

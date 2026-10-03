@@ -21,14 +21,15 @@ export const THEMES = [
   { slug: 'accelerator',   name: 'Accelerator physics' },
 ];
 
-// arXiv category -> theme slug. Everything not listed here is ignored
+// arXiv category -> theme slug(s). Everything not listed here is ignored
 // (cs.*, stat.*, physics.data-an, physics.ins-det, astro-ph.IM, astro-ph.GA, ...).
+// A category may feed several themes: lattice QCD is both particle and nuclear physics.
 const CATEGORY_TO_THEME = {
   'hep-th': 'theoretical',
   'math-ph': 'theoretical',
   'hep-ph': 'particle',
   'hep-ex': 'particle',
-  'hep-lat': 'particle',
+  'hep-lat': ['particle', 'nuclear'],
   'nucl-th': 'nuclear',
   'nucl-ex': 'nuclear',
   'astro-ph.HE': 'astroparticle',
@@ -65,9 +66,9 @@ async function fetchCategories(bai) {
 function inferThemes(catCounts) {
   const themeCounts = {};
   for (const [cat, n] of Object.entries(catCounts)) {
-    const theme = CATEGORY_TO_THEME[cat];
-    if (!theme) continue;
-    themeCounts[theme] = (themeCounts[theme] || 0) + n;
+    const mapped = CATEGORY_TO_THEME[cat];
+    if (!mapped) continue;
+    for (const theme of [].concat(mapped)) themeCounts[theme] = (themeCounts[theme] || 0) + n;
   }
   const total = Object.values(themeCounts).reduce((a, b) => a + b, 0);
   if (total === 0) return { themes: [], themeCounts, total };

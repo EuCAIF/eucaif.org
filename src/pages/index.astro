@@ -115,7 +115,12 @@ const domainBlocks = await Promise.all(domains.map(async d => ({ ...d, Content: 
       </div>
       <div class="about-eucaif-text reveal reveal-delay-2">
         <AboutContent />
-        <img class="jenaa-logo" src="/eucaif.org/images/jenaa.png" alt="JENAA – Joint ECFA-NuPECC-APPEC Activities" loading="lazy" />
+        <div class="partner-logos">
+          <a href="https://nupecc.org/jenaa/" target="_blank" rel="noopener"><img src="/eucaif.org/images/jenaa.png" alt="JENAA – Joint ECFA-NuPECC-APPEC Activities" loading="lazy" /></a>
+          <a href="https://ecfa.web.cern.ch/" target="_blank" rel="noopener"><img src="/eucaif.org/images/ecfa.jpg" alt="ECFA – European Committee for Future Accelerators" loading="lazy" /></a>
+          <a href="https://www.nupecc.net/" target="_blank" rel="noopener"><img src="/eucaif.org/images/nupecc.png" alt="NuPECC – Nuclear Physics European Collaboration Committee" loading="lazy" /></a>
+          <a href="https://www.appec.org/" target="_blank" rel="noopener"><img src="/eucaif.org/images/appec.png" alt="APPEC – Astroparticle Physics European Consortium" loading="lazy" /></a>
+        </div>
       </div>
     </div>
   </div>
