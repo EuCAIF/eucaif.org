@@ -6,8 +6,21 @@ import '../styles/global.css';
 import yaml from 'js-yaml';
 import membersRaw from '../data/members.yml?raw';
 
-type Member = { given_name: string; surname: string; affiliation: string; country: string; roles: string[]; inspire?: string };
+type Member = { given_name: string; surname: string; affiliation: string; country: string; roles: string[]; inspire?: string; themes?: string[] };
 const members = yaml.load(membersRaw) as Member[];
+
+// Research themes, canonical order. Keep in sync with scripts/infer-themes.mjs and global.css.
+const THEMES = [
+  { slug: 'theoretical',   name: 'Theoretical physics' },
+  { slug: 'particle',      name: 'Particle physics' },
+  { slug: 'nuclear',       name: 'Nuclear physics' },
+  { slug: 'astroparticle', name: 'Astroparticle physics' },
+  { slug: 'gravitational', name: 'Gravitational waves' },
+  { slug: 'cosmology',     name: 'Cosmology' },
+  { slug: 'accelerator',   name: 'Accelerator physics' },
+];
+const themesOf = (m: Member) => (m.themes ?? []).map(s => THEMES.find(t => t.slug === s)).filter((t): t is typeof THEMES[number] => !!t);
+const themeAttr = (m: Member) => themesOf(m).map(t => t.slug).join(' ');
 
 const sorted = [...members].sort((a, b) => a.surname.localeCompare(b.surname));
 const board = sorted.filter(m => m.roles.includes('board'));
@@ -16,6 +29,7 @@ const pastBoard = sorted.filter(m => m.roles.includes('past-board'));
 const fellows = sorted.filter(m => m.roles.includes('fellow'));
 const juniorFellows = sorted.filter(m => m.roles.includes('junior-fellow'));
 const countryCount = new Set(members.map(m => m.country)).size;
+const anyThemes = members.some(m => (m.themes ?? []).length > 0);
 
 // Monogram avatar: initials on a soft tint chosen from the surname.
 const tints = ['tint-slate', 'tint-coral', 'tint-sand', 'tint-teal', 'tint-plum'];
@@ -40,10 +54,17 @@ const inspireUrl = (m: Member) => m.inspire ? `https://inspirehep.net/literature
     <h2 class="section-title">EuCAIF Management board</h2>
     <div class="people-grid people-grid-large">
       {board.map(m => (
-        <div class="person person-large">
+        <div class="person person-large" data-themes={themeAttr(m)}>
           <div class={`monogram ${tint(m)}`}>{initials(m)}</div>
           <div>
-            <h4>{inspireUrl(m) ? <a href={inspireUrl(m)} target="_blank" rel="noopener">{m.given_name} {m.surname}</a> : `${m.given_name} ${m.surname}`}</h4>
+            <h4>
+              {inspireUrl(m) ? <a href={inspireUrl(m)} target="_blank" rel="noopener">{m.given_name} {m.surname}</a> : `${m.given_name} ${m.surname}`}
+              {themesOf(m).length > 0 && (
+                <span class="theme-dots">
+                  {themesOf(m).map(t => <span class={`theme-dot theme-${t.slug}`} title={t.name}><span class="sr-only">{t.name}</span></span>)}
+                </span>
+              )}
+            </h4>
             <p>{m.affiliation}</p>
           </div>
         </div>
@@ -56,10 +77,17 @@ const inspireUrl = (m: Member) => m.inspire ? `https://inspirehep.net/literature
     <h2 class="section-title people-section">EuCAIF International Advisory Board</h2>
     <div class="people-grid people-grid-large">
       {advisory.map(m => (
-        <div class="person person-large">
+        <div class="person person-large" data-themes={themeAttr(m)}>
           <div class={`monogram ${tint(m)}`}>{initials(m)}</div>
           <div>
-            <h4>{inspireUrl(m) ? <a href={inspireUrl(m)} target="_blank" rel="noopener">{m.given_name} {m.surname}</a> : `${m.given_name} ${m.surname}`}</h4>
+            <h4>
+              {inspireUrl(m) ? <a href={inspireUrl(m)} target="_blank" rel="noopener">{m.given_name} {m.surname}</a> : `${m.given_name} ${m.surname}`}
+              {themesOf(m).length > 0 && (
+                <span class="theme-dots">
+                  {themesOf(m).map(t => <span class={`theme-dot theme-${t.slug}`} title={t.name}><span class="sr-only">{t.name}</span></span>)}
+                </span>
+              )}
+            </h4>
             <p>{m.affiliation}</p>
           </div>
         </div>
@@ -67,12 +95,29 @@ const inspireUrl = (m: Member) => m.inspire ? `https://inspirehep.net/literature
     </div>
 
     <h2 class="section-title people-section">EuCAIF Fellows</h2>
+    {anyThemes && (
+<div class="theme-legend" role="group" aria-label="Filter people by research theme">
+      <button type="button" class="theme-pill is-active" data-theme="" aria-pressed="true">All</button>
+      {THEMES.map(t => (
+        <button type="button" class="theme-pill" data-theme={t.slug} aria-pressed="false">
+          <span class={`theme-dot theme-${t.slug}`} aria-hidden="true"></span>{t.name}
+        </button>
+      ))}
+    </div>
+)}
     <div class="people-grid">
       {fellows.map(m => (
-        <div class="person">
+        <div class="person" data-themes={themeAttr(m)}>
           <div class={`monogram monogram-small ${tint(m)}`}>{initials(m)}</div>
           <div>
-            <h4>{inspireUrl(m) ? <a href={inspireUrl(m)} target="_blank" rel="noopener">{m.given_name} {m.surname}</a> : `${m.given_name} ${m.surname}`}</h4>
+            <h4>
+              {inspireUrl(m) ? <a href={inspireUrl(m)} target="_blank" rel="noopener">{m.given_name} {m.surname}</a> : `${m.given_name} ${m.surname}`}
+              {themesOf(m).length > 0 && (
+                <span class="theme-dots">
+                  {themesOf(m).map(t => <span class={`theme-dot theme-${t.slug}`} title={t.name}><span class="sr-only">{t.name}</span></span>)}
+                </span>
+              )}
+            </h4>
             <p>{m.affiliation}</p>
           </div>
         </div>
@@ -82,19 +127,54 @@ const inspireUrl = (m: Member) => m.inspire ? `https://inspirehep.net/literature
     <h2 class="section-title people-section">EuCAIF Junior Fellows</h2>
     <div class="people-grid">
       {juniorFellows.map(m => (
-        <div class="person">
+        <div class="person" data-themes={themeAttr(m)}>
           <div class={`monogram monogram-small ${tint(m)}`}>{initials(m)}</div>
           <div>
-            <h4>{inspireUrl(m) ? <a href={inspireUrl(m)} target="_blank" rel="noopener">{m.given_name} {m.surname}</a> : `${m.given_name} ${m.surname}`}</h4>
+            <h4>
+              {inspireUrl(m) ? <a href={inspireUrl(m)} target="_blank" rel="noopener">{m.given_name} {m.surname}</a> : `${m.given_name} ${m.surname}`}
+              {themesOf(m).length > 0 && (
+                <span class="theme-dots">
+                  {themesOf(m).map(t => <span class={`theme-dot theme-${t.slug}`} title={t.name}><span class="sr-only">{t.name}</span></span>)}
+                </span>
+              )}
+            </h4>
             <p>{m.affiliation}</p>
           </div>
         </div>
       ))}
     </div>
 
-    <p class="members-note">Names link to each person's publication list on INSPIRE HEP.</p>
+    <p class="members-note">Names link to each person's publication list on INSPIRE HEP. Coloured dots mark each person's main research themes, inferred from the arXiv categories of their papers.</p>
   </div>
 </section>
+
+<script is:inline>
+  (function () {
+    var legend = document.querySelector('.theme-legend');
+    if (!legend) return;
+    var buttons = Array.prototype.slice.call(legend.querySelectorAll('button[data-theme]'));
+    var people = Array.prototype.slice.call(document.querySelectorAll('.person[data-themes]'));
+    var active = '';
+    function apply() {
+      buttons.forEach(function (b) {
+        var on = (b.getAttribute('data-theme') || '') === active;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      people.forEach(function (p) {
+        var has = !active || (p.getAttribute('data-themes') || '').split(' ').indexOf(active) !== -1;
+        p.classList.toggle('is-dimmed', !has);
+      });
+    }
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var slug = b.getAttribute('data-theme') || '';
+        active = (slug && slug === active) ? '' : slug;
+        apply();
+      });
+    });
+  })();
+</script>
 
 <Footer />
 </Layout>

@@ -29,17 +29,19 @@ const levelBlocks = await Promise.all(levels.map(async l => ({ ...l, Content: (a
       <h2 class="section-title">{intro.data.title}</h2>
       <IntroContent />
     </div>
-    <div class="tiers-grid">
-      {levelBlocks.map(l => (
-        <div class={`tier-card ${l.data.highlight ? 'tier-card-accent' : ''}`}>
-          <h3>{l.data.title}</h3>
-          <l.Content />
-        </div>
+
+    <ol class="levels">
+      {levelBlocks.map((l, i) => (
+        <li class={`level ${l.data.highlight ? 'level-highlight' : ''}`}>
+          <div class="level-marker"><span>{i + 1}</span></div>
+          <div class="level-body prose">
+            <h3>{l.data.title}</h3>
+            <l.Content />
+            {l.data.highlight && <RequirementsContent />}
+          </div>
+        </li>
       ))}
-    </div>
-    <div class="prose" style="margin-top: 2.5rem;">
-      <RequirementsContent />
-    </div>
+    </ol>
   </div>
 </section>
 

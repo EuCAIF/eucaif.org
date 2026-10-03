@@ -7,7 +7,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "fetch-pubs": "node scripts/fetch-publications.mjs"
+    "fetch-pubs": "node scripts/fetch-publications.mjs",
+    "infer-themes": "node scripts/infer-themes.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
