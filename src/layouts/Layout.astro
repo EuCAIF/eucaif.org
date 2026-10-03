@@ -14,7 +14,19 @@ const { title } = Astro.props;
   <title>{title}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@300;400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style is:global>
+    :root {
+      --font-sans: 'IBM Plex Sans', -apple-system, 'Segoe UI', 'Helvetica Neue', sans-serif;
+      --font-heading: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
+      --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Menlo, monospace;
+    }
+    h1, h2, h3 { font-family: var(--font-heading); font-weight: 300; letter-spacing: -0.005em; }
+    .wg-code, .pub-tag, .tier-level, .section-label, .footer-inner h4 { font-family: var(--font-mono); }
+    .monogram { font-family: var(--font-sans); font-weight: 500; }
+    .footer-brand-name { font-family: var(--font-heading); }
+    .stat-number { font-family: var(--font-heading); }
+  </style>
 </head>
 <body>
   <slot />
