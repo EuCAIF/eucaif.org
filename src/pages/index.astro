@@ -91,13 +91,8 @@ const domainBlocks = await Promise.all(domains.map(async d => ({ ...d, Content: 
 <section id="about" class="about-section">
   <div class="section-container">
     <h2 class="section-title centered reveal">{purpose.data.title}</h2>
-    <div class="about-grid">
-      <div class="about-visual reveal">
-        <EuropeMap highlightedCountries={countries} />
-      </div>
-      <div class="about-text reveal reveal-delay-2">
-        <PurposeContent />
-      </div>
+    <div class="about-text purpose-text reveal reveal-delay-2">
+      <PurposeContent />
     </div>
   </div>
 </section>
@@ -125,9 +120,14 @@ const domainBlocks = await Promise.all(domains.map(async d => ({ ...d, Content: 
 <section id="about-eucaif" class="about-eucaif-section">
   <div class="section-container">
     <h2 class="section-title centered reveal">{about.data.title}</h2>
-    <div class="about-eucaif-grid reveal reveal-delay-2">
-      <div><AboutContent /></div>
-      <img class="jenaa-logo" src="/eucaif.org/images/jenaa.png" alt="JENAA – Joint ECFA-NuPECC-APPEC Activities" loading="lazy" />
+    <div class="about-eucaif-grid">
+      <div class="about-visual reveal">
+        <EuropeMap highlightedCountries={countries} />
+      </div>
+      <div class="about-eucaif-text reveal reveal-delay-2">
+        <AboutContent />
+        <img class="jenaa-logo" src="/eucaif.org/images/jenaa.png" alt="JENAA – Joint ECFA-NuPECC-APPEC Activities" loading="lazy" />
+      </div>
     </div>
   </div>
 </section>
