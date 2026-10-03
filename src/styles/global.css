@@ -369,3 +369,12 @@ footer { background: var(--bg-footer); color: #ccc; padding: 3.5rem 2rem 0; font
 .tier-card p a { color: var(--accent); }
 .section-desc p { margin: 0; }
 .about-eucaif-grid p { font-size: 1rem; line-height: 1.8; }
+
+/* PURPOSE: highlighted closing statement */
+.purpose-text p { margin-bottom: 1.25rem; }
+.purpose-text .lead {
+  margin-top: 2rem; padding: 0.25rem 0 0.25rem 1.5rem;
+  border-left: 3px solid var(--accent);
+  font-family: var(--font-heading); font-weight: 300;
+  font-size: 1.3rem; line-height: 1.55; color: var(--text);
+}
