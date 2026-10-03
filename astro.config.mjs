@@ -5,6 +5,6 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   site: 'https://eucaif.github.io',
   base: '/eucaif.org',
-  redirects: { '/community/': '/eucaif.org/people/', '/activities/': '/eucaif.org/working-groups/' },
+  redirects: { '/community/': '/eucaif.org/people/', '/activities/': '/eucaif.org/working-groups/', '/material/': '/eucaif.org/documents/' },
   integrations: [mdx()]
 });
