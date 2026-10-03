@@ -13,5 +13,6 @@ export type Site = {
   email: string;
   mailing_list: string;
   conference: { upcoming: Conference | null; latest: Conference };
+  hero: { style: 'photo' | 'animation'; image: string; image_credit?: string };
 };
 export const site = yaml.load(siteRaw) as Site;

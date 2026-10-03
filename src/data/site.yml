@@ -4,6 +4,13 @@ full_name: European Coalition for AI in Fundamental Physics
 email: info@eucaif.org
 mailing_list: eucaif-info@cern.ch
 
+hero:
+  # `photo`: full-bleed background image with white text.
+  # `animation`: light background with the seven-domain cluster animation.
+  style: photo
+  image: /images/hero-nebula.jpg
+  image_credit: NASA, ESA, N. Smith (University of California, Berkeley) and the Hubble Heritage Team
+
 conference:
   # Shown in the hero and at the end of the conference section. Set `upcoming`
   # to null when nothing is announced yet. `url` may be null until a site exists.

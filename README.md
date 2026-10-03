@@ -7,7 +7,7 @@ Website of the European Coalition for AI in Fundamental Physics, built with
 
 | To change… | Edit |
 |---|---|
-| Upcoming / latest conference, contact addresses | `src/data/site.yml` |
+| Upcoming / latest conference, contact addresses, hero style (photo or animation) and image | `src/data/site.yml` |
 | Home-page prose (tagline, Purpose and Scope, conference text, About) | `src/content/sections/*.md` |
 | The seven research domains on the home page | `src/content/research-domains/*.md` |
 | Working groups | `src/content/working-groups/*.md` (one file per group) |

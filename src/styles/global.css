@@ -183,24 +183,35 @@ section { padding: var(--s-6) var(--gutter); }
    Hero (home)
    -------------------------------------------------------------------------- */
 .hero { position: relative; min-height: 72vh; display: flex; align-items: center; overflow: hidden; }
+.hero-content {
+  position: relative; z-index: 1;
+  width: 100%; max-width: var(--container); margin: 0 auto; padding: var(--s-6) var(--gutter);
+  display: flex; flex-direction: column; align-items: flex-end; text-align: right;
+}
+.hero h1 { font-size: var(--fs-3xl); line-height: 1.15; max-width: 14em; }
+.hero h1 b { font-weight: 600; }
+.hero-conf { display: flex; flex-direction: column; align-items: flex-end; margin-top: var(--s-4); line-height: var(--lh-snug); text-align: right; }
+.hero-conf-label { margin-bottom: 0.2rem; }
+.hero-conf-title { font-size: var(--fs-md); font-weight: 500; }
+.hero-conf-meta { font-size: var(--fs-sm); }
+
+/* Variant A: full-bleed photograph, white text. */
+.hero-photo { background-color: var(--bg-footer); background-size: cover; background-position: center; background-repeat: no-repeat; }
+.hero-photo::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.35) 100%); }
+.hero-photo .hero-content, .hero-photo h1, .hero-photo .hero-conf, .hero-photo .hero-conf:hover { color: var(--on-dark); }
+.hero-photo .hero-conf-label, .hero-photo .hero-conf-meta { color: var(--on-dark-muted); }
+
+/* Variant B: light background with the seven-domain animation. */
 .hero-light { background: var(--bg); border-bottom: 1px solid var(--border); }
 #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .hero-light::before {
   content: ''; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(90deg, rgba(255,255,255,0) 48%, rgba(255,255,255,0.9) 60%, rgba(255,255,255,0.97) 100%);
 }
-.hero-content {
-  position: relative; z-index: 1;
-  width: 100%; max-width: var(--container); margin: 0 auto; padding: var(--s-6) var(--gutter);
-  display: flex; flex-direction: column; align-items: flex-end; text-align: right; color: var(--text);
-}
-.hero h1 { font-size: var(--fs-3xl); color: var(--text); line-height: 1.15; max-width: 14em; }
-.hero h1 b { font-weight: 600; color: var(--accent); }
-.hero-conf { display: flex; flex-direction: column; align-items: flex-end; margin-top: var(--s-4); color: var(--text); line-height: var(--lh-snug); text-align: right; }
-.hero-conf:hover { color: var(--accent-dark); }
-.hero-conf-label { color: var(--text-muted); margin-bottom: 0.2rem; }
-.hero-conf-title { font-size: var(--fs-md); font-weight: 500; }
-.hero-conf-meta { font-size: var(--fs-sm); color: var(--text-muted); }
+.hero-light .hero-content, .hero-light h1, .hero-light .hero-conf { color: var(--text); }
+.hero-light h1 b { color: var(--accent); }
+.hero-light .hero-conf:hover { color: var(--accent-dark); }
+.hero-light .hero-conf-label, .hero-light .hero-conf-meta { color: var(--text-muted); }
 
 /* --------------------------------------------------------------------------
    Research domains (home)

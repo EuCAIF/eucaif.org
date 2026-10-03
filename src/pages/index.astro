@@ -11,6 +11,8 @@ import EuropeMap from '../components/EuropeMap.astro';
 import { url, site } from '../lib/site';
 
 const { upcoming, latest } = site.conference;
+const hero = site.hero;
+const heroPhoto = hero.style === 'photo';
 const confLink = upcoming?.url || latest.url || url('/#conference');
 
 const members = yaml.load(membersRaw) as { given_name: string; surname: string; affiliation: string; country: string; roles: string[] }[];
@@ -52,8 +54,8 @@ const domainBlocks = await Promise.all(domains.map(async d => ({ ...d, Content: 
 <Nav />
 
 <!-- HERO -->
-<section class="hero hero-light">
-  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+<section class={`hero ${heroPhoto ? 'hero-photo' : 'hero-light'}`} style={heroPhoto ? `background-image: url(${url(hero.image)})` : undefined}>
+  {!heroPhoto && <canvas id="hero-canvas" aria-hidden="true"></canvas>}
   <div class="hero-content">
     <h1><b>Eu</b>ropean <b>C</b>oalition for <b>AI</b> in <b>F</b>undamental Physics</h1>
     {upcoming ? (
