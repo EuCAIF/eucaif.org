@@ -7,21 +7,19 @@ import { getCollection, getEntry, render } from 'astro:content';
 
 const intro = (await getEntry('sections', 'activities-intro'))!;
 const signup = (await getEntry('sections', 'activities-signup'))!;
-const conference = (await getEntry('sections', 'conference'))!;
 const { Content: IntroContent } = await render(intro);
 const { Content: SignupContent } = await render(signup);
-const { Content: ConferenceContent } = await render(conference);
 
 const groups = (await getCollection('workingGroups')).sort((a, b) => a.data.order - b.data.order);
 const groupBlocks = await Promise.all(groups.map(async g => ({ ...g, Content: (await render(g)).Content })));
 ---
 
-<Layout title="Activities – EuCAIF">
+<Layout title="Working groups – EuCAIF">
 <Nav />
 
 <section class="page-header">
   <div class="section-container">
-    <h1 class="section-title">Activities</h1>
+    <h1 class="section-title">Working groups</h1>
   </div>
 </section>
 
@@ -46,22 +44,6 @@ const groupBlocks = await Promise.all(groups.map(async g => ({ ...g, Content: (a
   <div class="section-container prose">
     <h2 class="section-title">{signup.data.title}</h2>
     <SignupContent />
-  </div>
-</section>
-
-<section id="conference" class="conference-section">
-  <div class="section-container">
-    <h2 class="section-title centered">{conference.data.title}</h2>
-    <p class="section-subtitle centered">{conference.data.subtitle}</p>
-    <div class="conf-grid">
-      <div class="conf-info">
-        <ConferenceContent />
-        <div class="conf-actions">
-          <a href="https://indico.physi.uni-heidelberg.de/event/1277/" class="btn-primary" target="_blank" rel="noopener">More information</a>
-        </div>
-      </div>
-      <img class="conf-photo" src="/eucaif.org/images/conference.jpg" alt="Audience at EuCAIFCon" loading="lazy" />
-    </div>
   </div>
 </section>
 
