@@ -11,7 +11,9 @@ import EuropeMap from '../components/EuropeMap.astro';
 
 const members = yaml.load(membersRaw) as { given_name: string; surname: string; affiliation: string; country: string; roles: string[] }[];
 const allPublications = yaml.load(pubsRaw) as { title: string; authors: string[]; eucaif_authors: string[]; arxiv: string | null; date: string | null; abstract: string }[];
-const publications = allPublications.slice(0, 8);
+// Landing page: four recent fellow-led papers (large-collaboration papers excluded).
+const MAX_AUTHORS = 50;
+const publications = allPublications.filter(p => p.authors.length <= MAX_AUTHORS).slice(0, 4);
 
 function formatAuthors(authors: string[]) {
   if (authors.length <= 3) return authors.join(', ');
@@ -132,7 +134,7 @@ const domainBlocks = await Promise.all(domains.map(async d => ({ ...d, Content: 
     <div class="reveal">
       <h2 class="section-title">Latest Publications</h2>
       <p class="section-desc">
-        Recent AI-related papers from EuCAIF fellows, automatically collected from INSPIRE HEP.
+        {publications.length} of {allPublications.length} AI-related papers by EuCAIF fellows in the last twelve months, automatically collected from INSPIRE HEP.
       </p>
     </div>
     <div class="pub-list">
@@ -148,7 +150,7 @@ const domainBlocks = await Promise.all(domains.map(async d => ({ ...d, Content: 
       ))}
     </div>
     <div style="text-align:center; margin-top: 2.5rem;" class="reveal">
-      <a href="/eucaif.org/publications/" class="btn-secondary">More publications →</a>
+      <a href="/eucaif.org/publications/" class="btn-secondary">All publications →</a>
     </div>
   </div>
 </section>
