@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import EditLink from '../components/EditLink.astro';
 import '../styles/global.css';
 import { url } from '../lib/site';
 import { getCollection, getEntry, render } from 'astro:content';
@@ -35,6 +36,7 @@ const groupBlocks = await Promise.all(groups.map(async g => ({ ...g, Content: (a
           <h3>{wg.data.title}</h3>
           <div class="wg-text"><wg.Content /></div>
           {wg.data.image && <img class="wg-image" src={url(wg.data.image)} alt="" loading="lazy" />}
+          {wg.filePath && <EditLink path={wg.filePath} label="Edit" compact />}
         </article>
       ))}
     </div>
@@ -45,6 +47,7 @@ const groupBlocks = await Promise.all(groups.map(async g => ({ ...g, Content: (a
   <div class="section-container prose">
     <h2 class="section-title">{signup.data.title}</h2>
     <SignupContent />
+    <EditLink path="src/content/working-groups" label="Add or edit a working group on GitHub" folder />
   </div>
 </section>
 

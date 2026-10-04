@@ -12,7 +12,13 @@ export type Site = {
   full_name: string;
   email: string;
   mailing_list: string;
+  repo: string;
   conference: { upcoming: Conference | null; latest: Conference };
   hero: { style: 'photo' | 'animation'; image: string; image_credit?: string };
 };
 export const site = yaml.load(siteRaw) as Site;
+
+/** GitHub web-editor URL for a repo-relative file path (opens a fork + PR flow for non-members). */
+export const editUrl = (path: string) => `${site.repo}/edit/main/${path.replace(/^\/+/, '')}`;
+/** GitHub tree URL for a repo-relative folder. */
+export const treeUrl = (path: string) => `${site.repo}/tree/main/${path.replace(/^\/+/, '')}`;

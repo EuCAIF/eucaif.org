@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import EditLink from '../components/EditLink.astro';
 import '../styles/global.css';
 import { getEntry, render } from 'astro:content';
 
@@ -22,6 +23,7 @@ const { Content } = await render(contact);
   <div class="section-container prose">
     <h2 class="section-title">{contact.data.title}</h2>
     <Content />
+    <EditLink path="src/content/sections/contact.md" />
   </div>
 </section>
 

@@ -380,6 +380,12 @@ section { padding: var(--s-6) var(--gutter); }
 .theme-pill[data-theme="cosmology"]     { --pill-color: var(--theme-cosmology); }
 .theme-pill[data-theme="accelerator"]   { --pill-color: var(--theme-accelerator); }
 
+/* Edit-on-GitHub links */
+.edit-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: var(--s-3); font-size: var(--fs-sm); color: var(--text-muted); }
+.edit-link:hover { color: var(--accent); }
+.edit-link-compact { margin-top: var(--s-2); align-self: flex-end; font-size: var(--fs-xs); }
+.about-eucaif-text .edit-link { margin-top: var(--s-2); }
+
 /* --------------------------------------------------------------------------
    Footer
    -------------------------------------------------------------------------- */

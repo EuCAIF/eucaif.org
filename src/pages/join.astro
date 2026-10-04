@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import EditLink from '../components/EditLink.astro';
 import '../styles/global.css';
 import { getCollection, getEntry, render } from 'astro:content';
 
@@ -42,6 +43,7 @@ const levelBlocks = await Promise.all(levels.map(async l => ({ ...l, Content: (a
         </li>
       ))}
     </ol>
+    <EditLink path="src/content/membership" label="Edit this page on GitHub" folder />
   </div>
 </section>
 

@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import EditLink from '../components/EditLink.astro';
 import '../styles/global.css';
 import { url } from '../lib/site';
 import { getCollection, getEntry, render } from 'astro:content';
@@ -49,6 +50,7 @@ function formatDate(d: Date) {
   <div class="section-container prose">
     <h2 class="section-title">{policy.data.title}</h2>
     <PolicyContent />
+    <EditLink path="src/content/documents" label="Add or edit a document on GitHub" folder />
   </div>
 </section>
 

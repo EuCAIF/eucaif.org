@@ -3,6 +3,7 @@ name: EuCAIF
 full_name: European Coalition for AI in Fundamental Physics
 email: info@eucaif.org
 mailing_list: eucaif-info@cern.ch
+repo: https://github.com/EuCAIF/eucaif.org
 
 hero:
   # `photo`: full-bleed background image with white text.

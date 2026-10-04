@@ -1,0 +1,12 @@
+---
+// "Edit this page" link into GitHub's web editor. `path` is repo-relative:
+// a file opens the editor, a folder opens the file list.
+import { editUrl, treeUrl } from '../lib/site';
+interface Props { path: string; label?: string; folder?: boolean; compact?: boolean }
+const { path, label = 'Edit this page on GitHub', folder = false, compact = false } = Astro.props;
+const href = folder ? treeUrl(path) : editUrl(path);
+---
+<a class={`edit-link ${compact ? 'edit-link-compact' : ''}`} href={href} target="_blank" rel="noopener">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+  <span>{label}</span>
+</a>

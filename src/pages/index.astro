@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import EditLink from '../components/EditLink.astro';
 import '../styles/global.css';
 import yaml from 'js-yaml';
 import { getCollection, getEntry, render } from 'astro:content';
@@ -134,6 +135,7 @@ const domainBlocks = await Promise.all(domains.map(async d => ({ ...d, Content: 
       </div>
       <div class="about-eucaif-text reveal reveal-delay-2">
         <AboutContent />
+        <EditLink path="src/content/sections" label="Edit the texts on this page on GitHub" folder />
         <div class="partner-logos">
           <a href="https://nupecc.org/jenaa/" target="_blank" rel="noopener"><img src={url('/images/jenaa.png')} alt="JENAA – Joint ECFA-NuPECC-APPEC Activities" loading="lazy" /></a>
           <a href="https://ecfa.web.cern.ch/" target="_blank" rel="noopener"><img src={url('/images/ecfa.jpg')} alt="ECFA – European Committee for Future Accelerators" loading="lazy" /></a>
