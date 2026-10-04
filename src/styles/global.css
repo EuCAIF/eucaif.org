@@ -380,8 +380,16 @@ section { padding: var(--s-6) var(--gutter); }
 .theme-pill[data-theme="cosmology"]     { --pill-color: var(--theme-cosmology); }
 .theme-pill[data-theme="accelerator"]   { --pill-color: var(--theme-accelerator); }
 
-/* Edit-on-GitHub links */
-.edit-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: var(--s-3); font-size: var(--fs-sm); color: var(--text-muted); }
+/* Edit-on-GitHub links: hidden unless edit mode is on (type "edit" or add ?edit to the URL). */
+.edit-link { display: none; align-items: center; gap: 0.4rem; margin-top: var(--s-3); font-size: var(--fs-sm); color: var(--text-muted); }
+body.editing .edit-link { display: inline-flex; }
+#edit-notice {
+  position: fixed; left: 50%; bottom: 1.5rem; transform: translate(-50%, 1rem); z-index: 200;
+  padding: 0.6rem 1rem; border-radius: var(--radius);
+  background: var(--text); color: var(--on-dark); font-size: var(--fs-sm);
+  opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.25s;
+}
+#edit-notice.show { opacity: 1; transform: translate(-50%, 0); }
 .edit-link:hover { color: var(--accent); }
 .edit-link-compact { margin-top: var(--s-2); align-self: flex-end; font-size: var(--fs-xs); }
 .about-eucaif-text .edit-link { margin-top: var(--s-2); }

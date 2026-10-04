@@ -26,6 +26,14 @@ prose below it. Links inside Markdown are written root-relative (`/people/`,
 
 Do not edit `src/data/publications.yml` by hand: it is generated.
 
+## Editing from the website
+
+Every page carries hidden "Edit on GitHub" links that open the matching file in
+GitHub's web editor (for non-members GitHub forks the repository and opens a pull
+request). To show them, type the word `edit` anywhere on a page, or open any page
+with `?edit` added to the address. Typing `edit` again hides them. The setting is
+remembered in the browser.
+
 ## Scripts
 
 ```bash

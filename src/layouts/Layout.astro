@@ -18,5 +18,37 @@ const { title } = Astro.props;
 </head>
 <body>
   <slot />
+  <script>
+    // Edit mode: the "Edit on GitHub" links are hidden until a visitor types
+    // the word "edit" (outside form fields) or opens any page with ?edit.
+    // The setting sticks across pages until toggled off the same way.
+    const KEY = 'eucaif-edit-mode';
+    const body = document.body;
+    const read = () => { try { return localStorage.getItem(KEY) === '1'; } catch { return false; } };
+    const write = (on: boolean) => { try { localStorage.setItem(KEY, on ? '1' : '0'); } catch {} };
+    let timer: number | undefined;
+    const notice = (text: string) => {
+      let el = document.getElementById('edit-notice');
+      if (!el) { el = document.createElement('div'); el.id = 'edit-notice'; el.setAttribute('role', 'status'); body.appendChild(el); }
+      el.textContent = text; el.classList.add('show');
+      window.clearTimeout(timer); timer = window.setTimeout(() => el!.classList.remove('show'), 2600);
+    };
+    const apply = (on: boolean, announce = false) => {
+      body.classList.toggle('editing', on); write(on);
+      if (announce) notice(on ? 'Edit links shown. Type "edit" again to hide them.' : 'Edit links hidden.');
+    };
+    const q = new URLSearchParams(location.search).get('edit');
+    if (q !== null) apply(q !== '0' && q !== 'off', true); else apply(read());
+
+    let typed = '';
+    document.addEventListener('keydown', (e) => {
+      const t = e.target as HTMLElement | null;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+      if (e.key.length !== 1) return;
+      typed = (typed + e.key.toLowerCase()).slice(-4);
+      if (typed === 'edit') { typed = ''; apply(!body.classList.contains('editing'), true); }
+    });
+  </script>
 </body>
 </html>
