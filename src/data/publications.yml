@@ -1,3 +1,19 @@
+- title: "ENFR: Evidence Networks with Flow-Matched References for Amortized Simulation-Based Model Inference"
+  authors:
+    - Lehman, Kai
+    - Dong, Jameson
+    - Cuesta-Lazaro, Carolina
+    - Jeffrey, Niall
+    - Wandelt, Benjamin D.
+    - Villaescusa-Navarro, Francisco
+    - Krippendorf, Sven
+    - Weller, Jochen
+  eucaif_authors:
+    - Sven.Krippendorf.1
+    - Benjamin.D.Wandelt.1
+  arxiv: "2610.23825"
+  date: "2026-10-16"
+  abstract: "The evidence, $\\mathcal{Z} = p(x | \\mathcal{M})$, of a data-generating model $\\mathcal{M}$ is a powerful tool in Bayesian frameworks: it enables model inference, model misspecification tests, and goodness-of-fit assessment as an alternative to standard discrepancy statistics, e.g. $χ^2$. While versatile, the evidence is notoriously difficult to compute, even when the likelihood is available. In both likelihood-based and simulation-based inference, estimating $\\mathcal{Z}$ provides an immediate solution to high-dimensional goodness-of-fit or model misspecification tests: using $\\mathcal{Z}(x)$ as the test statistic induces a minimum-volume level-$α$ test. Such tests are essential to assess model fidelity, which is necessary to trust simulation-based parameter inference. Existing learned approaches largely target Bayes factors, which only measure evidence ratios. Instead, we provide accurate, fast, and amortized estimates of the absolute evidence. We present ENFR: Evidence Networks with Flow-matched References. Building on the Evidence Network framework of Jeffrey & Wandelt (2024), the proposed method first learns Bayes factors with respect to a flow-matched reference, from which the absolute evidence is recovered. We show improvement in estimation of $\\mathcal{Z}$ over the flow-based baseline in all applications considered and the best performance of all density estimation methods considered in our benchmarks. We furthermore introduce and provide the proof for an architecture that jointly learns the individual evidences of a set of models $\\{\\mathcal{M}_i\\}$. We demonstrate the performance and scaling behavior of these approaches on data from a variety of scientific applications."
 - title: Local Diagnostics of Learned Event Representations for Anomaly Detection at the HL-LHC
   authors:
     - Genovese, Donatella
@@ -29,6 +45,43 @@
   arxiv: "2610.13876"
   date: "2026-10-09"
   abstract: Foundation models have recently gained significant attention in fields such as high energy physics (HEP). The tokenizers that convert detector data into discrete inputs for such models, however, are comparatively unexplored. This paper addresses this gap by learning discrete and compressed tokenized representations of HEP datasets. We demonstrate the approach on four modalities covering two different simulated detectors that vary in complexity. Treating tokenization as a rate-distortion problem, a systematic hyperparameter scan yields four design rules for tokenizing HEP data that hold across all set-based modalities studied. The cost of tokenization is evaluated on tasks including jet $p_T$ regression, particle flow reconstruction, and flavor tagging. We find that tokenization preserves much of the information needed for these tasks at compression factors of approximately 4-11$\times$ while keeping the jet $p_T$ resolution below 1%. We also present heptokens, an open-source library for tokenizing HEP data.
+- title: "AI Acceleration of Muon Collider R&D: A Report from the AI4MuC Workshop"
+  authors:
+    - Berg, J. Scott
+    - Bizzozero, David
+    - Bose, Tulika
+    - Cooley, Lance
+    - Dervan, John
+    - Edelen, Auralee
+    - Elmer, Peter
+    - Fanelli, Cristiano
+    - Holmes, Tova
+    - Hopkins, Walter
+    - Jindariani, Sergo
+    - Kagan, Michael
+    - Khan, Maira
+    - Kim, Young-Kee
+    - LeBlanc, Matt
+    - Lee, Lawrence
+    - Liepe, Matthias
+    - Mastandrea, Radha
+    - Meade, Patrick
+    - Meloni, Federico
+    - Mitchell, Chad
+    - Nguyen, Linh
+    - Ojalvo, Isobel
+    - Roberts, Ryan
+    - Smith, Nicholas
+    - Vay, Jean-Luc
+    - Watts, Gordon
+    - Winder, Drew
+    - Xu, Chenran
+    - Yonehara, Katsuya
+  eucaif_authors:
+    - M.Kagan.1
+  arxiv: "2610.14303"
+  date: "2026-10-09"
+  abstract: "A Muon Collider is one of the most attractive routes to multi-TeV lepton collisions, but it requires the accelerator and detector communities to solve a tightly coupled set of problems that have no close precedent in an operating collider. Muons must be produced, captured, cooled, accelerated, and collided before they decay. The detector must then extract clean physics from an environment dominated by decay products from the beamline. Artificial intelligence is not a substitute for accelerator physics, detector design, or engineering validation. It is, however, unusually well matched to several of the central obstacles: high-dimensional design spaces, expensive simulations, coupled subsystem trade-offs, and workflows that are currently too slow or too fragile to support broad design exploration. This report distills the AI4MuC workshop into a summary of AI use cases with the potential to change the pace of Muon Collider R&D, organized around the following physics bottlenecks: muon production and capture, ionization cooling, magnet and RF technology, detector design in beam-induced background, background simulation and generation, reconstruction, and software."
 - title: "Opening the Black Box: What Neural Networks Learn from Pulsar Timing Array Data"
   authors:
     - Alvey, James
@@ -21412,7 +21465,7 @@
     - P.Vischia.1
   arxiv: "2607.27254"
   date: "2026-07-28"
-  abstract: Discussions around the design philosophy and location of the next generation of ground-based gravitational wave detectors are still underway. In this context, we propose IfoScout, an innovative methodology for detector co-design based on state-of-the-art machine-learning (ML) techniques. We present a two-stage simulation of a network of fictional L-shaped interferometers whose sensitivity is optimized within physical and geographical constraints, indirectly resulting in reducing the costs. To achieve this, we gather publicly available data for two token locations and establish the length and orientation with reinforcement learning (RL). Next, we optimize the internal detector parameters related to cavity stability to achieve the best possible sensitivity by means of differential programming (DP). We make the case that IfoScout could have a positive impact on the final design of new generation detectors (e.g. the Einstein Telescope, the Cosmic Explorer, etc.), given precise data (e.g. geographical and geological maps of chosen sites) and detailed, realistic simulations of the interferometers.
+  abstract: Discussions around the design philosophy and location of the next generation of ground-based gravitational wave detectors are still underway. In this context, we propose IfoScout, an innovative methodology for detector co-design based on state-of-the-art machine-learning (ML) techniques. As a simple demonstration, we present a two-stage simulation of a network of fictional L-shaped interferometers whose sensitivity is optimized within physical and geographical constraints, indirectly resulting in reducing the costs. To achieve this, we gather publicly available data for two token locations and establish the length and orientation with reinforcement learning (RL). Next, we optimize the internal detector parameters related to cavity stability to achieve the best possible sensitivity by means of differential programming (DP). We make the case that pipelines such as IfoScout could have a positive impact on the final design of new generation detectors (e.g. the Einstein Telescope, the Cosmic Explorer, etc.), given precise data and detailed, realistic simulations of the interferometers.
 - title: Symbolic Extraction of Non-Perturbative Transverse-Momentum-Dependent Distributions from Drell-Yan Data
   authors:
     - Granger, Cole
@@ -66274,25 +66327,25 @@
   arxiv: "2602.24282"
   date: "2026-02-27"
   abstract: Correcting measurements for detector effects and constructing appropriate public data representations is a pressing problem in LHC physics. Current methods solve this inverse problem by relying on iterations, minimax optimization, or a surrogate forward mapping. We introduce Adversary-free Unfolding SanS Iteration or Emulation (AUSSIE), which dispenses with these mechanisms while remaining asymptotically correct. AUSSIE replaces the second OmniFold step with a new loss function that directly yields solutions with minimal dependence on the reference simulation. We showcase AUSSIE on various unfolding tasks, including full-phase-space jet substructure.
-- title: Machine Learning on Heterogeneous, Edge, and Quantum Hardware for Particle Physics (ML-HEQUPP)
+- title: Machine Learning on Heterogeneous, Edge, and Quantum Hardware for Particle Physics
   authors:
     - Gonski, Julia
-    - Ott, Jenni
+    - Ott, Jennifer
     - Abbaszadeh, Shiva
     - Addepalli, Sagar
     - Cremonesi, Matteo
     - Dickinson, Jennet
     - Di Guglielmo, Giuseppe
-    - Ertorer, Erdem Yigit
+    - Ertorer, Yigit Erdem
     - Gray, Lindsey
     - Herbst, Ryan
     - Herwig, Christian
     - Hong, Tae Min
     - Maier, Benedikt
     - Makou, Maryam Bayat
-    - Miller, David
+    - Miller, David W.
     - Neubauer, Mark S.
-    - Peña, Cristián
+    - Pena, Cristian
     - Rankin, Dylan
     - Seon-Hee
     - Seo, Seon-Hee
@@ -66301,9 +66354,8 @@
     - Therrien, Audrey Corbeil
     - Xiotidis, Ioannis
     - Yoshihara, Keisuke
-    - Abarajithan, G.
     - Akchurin, Nural
-    - Argüelles, Carlos
+    - Arguelles, Carlos
     - Bhattacharya, Saptaparna
     - Borella, Lorenzo
     - Boutan, Christian
@@ -66311,8 +66363,8 @@
     - Brau, James
     - Carminati, Marco
     - Chahine, Antonio
-    - Chowdhury, Talal Ahmed
     - Chou, Yuan-Tang
+    - Chowdhury, Talal Ahmed
     - Chung, Seokju
     - Coffee, Ryan
     - Coppi, Alberto
@@ -66327,9 +66379,10 @@
     - Feng, Yongbin
     - Forrestel, Emmett
     - Garcia, Dolores
-    - Gastaldo, Loredana
     - García Pardiñas, Julián
+    - Gastaldo, Loredana
     - Gerlach, Lino
+    - Gnaneswaran, Abarajithan
     - Gouskos, Loukas
     - Govorkova, Katya
     - Grace, Carl
@@ -66344,45 +66397,47 @@
     - Johnson, Jyothisraj
     - Jones, Stephen
     - Jung, Andreas
+    - Kamp, Nicholas
     - Karagiorgi, Georgia
     - Kastner, Ryan
-    - Kamp, Nicholas
     - Kim, Doojin
     - Kong, Kyoungchul
     - Kudela, Katie
-    - Lalic, Jelena
     - Lai, Bo-Cheng
     - Lai, Yun-Tsung
+    - Lalic, Jelena
     - Lam, Tommy
     - Lazar, Jeffrey
     - Li, Aobo
     - Li, Zepeng
     - Liu, Haoyun
-    - Lončar, Vladimir
+    - Liu, Qibin
+    - Loncar, Vladimir
+    - Ma, Zhenghua
     - Macchiarulo, Luca
     - Madrid, Christopher
-    - Ma, Zhenghua
     - Mukim, Prashansa
     - Nguyen, Victoria
     - Oh, Sungbin
     - Ojalvo, Isobel
     - Ozaki, Hideyoshi
-    - Griso, Simone Pagan
-    - Park, Myeonghun
-    - Paus, Christoph
+    - Pagan Griso, Simone
     - Parajuli, Santosh
+    - Park, Myeonghun
     - Parpillon, Benjamin
+    - Paus, Christoph
     - Pozzi, Sara
     - Puljak, Ema
     - Ramhorst, Benjamin
     - Roberts, Amy
     - Ruckman, Larry
-    - Scholberg, Kate
     - Schmitt, Sebastian
+    - Scholberg, Kate
     - Singer, Noah
     - Smith, Eluned Anne
     - Sousa, Alexandre
     - Spannowsky, Michael
+    - Sugizaki, Kaito
     - Summers, Sioni
     - Sun, Yanwen
     - Tapia Takaki, Daniel
@@ -66395,12 +66450,13 @@
     - Weinstein, Amanda
     - White, Andy
     - Williams, Simon
+    - Wu, Liangyu
     - Yu, Felix
   eucaif_authors:
     - Julian.Garcia.Pardinas.1
   arxiv: "2602.22248"
   date: "2026-02-24"
-  abstract: The next generation of particle physics experiments will face a new era of challenges in data acquisition, due to unprecedented data rates and volumes along with extreme environments and operational constraints. Harnessing this data for scientific discovery demands real-time inference and decision-making, intelligent data reduction, and efficient processing architectures beyond current capabilities. Crucial to the success of this experimental paradigm are several emerging technologies, such as artificial intelligence and machine learning (AI/ML), silicon microelectronics, and the advent of quantum algorithms and processing. Their intersection includes areas of research such as low-power and low-latency devices for edge computing, heterogeneous accelerator systems, reconfigurable hardware, novel codesign and synthesis strategies, readout for cryogenic or high-radiation environments, and analog computing. This white paper presents a community-driven vision to identify and prioritize research and development opportunities in hardware-based ML systems and corresponding physics applications, contributing towards a successful transition to the new data frontier of fundamental science.
+  abstract: The next generation of particle physics experiments will face an era of challenges in data acquisition, due to unprecedented data rates and volumes along with extreme environments and operational constraints. Harnessing these data for scientific discovery demands real-time inference and decision-making, intelligent data reduction, and efficient processing architectures beyond current capabilities. Crucial to the success of this experimental paradigm are several emerging technologies, such as artificial intelligence and machine learning, silicon microelectronics, and the advent of quantum algorithms and processing. Their intersection includes areas of research such as low-power and low-latency devices for edge computing, heterogeneous accelerator systems, reconfigurable hardware, codesign and synthesis strategies, readout for cryogenic or high-radiation environments, and analog computing. This white paper presents a community-driven vision to identify and prioritize research and development opportunities in hardware-based ML systems and corresponding physics applications, contributing toward a successful transition to the data frontier of fundamental science.
 - title: Cosmology with galaxy clusters using machine learning. Application to eROSITA Data
   authors:
     - Zhong, Fucheng
@@ -89443,51 +89499,6 @@
   arxiv: "2510.18964"
   date: "2025-10-21"
   abstract: "Machine learning has the potential to improve the reconstruction of the dark matter profile of galaxies with respect to traditional methods, like rotation curves. We demonstrate on the simulation suite Illustris–TNG that a steerable equivariant convolutional neural network (CNN) is able to infer the dark matter profiles within and around individual galaxies from photometric and interferometric data, improving on a standard CNN.Within the in silico environment of the simulations, our architecture is able to capture the dark matter distribution within galaxies without a parametrization of the profile. We perform an interpretability analysis to understand the internal mechanisms of the trained model and the most important data features used to estimate the dark matter profiles.The equivariant CNN recovers the dark matter profile of galaxies within the stellar mass range [10$^{10}$-10$^{12}$] M$_{⊙}$ with excellent precision and accuracy: the mean squared error is reduced by a factor of ∼3 from its value under the training distribution, demonstrating that the network has learnt from the data features.While this holds within the controlled – in silico– environment of the simulation, we argue that few additional steps are needed before this method can be reliably applied to galaxies in the real field observations."
-- title: "Dynamic SBI: round-free sequential simulation-based inference with adaptive datasets"
-  authors:
-    - Lyu, Huifang
-    - Alvey, James
-    - Anau Montel, Noemi
-    - Pieroni, Mauro
-    - Weniger, Christoph
-  eucaif_authors:
-    - James.Alvey.1
-    - C.Weniger.1
-  arxiv: "2510.13997"
-  date: "2025-10-15"
-  abstract: "Simulation-based inference (SBI) is emerging as a new statistical paradigm for addressing complex scientific inference problems. By leveraging the representational power of deep neural networks, SBI can extract the most informative simulation features for the parameters of interest. Sequential SBI methods extend this approach by iteratively steering the simulation process towards the most relevant regions of parameter space. This is typically implemented through an algorithmic structure, in which simulation and network training alternate over multiple rounds. This strategy is particularly well suited for high-precision inference in high-dimensional settings, which are commonplace in physics applications with growing data volumes and increasing model fidelity. Here, we introduce dynamic SBI, which implements the core ideas of sequential methods in a round-free, asynchronous, and highly parallelisable manner. At its core is an adaptive dataset that is iteratively transformed during inference to resemble the target observation. Simulation and training proceed in parallel: trained networks are used both to filter out simulations incompatible with the data and to propose new, more promising ones. Compared to round-based sequential methods, this asynchronous structure can significantly reduce simulation costs and training overhead. We demonstrate that dynamic SBI achieves significant improvements in simulation and training efficiency while maintaining inference performance. We further validate our framework on two challenging astrophysical inference tasks: characterising the stochastic gravitational wave background and analysing strong gravitational lensing systems. Overall, this work presents a flexible and efficient new paradigm for sequential SBI."
-- title: Hierarchical summaries for primordial non-Gaussianities
-  authors:
-    - Cagliari, M.S.
-    - Bairagi, A.
-    - Wandelt, B.
-  eucaif_authors:
-    - Benjamin.D.Wandelt.1
-  arxiv: "2510.12715"
-  date: "2025-10-14"
-  abstract: "The advent of Stage IV galaxy redshift surveys such as DESI and Euclid marks the beginning of an era of precision cosmology, with one key objective being the detection of primordial non-Gaussianities (PNG), which are potential signatures of inflationary physics. In particular, constraining the amplitude of local-type PNG, parametrised by fNL, with σfNL ∼ 1, would provide a critical test of single-versus-multi-field inflation scenarios. While current large-scale structure and cosmic microwave background analyses have achieved σfNL ∼ 5–9, further improvements demand novel data compression strategies. We propose a hybrid estimator that hierarchically combines standard two-point and three-point statistics with a field-level neural summary, motivated by recent theoretical works that have indicated that such a combination is nearly optimal in effectively disentangling primordial from late-time non-Gaussianity. We employed PATCHNET, a convolutional neural network that extracts small-scale information from sub-volumes (i.e. patches) of the halo number density field, while large-scale information is retained via the power spectrum and bispectrum. Using QUIJOTE-PNG simulations, we evaluated the Fisher information of this combined estimator across various redshifts, halo mass cuts, and scale cuts. Our results demonstrate that the inclusion of patch-based field-level compression always enhances constraints on fNL, reaching gains of 30–45% at low kmax (∼ 0.1h Mpc−1) and of 15–25% when the standard summary statistics include k modes comparable to those probed by the patches (kmax ∼ 0.4 h Mpc −1). This shows that, even in this configuration, information from beyond the bispectrum can be captured. This approach offers a computationally efficient and scalable pathway to tightening the PNG constraints with forthcoming survey data.Key words: methods: analytical / methods: statistical / cosmological parameters / large-scale structure of Universe"
-- title: "Qiboml: towards the orchestration of quantum-classical machine learning"
-  authors:
-    - Robbiati, Matteo
-    - Papaluca, Andrea
-    - Pasquale, Andrea
-    - Pedicillo, Edoardo
-    - Farias, Renato M.S.
-    - Sopena, Alejandro
-    - Robbiano, Mattia
-    - Alramahi, Ghaith
-    - Bordoni, Simone
-    - Candido, Alessandro
-    - Laurora, Niccolò
-    - Neto, Jogi Suda
-    - Tan, Yuanzheng Paul
-    - Grossi, Michele
-    - Carrazza, Stefano
-  eucaif_authors:
-    - S.Carrazza.1
-  arxiv: "2510.11773"
-  date: "2025-10-13"
-  abstract: "We present Qiboml, an open-source software library for orchestrating quantum and classical components in hybrid machine learning workflows. Building on Qibo's quantum computing capabilities and integrating with popular machine learning frameworks such as TensorFlow and PyTorch, Qiboml enables the construction of quantum and hybrid models that can run on a broad range of backends: (i) multi-threaded CPUs, GPUs, and multi-GPU systems for simulation with statevector or tensor network methods; (ii) quantum processing units, both on-premise and through cloud providers. In this paper, we showcase its functionalities, including diverse simulation options, noise-aware simulations, and real-time error mitigation and calibration."
 - title: Roadmap on fast machine learning for science
   authors:
     - Summers, Sioni
