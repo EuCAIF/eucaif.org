@@ -1,0 +1,309 @@
+
+---
+const formspreeEndpoint = "https://formspree.io/f/mbgdyjdq";
+---
+
+<section id="membership-application" class="application-section">
+  <h2>Fellowship application form</h2>
+  <p>
+    Please use this form to apply for a EuCAIF Fellowship. Your expression of
+    interest should be no more than 250 words (approximately half a page,
+    excluding references), describing your past contributions to AI in
+    fundamental physics and how you envision contributing to EuCAIF.
+  </p>
+
+  <form class="membership-form" method="POST" action={formspreeEndpoint}>
+    <input type="hidden" name="_subject" value="EuCAIF Fellowship application" />
+
+    <div class="honeypot" aria-hidden="true">
+      <label for="gotcha">Leave this field empty</label>
+      <input id="gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <div class="form-field">
+      <label for="full-name">Full name *</label>
+      <input id="full-name" name="Full name" type="text" autocomplete="name" required />
+    </div>
+    <div class="form-field">
+      <label for="email">Email address *</label>
+      <input id="email" name="Email" type="email" autocomplete="email" required />
+    </div>
+    <div class="form-field">
+      <label for="affiliation">Affiliation *</label>
+      <input id="affiliation" name="Affiliation" type="text" required />
+    </div>
+    <div class="form-field">
+      <label for="position">Position / role *</label>
+      <input id="position" name="Position / role" type="text" required />
+    </div>
+    <div class="form-field">
+      <label for="country">Country *</label>
+      <input id="country" name="Country" type="text" required />
+    </div>
+    <div class="form-field">
+      <label for="website">Website / ORCID (optional)</label>
+      <input id="website" name="Website / ORCID" type="text" placeholder="https://… or ORCID iD" />
+    </div>
+
+    <fieldset class="form-field">
+      <legend>Application type</legend>
+      <label class="checkbox-label">
+        <input name="Junior Fellowship" type="checkbox" value="Yes" />
+        I am applying for a Junior Fellowship
+      </label>
+    </fieldset>
+
+    <div class="form-field">
+      <label for="expression">Expression of interest *</label>
+      <p class="field-help">
+        Maximum 250 words, excluding references. Describe your previous
+        contributions to AI in fundamental physics and how you would contribute to EuCAIF.
+      </p>
+      <textarea id="expression" name="Expression of interest" rows="9" required
+        aria-describedby="word-count expression-error"></textarea>
+      <p id="word-count" class="field-help" aria-live="polite">0 / 250 words</p>
+      <p id="expression-error" class="form-error" role="alert"></p>
+    </div>
+
+    <div class="form-field">
+      <label for="references">References *</label>
+      <p class="field-help">List relevant references separately. If you have none, enter “None”.</p>
+      <textarea id="references" name="References" rows="5" required></textarea>
+    </div>
+
+    <div class="form-field">
+      <label class="checkbox-label">
+        <input name="Privacy consent" type="checkbox" value="Agreed" required />
+        I consent to the use of the information provided for assessing my EuCAIF Fellowship application. *
+      </label>
+    </div>
+
+    <button type="submit">Submit application</button>
+    <p class="field-help">Fields marked * are required.</p>
+  </form>
+</section>
+
+<style>
+  .application-section {
+    max-width: 54rem;
+    margin: 3rem auto;
+    padding: clamp(1.25rem, 3vw, 2.25rem);
+    border: 1px solid #dbe5f0;
+    border-radius: 1.25rem;
+    background: linear-gradient(180deg, #f8fbff 0%, #ffffff 35%);
+    box-shadow: 0 12px 32px rgb(31 55 85 / 8%);
+  }
+
+  .application-section h2 {
+    margin-top: 0;
+    margin-bottom: 0.65rem;
+    color: #183153;
+    letter-spacing: -0.02em;
+  }
+
+  .application-section > p {
+    margin-bottom: 1.5rem;
+    color: #4b5e73;
+    line-height: 1.65;
+  }
+
+  .membership-form {
+    display: grid;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+  }
+
+  .form-field {
+    display: grid;
+    gap: 0.5rem;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .form-field label,
+  .form-field legend {
+    color: #243b53;
+    font-weight: 650;
+  }
+
+  .membership-form input:not([type="checkbox"]),
+  .membership-form textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.8rem 0.95rem;
+    border: 1px solid #c7d4e2;
+    border-radius: 0.65rem;
+    background: #f4f8fc !important;
+    color: #172b4d !important;
+    font: inherit;
+    line-height: 1.5;
+    box-shadow: inset 0 1px 2px rgb(25 45 70 / 4%);
+    transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+    color-scheme: light;
+  }
+
+  .membership-form input:not([type="checkbox"])::placeholder,
+  .membership-form textarea::placeholder {
+    color: #77889b;
+    opacity: 1;
+  }
+
+  .membership-form input:not([type="checkbox"]):hover,
+  .membership-form textarea:hover {
+    border-color: #8faac7;
+    background: #ffffff !important;
+  }
+
+  .membership-form input:not([type="checkbox"]):focus,
+  .membership-form textarea:focus {
+    outline: none;
+    border-color: #3978c5;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 4px rgb(57 120 197 / 16%);
+  }
+
+  .membership-form textarea {
+    resize: vertical;
+    min-height: 7rem;
+  }
+
+  .membership-form #expression {
+    min-height: 13rem;
+  }
+
+  .form-field fieldset,
+  fieldset.form-field {
+    padding: 1rem 1.1rem;
+    border: 1px solid #dbe5f0;
+    border-radius: 0.75rem;
+    background: #f7faff;
+  }
+
+  .form-field legend {
+    padding: 0 0.35rem;
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    color: #334e68 !important;
+    font-weight: 400 !important;
+    line-height: 1.5;
+  }
+
+  .checkbox-label input {
+    flex: 0 0 auto;
+    width: 1.05rem;
+    height: 1.05rem;
+    margin-top: 0.2rem;
+    accent-color: #245da8;
+  }
+
+  .field-help {
+    margin: 0;
+    color: #61758a;
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  #word-count {
+    justify-self: end;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .membership-form button {
+    justify-self: start;
+    padding: 0.8rem 1.35rem;
+    border: 0;
+    border-radius: 0.65rem;
+    background: linear-gradient(135deg, #245da8, #347bc0);
+    color: #ffffff;
+    font: inherit;
+    font-weight: 650;
+    box-shadow: 0 5px 14px rgb(36 93 168 / 22%);
+    cursor: pointer;
+    transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  }
+
+  .membership-form button:hover {
+    background: linear-gradient(135deg, #1d4c8c, #286aa9);
+    box-shadow: 0 7px 18px rgb(36 93 168 / 28%);
+    transform: translateY(-1px);
+  }
+
+  .membership-form button:focus-visible {
+    outline: 3px solid rgb(57 120 197 / 45%);
+    outline-offset: 3px;
+  }
+
+  .form-error {
+    margin: 0;
+    color: #b42318;
+    font-weight: 600;
+  }
+
+  .honeypot {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  @media (max-width: 600px) {
+    .application-section {
+      margin: 1.5rem 0;
+      padding: 1.1rem;
+      border-radius: 0.9rem;
+    }
+
+    .membership-form button {
+      width: 100%;
+      justify-self: stretch;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .membership-form input,
+    .membership-form textarea,
+    .membership-form button {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>(".membership-form");
+  const expression = document.querySelector<HTMLTextAreaElement>("#expression");
+  const wordCount = document.querySelector<HTMLElement>("#word-count");
+  const expressionError = document.querySelector<HTMLElement>("#expression-error");
+  const maxWords = 250;
+
+  function countWords(value: string): number {
+    const trimmed = value.trim();
+    return trimmed ? trimmed.split(/\s+/).length : 0;
+  }
+
+  function updateWordCount() {
+    if (!expression || !wordCount || !expressionError) return;
+    const count = countWords(expression.value);
+    wordCount.textContent = `${count} / ${maxWords} words`;
+    expressionError.textContent = count > maxWords
+      ? `Please shorten your expression of interest to ${maxWords} words or fewer.`
+      : "";
+    expression.setAttribute("aria-invalid", count > maxWords ? "true" : "false");
+  }
+
+  expression?.addEventListener("input", updateWordCount);
+  form?.addEventListener("submit", (event) => {
+    if (expression && countWords(expression.value) > maxWords) {
+      event.preventDefault();
+      updateWordCount();
+      expression.focus();
+    }
+  });
+  updateWordCount();
+</script>
