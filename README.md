@@ -45,7 +45,8 @@ npm run infer-themes   # fill missing `themes:` in members.yml from INSPIRE arXi
 ```
 
 Publications are also refreshed automatically every Monday by the
-`update-publications` GitHub Action, which commits the result.
+`update-publications` GitHub Action, which opens a pull request with the result
+for the web team to approve.
 
 ## Deployment
 
