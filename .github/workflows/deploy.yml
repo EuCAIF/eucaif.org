@@ -1,8 +1,16 @@
 name: Deploy to GitHub Pages
 
+# Builds and deploys on every push to main. Once a week (and on manual
+# dispatch) it first refreshes src/data/publications.yml from INSPIRE and
+# stores the result in the Actions cache; every other deploy restores that
+# cached file, so the published list is never more than a week old while the
+# committed file only serves as a fallback.
+
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '17 5 * * 1'   # Mondays 05:17 UTC
   workflow_dispatch:
 
 permissions:
@@ -24,6 +32,32 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+
+      - name: Restore the latest cached publications
+        uses: actions/cache/restore@v4
+        with:
+          path: src/data/publications.yml
+          key: publications-none
+          restore-keys: |
+            publications-
+
+      - name: Refresh publications from INSPIRE (weekly or manual)
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        id: fetch
+        continue-on-error: true
+        run: npm run fetch-pubs
+
+      - name: Cache the refreshed publications
+        if: steps.fetch.outcome == 'success'
+        uses: actions/cache/save@v4
+        with:
+          path: src/data/publications.yml
+          key: publications-${{ github.run_id }}
+
+      - name: Note a failed refresh
+        if: steps.fetch.outcome == 'failure'
+        run: echo "::warning::INSPIRE fetch failed; deploying with the last cached or committed publications."
+
       - run: npx astro build
       - uses: actions/upload-pages-artifact@v3
         with:

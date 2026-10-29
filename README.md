@@ -44,9 +44,11 @@ npm run fetch-pubs     # refresh publications.yml from INSPIRE (last 12 months)
 npm run infer-themes   # fill missing `themes:` in members.yml from INSPIRE arXiv categories
 ```
 
-Publications are also refreshed automatically every Monday by the
-`update-publications` GitHub Action, which opens a pull request with the result
-for the web team to approve.
+The deployed site refreshes its publication list from INSPIRE every Monday
+(the `deploy` workflow fetches, caches the result in the Actions cache, and
+builds from it). The committed `publications.yml` is only a fallback for local
+work and for builds when INSPIRE is unreachable; run `npm run fetch-pubs` to
+update it occasionally. "Run workflow" on the deploy workflow forces a refresh.
 
 ## Deployment
 
