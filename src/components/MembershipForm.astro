@@ -153,18 +153,29 @@ const thanksUrl = new URL('/join/thanks/', Astro.site ?? 'https://eucaif.org').t
     if (expression && countWords(expression.value) > maxWords) {
       event.preventDefault(); updateWordCount(); expression.focus(); return;
     }
-    // Submit in place; on any failure fall back to a normal form post.
+    // Try to submit in place. Formspree refuses background submissions while
+    // reCAPTCHA is enabled on the form (HTTP 403); in that case, and on any
+    // network problem, fall back to a normal form submission, which Formspree
+    // accepts and which returns to /join/thanks/ via the _next field.
     event.preventDefault();
     const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
     if (button) { button.disabled = true; button.textContent = 'Sending…'; }
     try {
       const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
-      if (!res.ok) throw new Error(String(res.status));
-      form.hidden = true;
-      if (success) { success.hidden = false; success.scrollIntoView({ block: 'center' }); }
-    } catch {
-      if (submitError) submitError.textContent = 'The application could not be sent. Please try again, or email it to info@eucaif.org.';
-      if (button) { button.disabled = false; button.textContent = 'Submit application'; }
-    }
+      if (res.ok) {
+        form.hidden = true;
+        if (success) { success.hidden = false; success.scrollIntoView({ block: 'center' }); }
+        return;
+      }
+      if (res.status >= 400 && res.status < 500 && res.status !== 403) {
+        // The form data itself was rejected (e.g. invalid email); show it.
+        let message = 'The application could not be sent. Please check the fields and try again, or email it to info@eucaif.org.';
+        try { const body = await res.json(); if (body?.errors?.length) message = body.errors.map((e: { message: string }) => e.message).join(' '); } catch {}
+        if (submitError) submitError.textContent = message;
+        if (button) { button.disabled = false; button.textContent = 'Submit application'; }
+        return;
+      }
+    } catch {}
+    form.submit();
   });
 </script>
