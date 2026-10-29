@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import '../../styles/global.css';
+import { url } from '../../lib/site';
+---
+
+<Layout title="Application received – EuCAIF">
+<Nav />
+<section class="page-header">
+  <div class="section-container">
+    <h1 class="section-title">Application received</h1>
+  </div>
+</section>
+<section class="page-body">
+  <div class="section-container prose">
+    <p>Thank you. Your application has been sent to the EuCAIF Management Board, and you will hear from us once it has been reviewed.</p>
+    <p><a href={url('/')}>Back to the home page</a></p>
+  </div>
+</section>
+<Footer />
+</Layout>
