@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import EditLink from '../components/EditLink.astro';
 import '../styles/global.css';
 import { getCollection, getEntry, render } from 'astro:content';
+import MembershipForm from '../components/MembershipForm.astro';
 
 const intro = (await getEntry('sections', 'join-intro'))!;
 const requirements = (await getEntry('sections', 'join-requirements'))!;
@@ -43,6 +44,9 @@ const levelBlocks = await Promise.all(levels.map(async l => ({ ...l, Content: (a
         </li>
       ))}
     </ol>
+
+    <MembershipForm />
+
     <EditLink path="src/content/membership" label="Edit this page on GitHub" folder />
   </div>
 </section>

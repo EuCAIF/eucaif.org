@@ -1,0 +1,170 @@
+---
+// Fellowship application form, submitted through Formspree. Styled with the
+// site's tokens (global.css). Submits in place via fetch; the hidden _next
+// field is the no-JavaScript fallback.
+const formspreeEndpoint = 'https://formspree.io/f/mbgdyjdq';
+const thanksUrl = new URL('/join/thanks/', Astro.site ?? 'https://eucaif.org').toString();
+---
+
+<div id="membership-application" class="application">
+  <h2 class="section-title">Fellowship application form</h2>
+  <p class="application-intro">
+    Please use this form to apply for a EuCAIF Fellowship or Junior Fellowship. Your expression of
+    interest should be at most half a page (about 250 words), excluding references, describing your
+    past contributions to AI in fundamental physics and how you envision contributing to EuCAIF.
+  </p>
+
+  <form class="membership-form" method="POST" action={formspreeEndpoint}>
+    <input type="hidden" name="_subject" value="EuCAIF Fellowship application" />
+    <input type="hidden" name="_next" value={thanksUrl} />
+
+    <div class="honeypot" aria-hidden="true">
+      <label for="gotcha">Leave this field empty</label>
+      <input id="gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <div class="form-grid">
+      <div class="form-field">
+        <label for="full-name">Full name *</label>
+        <input id="full-name" name="Full name" type="text" autocomplete="name" required />
+      </div>
+      <div class="form-field">
+        <label for="email">Email address *</label>
+        <input id="email" name="email" type="email" autocomplete="email" required />
+      </div>
+      <div class="form-field">
+        <label for="affiliation">Affiliation *</label>
+        <input id="affiliation" name="Affiliation" type="text" required />
+      </div>
+      <div class="form-field">
+        <label for="position">Position / role *</label>
+        <input id="position" name="Position / role" type="text" required />
+      </div>
+      <div class="form-field">
+        <label for="country">Country *</label>
+        <input id="country" name="Country" type="text" required />
+      </div>
+      <div class="form-field">
+        <label for="website">Website / ORCID</label>
+        <input id="website" name="Website / ORCID" type="text" placeholder="https://… or ORCID iD" />
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label class="checkbox-label">
+        <input name="Junior Fellowship" type="checkbox" value="Yes" />
+        I am applying for a Junior Fellowship
+      </label>
+    </div>
+
+    <div class="form-field">
+      <label for="expression">Expression of interest *</label>
+      <p class="field-help">
+        Maximum half a page (about 250 words), excluding references. Describe your previous
+        contributions to AI in fundamental physics and how you would contribute to EuCAIF.
+      </p>
+      <textarea id="expression" name="Expression of interest" rows="10" required aria-describedby="word-count expression-error"></textarea>
+      <p id="word-count" class="field-help word-count" aria-live="polite">0 / 250 words</p>
+      <p id="expression-error" class="form-error" role="alert"></p>
+    </div>
+
+    <div class="form-field">
+      <label for="references">References</label>
+      <p class="field-help">Optional. List relevant references, one per line.</p>
+      <textarea id="references" name="References" rows="4"></textarea>
+    </div>
+
+    <div class="form-field">
+      <label class="checkbox-label">
+        <input name="Privacy consent" type="checkbox" value="Agreed" required />
+        I consent to the use of the information provided for assessing my EuCAIF Fellowship application. *
+      </label>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-primary">Submit application</button>
+      <span class="field-help">Fields marked * are required.</span>
+    </div>
+    <p id="submit-error" class="form-error" role="alert"></p>
+  </form>
+
+  <div id="application-success" class="application-success" hidden>
+    <h3>Application received</h3>
+    <p>Thank you. Your application has been sent to the EuCAIF Management Board, and you will hear from us once it has been reviewed.</p>
+  </div>
+</div>
+
+<style>
+  .application { max-width: 54rem; margin-top: var(--s-6); padding-top: var(--s-5); border-top: 1px solid var(--border); }
+  .application .section-title { font-size: var(--fs-xl); }
+  .application-intro { max-width: var(--measure); font-size: var(--fs-base); line-height: var(--lh-prose); margin-bottom: var(--s-4); }
+  .membership-form { display: grid; gap: var(--s-3); }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); }
+  .form-field { display: grid; gap: 0.4rem; min-width: 0; }
+  .form-field label { font-size: var(--fs-sm); font-weight: 500; color: var(--text); }
+  .membership-form input:not([type="checkbox"]), .membership-form textarea {
+    width: 100%; padding: 0.65rem 0.8rem;
+    border: 1px solid var(--border-strong); border-radius: var(--radius);
+    background: var(--bg); color: var(--text); font: inherit; line-height: var(--lh-snug);
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .membership-form input::placeholder, .membership-form textarea::placeholder { color: var(--text-muted); }
+  .membership-form input:not([type="checkbox"]):focus, .membership-form textarea:focus {
+    outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  .membership-form textarea { resize: vertical; }
+  .checkbox-label { display: flex; align-items: flex-start; gap: 0.6rem; font-weight: 400 !important; color: var(--text-body) !important; line-height: var(--lh-snug); cursor: pointer; }
+  .checkbox-label input { flex: none; width: 1rem; height: 1rem; margin-top: 0.2rem; accent-color: var(--accent); }
+  .field-help { font-size: var(--fs-sm); color: var(--text-muted); line-height: var(--lh-snug); }
+  .word-count { justify-self: end; font-family: var(--font-mono); font-size: var(--fs-xs); }
+  .form-actions { display: flex; align-items: center; gap: var(--s-2); flex-wrap: wrap; }
+  .form-error { font-size: var(--fs-sm); color: var(--accent-dark); font-weight: 500; }
+  .form-error:empty { display: none; }
+  .honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+  .application-success { padding: var(--s-3) var(--s-4); border-left: 3px solid var(--accent); background: var(--bg-alt); border-radius: var(--radius); max-width: var(--measure); }
+  .application-success h3 { font-size: var(--fs-lg); margin-bottom: var(--s-1); }
+  @media (max-width: 700px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .form-actions .btn-primary { width: 100%; text-align: center; }
+  }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('.membership-form');
+  const expression = document.querySelector<HTMLTextAreaElement>('#expression');
+  const wordCount = document.querySelector<HTMLElement>('#word-count');
+  const expressionError = document.querySelector<HTMLElement>('#expression-error');
+  const submitError = document.querySelector<HTMLElement>('#submit-error');
+  const success = document.querySelector<HTMLElement>('#application-success');
+  const maxWords = 250;
+
+  const countWords = (value: string) => { const t = value.trim(); return t ? t.split(/\s+/).length : 0; };
+  function updateWordCount() {
+    if (!expression || !wordCount || !expressionError) return;
+    const n = countWords(expression.value);
+    wordCount.textContent = `${n} / ${maxWords} words`;
+    expressionError.textContent = n > maxWords ? `Please shorten your expression of interest to ${maxWords} words or fewer.` : '';
+    expression.setAttribute('aria-invalid', n > maxWords ? 'true' : 'false');
+  }
+  expression?.addEventListener('input', updateWordCount);
+  updateWordCount();
+
+  form?.addEventListener('submit', async (event) => {
+    if (expression && countWords(expression.value) > maxWords) {
+      event.preventDefault(); updateWordCount(); expression.focus(); return;
+    }
+    // Submit in place; on any failure fall back to a normal form post.
+    event.preventDefault();
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    if (button) { button.disabled = true; button.textContent = 'Sending…'; }
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error(String(res.status));
+      form.hidden = true;
+      if (success) { success.hidden = false; success.scrollIntoView({ block: 'center' }); }
+    } catch {
+      if (submitError) submitError.textContent = 'The application could not be sent. Please try again, or email it to info@eucaif.org.';
+      if (button) { button.disabled = false; button.textContent = 'Submit application'; }
+    }
+  });
+</script>
