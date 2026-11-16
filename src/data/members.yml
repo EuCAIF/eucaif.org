@@ -19,6 +19,7 @@
   affiliation: GSI/FAIR
   country: DE
   roles: [fellow]
+  themes: [nuclear]
 
 - given_name: James
   surname: Alvey
@@ -35,6 +36,14 @@
   roles: [fellow]
   inspire: L.Anderlini.1
   themes: [particle]
+
+- given_name: Tomislav
+  surname: Andric
+  affiliation: Gran Sasso Science Institute (GSSI)  
+  country: IT
+  roles: [junior-fellow]
+  inspire: Tomislav.Andric.1
+  themes: [gravitational]
 
 - given_name: Anastasios
   surname: Belias

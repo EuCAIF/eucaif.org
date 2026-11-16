@@ -1,0 +1,149 @@
+
+---
+const formspreeEndpoint = "https://formspree.io/f/mbgdyjdq";
+---
+
+<section id="membership-application" class="application-section">
+  <h2>Fellowship application form</h2>
+  <p>
+    Please use this form to apply for a EuCAIF Fellowship. Your expression of
+    interest should be no more than 250 words (approximately half a page,
+    excluding references), describing your past contributions to AI in
+    fundamental physics and how you envision contributing to EuCAIF.
+  </p>
+
+  <form class="membership-form" method="POST" action={formspreeEndpoint}>
+    <input type="hidden" name="_subject" value="EuCAIF Fellowship application" />
+
+    <div class="honeypot" aria-hidden="true">
+      <label for="gotcha">Leave this field empty</label>
+      <input id="gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <div class="form-field">
+      <label for="full-name">Full name *</label>
+      <input id="full-name" name="Full name" type="text" autocomplete="name" required />
+    </div>
+    <div class="form-field">
+      <label for="email">Email address *</label>
+      <input id="email" name="Email" type="email" autocomplete="email" required />
+    </div>
+    <div class="form-field">
+      <label for="affiliation">Affiliation *</label>
+      <input id="affiliation" name="Affiliation" type="text" required />
+    </div>
+    <div class="form-field">
+      <label for="position">Position / role *</label>
+      <input id="position" name="Position / role" type="text" required />
+    </div>
+    <div class="form-field">
+      <label for="country">Country *</label>
+      <input id="country" name="Country" type="text" required />
+    </div>
+    <div class="form-field">
+      <label for="website">Website / ORCID (optional)</label>
+      <input id="website" name="Website / ORCID" type="text" placeholder="https://… or ORCID iD" />
+    </div>
+
+    <fieldset class="form-field">
+      <legend>Application type</legend>
+      <label class="checkbox-label">
+        <input name="Junior Fellowship" type="checkbox" value="Yes" />
+        I am applying for a Junior Fellowship
+      </label>
+    </fieldset>
+
+    <div class="form-field">
+      <label for="expression">Expression of interest *</label>
+      <p class="field-help">
+        Maximum 250 words, excluding references. Describe your previous
+        contributions to AI in fundamental physics and how you would contribute to EuCAIF.
+      </p>
+      <textarea id="expression" name="Expression of interest" rows="9" required
+        aria-describedby="word-count expression-error"></textarea>
+      <p id="word-count" class="field-help" aria-live="polite">0 / 250 words</p>
+      <p id="expression-error" class="form-error" role="alert"></p>
+    </div>
+
+    <div class="form-field">
+      <label for="references">References *</label>
+      <p class="field-help">List relevant references separately. If you have none, enter “None”.</p>
+      <textarea id="references" name="References" rows="5" required></textarea>
+    </div>
+
+    <div class="form-field">
+      <label class="checkbox-label">
+        <input name="Privacy consent" type="checkbox" value="Agreed" required />
+        I consent to the use of the information provided for assessing my EuCAIF Fellowship application. *
+      </label>
+    </div>
+
+    <button type="submit">Submit application</button>
+    <p class="field-help">Fields marked * are required.</p>
+  </form>
+</section>
+
+<style>
+  .application-section { margin-block: 2.5rem; max-width: 52rem; }
+  .membership-form { display: grid; gap: 1.25rem; margin-top: 1.5rem; }
+  .form-field { display: grid; gap: 0.45rem; min-width: 0; margin: 0; padding: 0; border: 0; }
+  .form-field label, .form-field legend { font-weight: 600; }
+  .membership-form input:not([type="checkbox"]), .membership-form textarea {
+    box-sizing: border-box; width: 100%; padding: 0.7rem 0.8rem;
+    border: 1px solid #9ca3af; border-radius: 0.35rem;
+    background: var(--form-field-background, #fff); color: var(--form-field-color, #111827);
+    font: inherit;
+  }
+  .membership-form textarea { resize: vertical; }
+  .membership-form input:focus, .membership-form textarea:focus {
+    outline: 2px solid #2563eb; outline-offset: 2px;
+  }
+  .checkbox-label { display: flex; align-items: flex-start; gap: 0.6rem; font-weight: 400 !important; }
+  .checkbox-label input { margin-top: 0.3rem; flex: 0 0 auto; }
+  .field-help { margin: 0; font-size: 0.92rem; opacity: 0.8; }
+  .membership-form button {
+    justify-self: start; padding: 0.75rem 1.2rem; border: 0; border-radius: 0.35rem;
+    background: #1d4ed8; color: white; font: inherit; font-weight: 600; cursor: pointer;
+  }
+  .membership-form button:hover { background: #1e40af; }
+  .form-error { margin: 0; color: #b91c1c; font-weight: 600; }
+  .honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+  @media (prefers-color-scheme: dark) {
+    .membership-form input:not([type="checkbox"]), .membership-form textarea {
+      background: #111827; color: #f9fafb; border-color: #6b7280;
+    }
+  }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>(".membership-form");
+  const expression = document.querySelector<HTMLTextAreaElement>("#expression");
+  const wordCount = document.querySelector<HTMLElement>("#word-count");
+  const expressionError = document.querySelector<HTMLElement>("#expression-error");
+  const maxWords = 250;
+
+  function countWords(value: string): number {
+    const trimmed = value.trim();
+    return trimmed ? trimmed.split(/\s+/).length : 0;
+  }
+
+  function updateWordCount() {
+    if (!expression || !wordCount || !expressionError) return;
+    const count = countWords(expression.value);
+    wordCount.textContent = `${count} / ${maxWords} words`;
+    expressionError.textContent = count > maxWords
+      ? `Please shorten your expression of interest to ${maxWords} words or fewer.`
+      : "";
+    expression.setAttribute("aria-invalid", count > maxWords ? "true" : "false");
+  }
+
+  expression?.addEventListener("input", updateWordCount);
+  form?.addEventListener("submit", (event) => {
+    if (expression && countWords(expression.value) > maxWords) {
+      event.preventDefault();
+      updateWordCount();
+      expression.focus();
+    }
+  });
+  updateWordCount();
+</script>
