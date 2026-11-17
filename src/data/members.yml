@@ -467,6 +467,14 @@
   inspire: R.Ruiz.de.Austri.1
   themes: [particle]
 
+- given_name: Filippo
+  surname: Santoliquido
+  affiliation: Gran Sasso Science Institute
+  country: IT
+  roles: [junior-fellow]
+  inspire: Filippo.Santoliquido.1
+  themes: [gravitational]
+
 - given_name: Veronica
   surname: Sanz
   affiliation: University of Sussex and University of Valencia
