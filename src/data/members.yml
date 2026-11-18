@@ -331,6 +331,14 @@
   inspire: J.Kieseler.1
   themes: [particle]
 
+- given_name: Claudius
+  surname: Krause
+  affiliation: MBI, Vienna 
+  country: AT
+  roles: [junior-fellow]
+  inspire: C.Krause.1
+  themes: [particle]
+
 - given_name: Sven
   surname: Krippendorf
   affiliation: LMU Munich
@@ -466,6 +474,14 @@
   roles: [fellow]
   inspire: R.Ruiz.de.Austri.1
   themes: [particle]
+
+- given_name: Andrea
+  surname: Santamaria Garcia
+  affiliation: University of Liverpool
+  country: UK
+  roles: [junior-fellow]
+  inspire: A.Santamaria.Garcia.1
+  themes: [accelerator]
 
 - given_name: Filippo
   surname: Santoliquido
