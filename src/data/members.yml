@@ -19,6 +19,7 @@
   affiliation: GSI/FAIR
   country: DE
   roles: [fellow]
+  themes: [nuclear]
 
 - given_name: James
   surname: Alvey
@@ -35,6 +36,14 @@
   roles: [fellow]
   inspire: L.Anderlini.1
   themes: [particle]
+
+- given_name: Tomislav
+  surname: Andric
+  affiliation: Gran Sasso Science Institute
+  country: IT
+  roles: [junior-fellow]
+  inspire: Tomislav.Andric.1
+  themes: [gravitational]
 
 - given_name: Anastasios
   surname: Belias
@@ -322,6 +331,14 @@
   inspire: J.Kieseler.1
   themes: [particle]
 
+- given_name: Claudius
+  surname: Krause
+  affiliation: MBI, Vienna 
+  country: AT
+  roles: [junior-fellow]
+  inspire: C.Krause.1
+  themes: [particle]
+
 - given_name: Sven
   surname: Krippendorf
   affiliation: LMU Munich
@@ -366,7 +383,7 @@
 
 - given_name: Johan
   surname: Messchendorp
-  affiliation: GSI/FAIR
+  affiliation: Ruhr University Bochum and GSI
   country: DE
   roles: [board, fellow]
   inspire: J.G.Messchendorp.1
@@ -457,6 +474,22 @@
   roles: [fellow]
   inspire: R.Ruiz.de.Austri.1
   themes: [particle]
+
+- given_name: Andrea
+  surname: Santamaria Garcia
+  affiliation: University of Liverpool
+  country: UK
+  roles: [junior-fellow]
+  inspire: A.Santamaria.Garcia.1
+  themes: [accelerator]
+
+- given_name: Filippo
+  surname: Santoliquido
+  affiliation: Gran Sasso Science Institute
+  country: IT
+  roles: [junior-fellow]
+  inspire: Filippo.Santoliquido.1
+  themes: [gravitational]
 
 - given_name: Veronica
   surname: Sanz
