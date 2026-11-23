@@ -475,6 +475,14 @@
   inspire: R.Ruiz.de.Austri.1
   themes: [particle]
 
+- given_name: Andrea
+  surname: Santamaria Garcia
+  affiliation: University of Liverpool
+  country: UK
+  roles: [junior-fellow]
+  inspire: A.Santamaria.Garcia.1
+  themes: [accelerator]
+
 - given_name: Filippo
   surname: Santoliquido
   affiliation: Gran Sasso Science Institute
