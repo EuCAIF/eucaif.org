@@ -258,9 +258,7 @@ section { padding: var(--s-6) var(--gutter); }
    AIFORIA (home) and announcement strip
    -------------------------------------------------------------------------- */
 .aiforia-section { border-top: 1px solid var(--border); }
-.aiforia-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: var(--s-5); align-items: center; }
-.aiforia-logo { display: block; line-height: 0; }
-.aiforia-logo img { width: 100%; max-width: 420px; height: auto; }
+.aiforia-block { max-width: 52rem; margin: 0 auto; }
 .aiforia-text p { font-size: var(--fs-base); line-height: var(--lh-prose); margin-bottom: var(--s-2); }
 .aiforia-text .section-label { margin-bottom: var(--s-1); }
 .aiforia-text .section-title { font-size: var(--fs-xl); }
@@ -480,9 +478,7 @@ footer { background: var(--bg-footer); color: var(--footer-text); padding: var(-
   .hero-notes { align-items: flex-start; }
   .hero-conf { align-items: flex-start; text-align: left; }
   .subfield-card { flex-basis: calc(50% - 0.75rem); }
-  .conf-grid, .about-eucaif-grid, .aiforia-grid, .footer-inner { grid-template-columns: 1fr; }
-  .aiforia-grid { gap: var(--s-4); }
-  .aiforia-logo img { max-width: 320px; }
+  .conf-grid, .about-eucaif-grid, .footer-inner { grid-template-columns: 1fr; }
   .footer-inner { gap: var(--s-4); }
   .about-visual { max-width: 340px; margin: 0 auto; }
   .pub-item { grid-template-columns: 1fr; gap: var(--s-1); }
