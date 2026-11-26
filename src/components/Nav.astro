@@ -27,6 +27,12 @@ const links = [
     <span></span><span></span><span></span>
   </button>
 </nav>
+{site.announcement && path !== `${B}/` && (
+  <div class="announcement" role="note">
+    <span>{site.announcement.text}</span>
+    <a href={site.announcement.url} target="_blank" rel="noopener">{site.announcement.link_label} →</a>
+  </div>
+)}
 
 
 <script>
