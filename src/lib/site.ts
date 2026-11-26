@@ -7,6 +7,7 @@ export const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 export const url = (path: string) => `${base}${path}`;
 
 export type Conference = { name: string; venue: string; dates: string; url?: string | null };
+export type HeroNote = { label: string; title: string; meta: string; url: string };
 export type Site = {
   name: string;
   full_name: string;
@@ -15,6 +16,9 @@ export type Site = {
   repo: string;
   conference: { upcoming: Conference | null; latest: Conference };
   hero: { style: 'photo' | 'animation'; image: string; image_credit?: string };
+  hero_notes?: HeroNote[];
+  aiforia: { url: string; join_url: string };
+  announcement?: { text: string; link_label: string; url: string } | null;
 };
 export const site = yaml.load(siteRaw) as Site;
 

@@ -190,7 +190,8 @@ section { padding: var(--s-6) var(--gutter); }
 }
 .hero h1 { font-size: var(--fs-3xl); line-height: 1.15; max-width: 14em; }
 .hero h1 b { font-weight: 600; }
-.hero-conf { display: flex; flex-direction: column; align-items: flex-end; margin-top: var(--s-4); line-height: var(--lh-snug); text-align: right; }
+.hero-notes { display: flex; flex-direction: column; align-items: flex-end; gap: var(--s-3); margin-top: var(--s-4); }
+.hero-conf { display: flex; flex-direction: column; align-items: flex-end; line-height: var(--lh-snug); text-align: right; }
 .hero-conf-label { margin-bottom: 0.2rem; }
 .hero-conf-title { font-size: var(--fs-md); font-weight: 500; }
 .hero-conf-meta { font-size: var(--fs-sm); }
@@ -252,6 +253,25 @@ section { padding: var(--s-6) var(--gutter); }
 .conf-info p { font-size: var(--fs-base); line-height: var(--lh-prose); margin-bottom: var(--s-2); text-align: left; }
 .conf-next { color: var(--text); }
 .conf-actions { margin-top: var(--s-3); }
+
+/* --------------------------------------------------------------------------
+   AIFORIA (home) and announcement strip
+   -------------------------------------------------------------------------- */
+.aiforia-section { border-top: 1px solid var(--border); }
+.aiforia-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: var(--s-5); align-items: center; }
+.aiforia-logo { display: block; line-height: 0; }
+.aiforia-logo img { width: 100%; max-width: 420px; height: auto; }
+.aiforia-text p { font-size: var(--fs-base); line-height: var(--lh-prose); margin-bottom: var(--s-2); }
+.aiforia-text .section-label { margin-bottom: var(--s-1); }
+.aiforia-text .section-title { font-size: var(--fs-xl); }
+.aiforia-actions { display: flex; gap: var(--s-2); flex-wrap: wrap; margin-top: var(--s-3); }
+.announcement {
+  display: flex; justify-content: center; align-items: baseline; gap: var(--s-2); flex-wrap: wrap;
+  padding: 0.55rem var(--gutter); background: var(--bg-footer); color: var(--footer-text);
+  font-size: var(--fs-sm); text-align: center;
+}
+.announcement a { color: var(--on-dark); font-weight: 500; }
+.announcement a:hover { color: var(--accent); }
 
 /* --------------------------------------------------------------------------
    About EuCAIF (home)
@@ -457,9 +477,12 @@ footer { background: var(--bg-footer); color: var(--footer-text); padding: var(-
   .hero { min-height: 80vh; align-items: flex-start; }
   .hero-light::before { background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.9) 55%, rgba(255,255,255,0) 75%); }
   .hero-content { align-items: flex-start; text-align: left; padding-top: var(--s-5); }
+  .hero-notes { align-items: flex-start; }
   .hero-conf { align-items: flex-start; text-align: left; }
   .subfield-card { flex-basis: calc(50% - 0.75rem); }
-  .conf-grid, .about-eucaif-grid, .footer-inner { grid-template-columns: 1fr; }
+  .conf-grid, .about-eucaif-grid, .aiforia-grid, .footer-inner { grid-template-columns: 1fr; }
+  .aiforia-grid { gap: var(--s-4); }
+  .aiforia-logo img { max-width: 320px; }
   .footer-inner { gap: var(--s-4); }
   .about-visual { max-width: 340px; margin: 0 auto; }
   .pub-item { grid-template-columns: 1fr; gap: var(--s-1); }

@@ -28,3 +28,23 @@ conference:
     venue: Heidelberg
     dates: August 24 - 28, 2026
     url: https://indico.physi.uni-heidelberg.de/event/1277/
+
+# Extra notes shown in the hero under the conference note, in the same three-line
+# format. Remove an entry to hide it.
+hero_notes:
+  - label: COST Action
+    title: AIFORIA
+    meta: CA25172 · 2026 – 2030
+    url: https://aiforia.eucaif.org/
+
+# The AIFORIA section on the home page (text in src/content/sections/aiforia.md).
+aiforia:
+  url: https://aiforia.eucaif.org/
+  join_url: https://aiforia.eucaif.org/#join
+
+# Thin strip under the navigation on every page except the home page.
+# Set to null to switch it off (for example after the launch period).
+announcement:
+  text: The COST Action AIFORIA has started.
+  link_label: Join a working group
+  url: https://aiforia.eucaif.org/#join

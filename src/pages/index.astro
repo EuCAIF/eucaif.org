@@ -16,6 +16,16 @@ const hero = site.hero;
 const heroPhoto = hero.style === 'photo';
 const confLink = upcoming?.url || latest.url || url('/#conference');
 
+// Hero notes: the conference first, then any extra notes from site.yml.
+const heroNotes = [
+  upcoming
+    ? { label: 'Upcoming', title: `${upcoming.name}, ${upcoming.venue}`, meta: upcoming.dates, url: upcoming.url || '#conference' }
+    : { label: 'Most recent conference', title: `${latest.name}, ${latest.venue}`, meta: latest.dates, url: latest.url || '#conference' },
+  ...(site.hero_notes ?? []),
+];
+const aiforia = (await getEntry('sections', 'aiforia'))!;
+const { Content: AiforiaContent } = await render(aiforia);
+
 const members = yaml.load(membersRaw) as { given_name: string; surname: string; affiliation: string; country: string; roles: string[] }[];
 const allPublications = yaml.load(pubsRaw) as { title: string; authors: string[]; eucaif_authors: string[]; arxiv: string | null; date: string | null; abstract: string }[];
 // Landing page: four recent fellow-led papers (large-collaboration papers excluded).
@@ -59,19 +69,15 @@ const domainBlocks = await Promise.all(domains.map(async d => ({ ...d, Content: 
   {!heroPhoto && <canvas id="hero-canvas" aria-hidden="true"></canvas>}
   <div class="hero-content">
     <h1><b>Eu</b>ropean <b>C</b>oalition for <b>AI</b> in <b>F</b>undamental Physics</h1>
-    {upcoming ? (
-      <a class="hero-conf" href={upcoming.url || '#conference'}>
-        <span class="hero-conf-label">Upcoming</span>
-        <span class="hero-conf-title">{upcoming.name}, {upcoming.venue}</span>
-        <span class="hero-conf-meta">{upcoming.dates}</span>
-      </a>
-    ) : (
-      <a class="hero-conf" href={latest.url || '#conference'}>
-        <span class="hero-conf-label">Most recent conference</span>
-        <span class="hero-conf-title">{latest.name}, {latest.venue}</span>
-        <span class="hero-conf-meta">{latest.dates}</span>
-      </a>
-    )}
+    <div class="hero-notes">
+      {heroNotes.map(n => (
+        <a class="hero-conf" href={n.url} target={n.url.startsWith('http') ? '_blank' : undefined} rel="noopener">
+          <span class="hero-conf-label">{n.label}</span>
+          <span class="hero-conf-title">{n.title}</span>
+          <span class="hero-conf-meta">{n.meta}</span>
+        </a>
+      ))}
+    </div>
   </div>
 </section>
 
@@ -120,6 +126,26 @@ const domainBlocks = await Promise.all(domains.map(async d => ({ ...d, Content: 
         </div>
       </div>
       <img class="conf-photo" src={url('/images/conference.jpg')} alt="Audience at EuCAIFCon" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<!-- AIFORIA (COST Action) -->
+<section id="aiforia" class="aiforia-section">
+  <div class="section-container">
+    <div class="aiforia-grid reveal">
+      <a class="aiforia-logo" href={site.aiforia.url} target="_blank" rel="noopener">
+        <img src={url('/images/aiforia-logo.svg')} alt="AIFORIA" width="580" height="128" loading="lazy" />
+      </a>
+      <div class="aiforia-text">
+        <p class="section-label">{aiforia.data.subtitle}</p>
+        <h2 class="section-title">{aiforia.data.title}</h2>
+        <AiforiaContent />
+        <div class="aiforia-actions">
+          <a href={site.aiforia.join_url} class="btn-primary" target="_blank" rel="noopener">Join AIFORIA</a>
+          <a href={site.aiforia.url} class="btn-secondary" target="_blank" rel="noopener">aiforia.eucaif.org ↗</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
