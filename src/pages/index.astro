@@ -133,10 +133,7 @@ const domainBlocks = await Promise.all(domains.map(async d => ({ ...d, Content: 
 <!-- AIFORIA (COST Action) -->
 <section id="aiforia" class="aiforia-section">
   <div class="section-container">
-    <div class="aiforia-grid reveal">
-      <a class="aiforia-logo" href={site.aiforia.url} target="_blank" rel="noopener">
-        <img src={url('/images/aiforia-logo.svg')} alt="AIFORIA" width="580" height="128" loading="lazy" />
-      </a>
+    <div class="aiforia-block reveal">
       <div class="aiforia-text">
         <p class="section-label">{aiforia.data.subtitle}</p>
         <h2 class="section-title">{aiforia.data.title}</h2>
